@@ -98,3 +98,66 @@
                             <h3>JavaScript Basics</h3>
                             <p class="tutorial-desc">Variables, functions, DOM, and events — start making pages interactive.</p>
                             <div class="tutorial-links">
+                                <button onclick="window.open('https://www.w3schools.com/js/','_blank')">W3Schools</button>
+                                <button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/JavaScript','_blank')">MDN</button>
+                                <button onclick="toggleTutorialVideo(this)" class="play-btn"><span class="material-icons">play_circle</span></button>
+                            </div>
+                            <div class="tutorial-body" style="display:none;">
+                                <iframe width="100%" height="160" src="" title="JS Tutorial (placeholder)" style="border-radius:8px;border:1px solid rgba(0,0,0,0.06)"></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Web Design Project Card -->
+                    <div class="tutorial-card card tutorial">
+                        <div class="thumb wd-thumb">WD</div>
+                        <div>
+                            <h3>Web Design Project</h3>
+                            <p class="tutorial-desc">A mini-project: build a landing page using HTML, CSS, and JS.</p>
+                            <div class="tutorial-links">
+                                <button onclick="window.open('https://www.w3schools.com/','_blank')">W3Schools</button>
+                                <button onclick="window.open('https://developer.mozilla.org/','_blank')">MDN</button>
+                                <button onclick="toggleTutorialVideo(this)" class="play-btn"><span class="material-icons">play_circle</span></button>
+                            </div>
+                            <div class="tutorial-body" style="display:none;">
+                                <iframe width="100%" height="160" src="" title="Web Design Project (placeholder)" style="border-radius:8px;border:1px solid rgba(0,0,0,0.06)"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-links">
+                    <a href="Resources_Page.html"><button>All Resources</button></a>
+                    <a href="Schedule_Page.html"><button>View Tutoring Schedule</button></a>
+                </div>
+            </section>
+
+            <!-- Sidebar -->
+            <aside>
+                <div class="card">
+                    <h3>Upcoming Tutoring</h3>
+                    <p class="muted-text">Live Tutoring: Mon, Wed, Thu — 3:30 PM to 5:00 PM</p>
+                    <p class="muted-text">Group Tutoring: Tue, Thu — 3:00 PM to 6:00 PM</p>
+                    <div class="calendar-btn">
+                        <a href="Schedule_Page.html"><button>Open Calendar</button></a>
+                    </div>
+                </div>
+
+                <div class="card sidebar-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="https://www.w3schools.com/html/" target="_blank">W3Schools - HTML</a></li>
+                        <li><a href="https://www.w3schools.com/css/" target="_blank">W3Schools - CSS</a></li>
+                        <li><a href="https://www.w3schools.com/js/" target="_blank">W3Schools - JavaScript</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            Made with open-source patterns. Tutorials sourced from W3Schools & MDN.
+        </footer>
+    </div>
+</body>
+</html>

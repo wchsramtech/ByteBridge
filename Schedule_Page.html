@@ -1,31 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Schedule</title>
-<link rel="stylesheet" href="styles.css">
-<script src="script.js"></script>
+    <meta charset="UTF-8">
+    <title>ByteBridge | Schedule</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
-
 <body>
+    <div class="container">
+        <header class="header">
+            <div class="brand">
+                <div class="logo">BB</div>
+                <div>
+                    <div class="site-title">ByteBridge</div>
+                    <div style="font-size:12px;color:var(--muted)">Bridging Learning • One Click at a Time</div>
+                </div>
+            </div>
 
-<nav>
-<div>
-<a href="index.html">Home</a>
-<a href="resources.html">Resources</a>
-<a href="schedule.html">Schedule</a>
-<a href="progress.html">Progress</a>
-</div>
-<button class="toggle-btn" onclick="toggleMode()">Mode</button>
-</nav>
+            <nav class="top-nav">
+                <a href="index.html"><button>Home</button></a>
+                <a href="Resources_Page.html"><button>Resources</button></a>
+                <a href="Schedule_Page.html"><button class="primary">Schedule</button></a>
+                <a href="Student_Dashboard.html"><button>Dashboard</button></a>
+                <button id="theme-toggle" title="Toggle dark mode">🌙</button>
+            </nav>
+        </header>
 
-<div class="container card">
+        <main>
+            <section class="card">
+                <h1>Tutoring Schedule</h1>
+                <p>Click a slot to book your tutoring session:</p>
 
-<h2>Book Tutoring</h2>
+                <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:12px">
+                    <button onclick="book(this)">Monday 3:30 PM</button>
+                    <button onclick="book(this)">Tuesday 4:00 PM</button>
+                    <button onclick="book(this)">Wednesday 3:30 PM</button>
+                    <button onclick="book(this)">Thursday 4:00 PM</button>
+                    <button onclick="book(this)">Friday 3:00 PM</button>
+                </div>
+            </section>
+        </main>
 
-<button class="slot" onclick="book(this)">Monday 3PM</button>
-<button class="slot" onclick="book(this)">Tuesday 4PM</button>
-<button class="slot" onclick="book(this)">Wednesday 5PM</button>
-
-</div>
+        <footer class="footer">
+            Open-source platform built for student learning.
+        </footer>
+    </div>
 </body>
 </html>

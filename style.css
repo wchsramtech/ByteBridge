@@ -345,3 +345,44 @@ iframe {
     pointer-events: auto;
 }
 
+/* ===== BYTEBRIDGE VISUAL UPGRADE ===== */
+
+body{
+    background: linear-gradient(120deg,#0A0A23,#1b1f4a);
+    color:#111;
+}
+
+/* Main cards pop */
+.card{
+    background:white;
+    border-radius:14px;
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+    padding:20px;
+}
+
+/* Buttons more modern */
+button{
+    border:none;
+    border-radius:8px;
+    padding:10px 16px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+
+/* Resource blocks */
+.tutorial-card{
+    border-left:6px solid #00AEEF;
+}
+
+/* Quiz styling */
+.quiz-q{
+    background:#f5f7ff;
+    border-left:5px solid #00AEEF;
+}
+

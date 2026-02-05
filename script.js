@@ -1,56 +1,43 @@
-// =============================
-// BYTEBRIDGE CORE SCRIPT
-// Dark Mode + Quiz Logic
-// =============================
-
-// Dark Mode Toggle
-document.addEventListener("DOMContentLoaded", () => {
-
-    const toggle = document.getElementById("theme-toggle");
-
-    if(toggle){
-
-        // Load saved theme
-        if(localStorage.getItem("darkMode") === "on"){
-            document.body.classList.add("dark-mode");
-        }
-
-        toggle.addEventListener("click", () => {
-            document.body.classList.toggle("dark-mode");
-
-            if(document.body.classList.contains("dark-mode")){
-                localStorage.setItem("darkMode","on");
-            } else {
-                localStorage.setItem("darkMode","off");
-            }
-        });
-    }
-});
-
-
-// Quiz Grader
-function gradeQuiz(){
-
-    const answers = ["b","b","c","a"];
-    let score = 0;
-
-    for(let i=1;i<=4;i++){
-        const selected = document.querySelector(`input[name="q${i}"]:checked`);
-        if(selected && selected.value === answers[i-1]){
-            score++;
-        }
-    }
-
-    const result = document.getElementById("quiz-result");
-
-    if(result){
-        result.innerHTML =
-            `<h3>Score: ${score}/4</h3>` +
-            (score === 4
-                ? "🔥 Outstanding — Mastery demonstrated!"
-                : score >= 2
-                ? "👍 Solid understanding — review weak areas."
-                : "📘 Keep practicing and retry!");
-    }
+// DARK MODE
+function toggleMode(){
+    document.body.classList.toggle("dark");
+    localStorage.setItem("mode",
+        document.body.classList.contains("dark"));
 }
 
+window.onload = () => {
+    if(localStorage.getItem("mode")==="true")
+        document.body.classList.add("dark");
+}
+
+/* QUIZ */
+
+function gradeQuiz(){
+    let score=0;
+    if(document.querySelector('input[name=q1]:checked')?.value==="b") score++;
+    if(document.querySelector('input[name=q2]:checked')?.value==="a") score++;
+
+    document.getElementById("result").innerText=
+        "Score: "+score+"/2";
+
+    updateProgress(score*50);
+}
+
+/* PROGRESS STORAGE */
+
+function updateProgress(val){
+    localStorage.setItem("progress",val);
+}
+
+function loadProgress(){
+    let val=localStorage.getItem("progress")||0;
+    document.getElementById("bar").style.width=val+"%";
+    document.getElementById("label").innerText=val+"% Complete";
+}
+
+/* SCHEDULING */
+
+function book(btn){
+    btn.innerText="Booked ✔";
+    btn.disabled=true;
+}

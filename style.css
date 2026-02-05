@@ -229,3 +229,101 @@ aside .card {
         flex-direction: column;
     }
 }
+
+/* ===== Progress Bar ===== */
+.progress-bar {
+    background-color: #eee;
+    border-radius: var(--radius);
+    overflow: hidden;
+    height: 22px;
+    margin-bottom: 8px;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--brand);
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.4s ease;
+    border-radius: var(--radius);
+}
+
+/* ===== Schedule Page Buttons ===== */
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.day-column {
+    background-color: var(--card-bg);
+    padding: 8px;
+    border-radius: var(--radius);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+}
+
+.day-column h3 {
+    text-align: center;
+    margin-bottom: 6px;
+    font-size: 16px;
+    color: var(--dark);
+}
+
+/* Slot buttons */
+.slot {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 6px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    background-color: var(--light);
+    color: var(--text);
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.slot:hover {
+    background-color: var(--brand);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.slot.booked {
+    background-color: #aaa;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+/* Booking Confirmation List */
+.booking-confirmation ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 8px;
+}
+
+.booking-confirmation li {
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.booking-confirmation li button {
+    padding: 3px 6px;
+    border: none;
+    border-radius: var(--radius);
+    background-color: var(--brand);
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.2s;
+}
+
+.booking-confirmation li button:hover {
+    opacity: 0.85;
+}

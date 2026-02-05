@@ -33,35 +33,38 @@ function saveUsername() {
     }
 }
 
-// Self-grading quiz logic
-// Written for ByteBridge educational use
-
+// ===== ByteBridge Quiz Grader =====
 function gradeQuiz(){
 
-    const answers = {
-        q1:"b",
-        q2:"b",
-        q3:"c",
-        q4:"a"
-    };
-
+    const correct = ["b","b","c","a"];
     let score = 0;
 
-    for(let q in answers){
-        const selected = document.querySelector(`input[name="${q}"]:checked`);
-        if(selected && selected.value === answers[q]){
+    const form = document.getElementById("quiz-form");
+
+    if(!form){
+        console.log("Quiz form not found");
+        return;
+    }
+
+    const data = new FormData(form);
+
+    let i = 0;
+    for (let value of data.values()){
+        if(value === correct[i]){
             score++;
         }
+        i++;
     }
 
     const result = document.getElementById("quiz-result");
 
     result.innerHTML =
-        `You scored ${score}/4<br>` +
+        `<h3>Score: ${score}/4</h3>` +
         (score === 4
-            ? "🔥 Excellent mastery!"
+            ? "🔥 Perfect — You're ByteBridge Certified!"
             : score >= 2
-            ? "👍 Good — review the tutorials to strengthen understanding."
-            : "📘 Revisit the resources and try again!"
+            ? "👍 Solid work — review weak spots!"
+            : "📘 Keep learning and retry!"
         );
 }
+

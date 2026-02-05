@@ -1,116 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>ByteBridge | Resources</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="script.js" defer></script>
+
+<!-- Layout inspired by open UI card patterns -->
+<!-- Sources: MDN Web Docs, W3Schools -->
 </head>
 
 <body>
-
 <div class="container">
 
 <header class="header">
-<div class="brand">
-<div class="logo">BB</div>
-<div>
-<div class="site-title">ByteBridge</div>
-<div style="font-size:12px;color:var(--muted)">
-Bridging Learning, One Click at a Time
-</div>
-</div>
-</div>
+    <div class="brand">
+        <div class="logo">BB</div>
+        <div>
+            <div class="site-title">ByteBridge</div>
+            <div style="font-size:12px;color:var(--muted)">
+                Bridging Learning, One Click at a Time
+            </div>
+        </div>
+    </div>
 
-<nav class="top-nav">
-<a href="index.html"><button>Home</button></a>
-<a href="Resources_Page.html"><button class="primary">Resources</button></a>
-<a href="Schedule_Page.html"><button>Schedule</button></a>
-<a href="Student_Dashboard.html"><button>Dashboard</button></a>
-<button id="theme-toggle">🌙</button>
-</nav>
+    <nav class="top-nav">
+        <a href="index.html"><button>Home</button></a>
+        <a href="Resources_Page.html"><button class="primary">Resources</button></a>
+        <a href="Schedule_Page.html"><button>Schedule</button></a>
+        <a href="Student_Dashboard.html"><button>Dashboard</button></a>
+        <button id="theme-toggle">🌙</button>
+    </nav>
 </header>
 
 <main>
 
 <section class="card">
-
 <h1>Learning Resources</h1>
+<p style="color:var(--muted)">
+Explore curated tutorials designed to help students bridge into coding mastery.
+</p>
 
 <div class="cards-grid">
 
+<!-- HTML -->
 <div class="tutorial-card card">
-<h3>HTML</h3>
-<button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/HTML')">MDN</button>
-<button onclick="window.open('https://www.w3schools.com/html/')">Practice</button>
-</div>
+<div class="thumb">HTML</div>
+<h3>HTML Foundations</h3>
+<p>Structure web content using modern semantic markup.</p>
 
-<div class="tutorial-card card">
-<h3>CSS</h3>
-<button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/CSS')">MDN</button>
-<button onclick="window.open('https://www.w3schools.com/css/')">Practice</button>
-</div>
-
-<div class="tutorial-card card">
-<h3>JavaScript</h3>
-<button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/JavaScript')">MDN</button>
-<button onclick="window.open('https://www.w3schools.com/js/')">Practice</button>
-</div>
-
-</div>
-
-<hr style="margin:40px 0">
-
-<h2>Knowledge Check</h2>
-
-<form id="quiz-form">
-
-<div class="quiz-q">
-<p>HTML controls:</p>
-<label><input type="radio" name="q1" value="a"> Style</label>
-<label><input type="radio" name="q1" value="b"> Structure</label>
-<label><input type="radio" name="q1" value="c"> Interaction</label>
-</div>
-
-<div class="quiz-q">
-<p>CSS layout tool:</p>
-<label><input type="radio" name="q2" value="a"> Console</label>
-<label><input type="radio" name="q2" value="b"> Flexbox</label>
-<label><input type="radio" name="q2" value="c"> Compiler</label>
-</div>
-
-<div class="quiz-q">
-<p>JavaScript adds:</p>
-<label><input type="radio" name="q3" value="a"> Structure</label>
-<label><input type="radio" name="q3" value="b"> Styling</label>
-<label><input type="radio" name="q3" value="c"> Interactivity</label>
-</div>
-
-<div class="quiz-q">
-<p>Official documentation:</p>
-<label><input type="radio" name="q4" value="a"> MDN</label>
-<label><input type="radio" name="q4" value="b"> Reddit</label>
-<label><input type="radio" name="q4" value="c"> TikTok</label>
-</div>
-
-<button type="button" class="primary" onclick="gradeQuiz()">
-Submit Quiz
+<button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/HTML','_blank')">
+MDN Guide
 </button>
 
-</form>
+<button onclick="window.open('https://www.w3schools.com/html/','_blank')">
+Practice
+</button>
 
-<div id="quiz-result"></div>
+<iframe width="100%" height="180"
+src="https://www.youtube.com/embed/it1rTvBcfRg"
+title="HTML Tutorial"
+allowfullscreen>
+</iframe>
+</div>
 
+<!-- CSS -->
+<div class="tutorial-card card">
+<div class="thumb">CSS</div>
+<h3>CSS Design</h3>
+<p>Learn layout, Flexbox, Grid, and responsive styling.</p>
+
+<button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/CSS','_blank')">
+MDN Guide
+</button>
+
+<button onclick="window.open('https://www.w3schools.com/css/','_blank')">
+Practice
+</button>
+
+<iframe width="100%" height="180"
+src="https://www.youtube.com/embed/VSwaoQ3TFkQ"
+title="CSS Tutorial"
+allowfullscreen>
+</iframe>
+</div>
+
+<!-- JavaScript -->
+<div class="tutorial-card card">
+<div class="thumb">JS</div>
+<h3>JavaScript Interaction</h3>
+<p>Add real interactivity and dynamic behavior.</p>
+
+<button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/JavaScript','_blank')">
+MDN Guide
+</button>
+
+<button onclick="window.open('https://www.w3schools.com/js/','_blank')">
+Practice
+</button>
+
+<iframe width="100%" height="180"
+src="https://www.youtube.com/embed/zofMnllkVfI"
+title="JS Tutorial"
+allowfullscreen>
+</iframe>
+</div>
+
+<!-- Project -->
+<div class="tutorial-card card">
+<div class="thumb">PROJ</div>
+<h3>Build a Web Project</h3>
+<p>Apply HTML, CSS, and JS to create a real site.</p>
+
+<button onclick="window.open('https://developer.mozilla.org/','_blank')">
+Reference
+</button>
+
+<button onclick="window.open('https://www.w3schools.com/','_blank')">
+Practice
+</button>
+
+<iframe width="100%" height="180"
+src="https://www.youtube.com/embed/it1rTvBcfRg"
+title="Project Tutorial"
+allowfullscreen>
+</iframe>
+</div>
+
+</div>
 </section>
 
 </main>
 
 <footer class="footer">
-Open resources: MDN Web Docs & W3Schools
+Open educational resources used:
+MDN Web Docs • W3Schools • YouTube EDU
 </footer>
 
 </div>
 </body>
 </html>
+

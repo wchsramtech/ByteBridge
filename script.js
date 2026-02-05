@@ -1,55 +1,26 @@
-// =============================
-// BYTEBRIDGE CORE SCRIPT
-// Dark Mode + Quiz Logic
-// =============================
-
-// Dark Mode Toggle
-document.addEventListener("DOMContentLoaded", () => {
-
-    const toggle = document.getElementById("theme-toggle");
-
-    if(toggle){
-
-        // Load saved theme
-        if(localStorage.getItem("darkMode") === "on"){
-            document.body.classList.add("dark-mode");
-        }
-
-        toggle.addEventListener("click", () => {
-            document.body.classList.toggle("dark-mode");
-
-            if(document.body.classList.contains("dark-mode")){
-                localStorage.setItem("darkMode","on");
-            } else {
-                localStorage.setItem("darkMode","off");
-            }
-        });
-    }
+// Dark mode toggle
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
 });
 
+// Example booking function for schedule page
+function book(button) {
+    alert(`You booked: ${button.textContent}`);
+}
 
-// Quiz Grader
-function gradeQuiz(){
-
-    const answers = ["b","b","c","a"];
+// Example quiz grading
+function gradeQuiz() {
+    const answers = {
+        q1: 'b',
+        q2: 'b',
+        q3: 'c',
+        q4: 'a'
+    };
     let score = 0;
-
-    for(let i=1;i<=4;i++){
-        const selected = document.querySelector(`input[name="q${i}"]:checked`);
-        if(selected && selected.value === answers[i-1]){
-            score++;
-        }
+    for (let q in answers) {
+        const selected = document.querySelector(`input[name=${q}]:checked`);
+        if (selected && selected.value === answers[q]) score++;
     }
-
-    const result = document.getElementById("quiz-result");
-
-    if(result){
-        result.innerHTML =
-            `<h3>Score: ${score}/4</h3>` +
-            (score === 4
-                ? "🔥 Outstanding — Mastery demonstrated!"
-                : score >= 2
-                ? "👍 Solid understanding — review weak areas."
-                : "📘 Keep practicing and retry!");
-    }
+    document.getElementById('quiz-result').textContent = `Score: ${score}/4`;
 }

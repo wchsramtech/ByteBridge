@@ -1,106 +1,97 @@
-:root {
-    --bg: #f4f6f8;
-    --text: #1f2933;
-    --card: #ffffff;
-    --accent: #2563eb;
+/* ===== Progress Bar ===== */
+.progress-bar {
+    background-color: #eee;
+    border-radius: var(--radius);
+    overflow: hidden;
+    height: 22px;
+    margin-bottom: 8px;
 }
 
-body.dark {
-    --bg: #121212;
-    --text: #e5e7eb;
-    --card: #1e1e1e;
-    --accent: #3b82f6;
+.progress-fill {
+    height: 100%;
+    background-color: var(--brand);
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.4s ease;
+    border-radius: var(--radius);
 }
 
-body {
-    margin: 0;
-    font-family: Segoe UI, sans-serif;
-    background: var(--bg);
+/* ===== Schedule Page Buttons ===== */
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.day-column {
+    background-color: var(--card-bg);
+    padding: 8px;
+    border-radius: var(--radius);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+}
+
+.day-column h3 {
+    text-align: center;
+    margin-bottom: 6px;
+    font-size: 16px;
+    color: var(--dark);
+}
+
+/* Slot buttons */
+.slot {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 6px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    background-color: var(--light);
     color: var(--text);
+    font-weight: 600;
+    transition: all 0.25s ease;
 }
 
-/* NAVBAR */
+.slot:hover {
+    background-color: var(--brand);
+    color: #fff;
+    transform: translateY(-2px);
+}
 
-nav {
-    background: var(--accent);
-    padding: 14px;
+.slot.booked {
+    background-color: #aaa;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+/* Booking Confirmation List */
+.booking-confirmation ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 8px;
+}
+
+.booking-confirmation li {
+    margin-bottom: 6px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-nav a {
-    color: white;
-    margin-right: 15px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.toggle-btn {
-    background: white;
+.booking-confirmation li button {
+    padding: 3px 6px;
     border: none;
-    padding: 6px 10px;
-    border-radius: 6px;
+    border-radius: var(--radius);
+    background-color: var(--brand);
+    color: #fff;
     cursor: pointer;
+    font-size: 12px;
+    transition: 0.2s;
 }
 
-/* LAYOUT */
-
-.container {
-    padding: 30px;
+.booking-confirmation li button:hover {
+    opacity: 0.85;
 }
-
-.card {
-    background: var(--card);
-    padding: 20px;
-    margin: 15px 0;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,.1);
-}
-
-/* BUTTONS */
-
-button {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-/* VIDEO GRID */
-
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
-    gap: 20px;
-}
-
-.video-card iframe {
-    width: 100%;
-    height: 220px;
-    border-radius: 10px;
-}
-
-/* PROGRESS */
-
-.progress {
-    height: 20px;
-    background: #ccc;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.progress-bar {
-    height: 100%;
-    background: var(--accent);
-    width: 0%;
-}
-
-/* SLOTS */
-
-.slot {
-    margin: 8px;
-}
-

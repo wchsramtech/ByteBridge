@@ -95,3 +95,58 @@
 .booking-confirmation li button:hover {
     opacity: 0.85;
 }
+
+/* ===== VISUAL UPGRADE ===== */
+
+body{
+    background: linear-gradient(120deg,#0A0A23,#1b1f4a);
+}
+
+.card{
+    background:white;
+    border-radius:14px;
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+    padding:20px;
+}
+
+button{
+    border:none;
+    border-radius:8px;
+    padding:10px 16px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+.quiz-q{
+    background:#f5f7ff;
+    border-left:5px solid #00AEEF;
+    padding:12px;
+    margin:10px 0;
+    border-radius:8px;
+}
+
+/* DARK MODE */
+
+.dark-mode{
+    background: linear-gradient(120deg,#050510,#10143a);
+    color:#eee;
+}
+
+.dark-mode .card{
+    background:#1e224f;
+    color:#eee;
+}
+
+.dark-mode button{
+    background:#2e3370;
+    color:white;
+}
+
+.dark-mode .quiz-q{
+    background:#2a2f66;
+}

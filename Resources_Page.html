@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>ByteBridge | Resources</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
 <script src="script.js" defer></script>
 
-<!-- Layout inspired by open UI card patterns -->
-<!-- Sources: MDN Web Docs, W3Schools -->
+<!-- Educational resources sourced from MDN Web Docs, W3Schools, and YouTube EDU -->
 </head>
 
 <body>
@@ -41,115 +41,69 @@
 <section class="card">
 <h1>Learning Resources</h1>
 <p style="color:var(--muted)">
-Explore curated tutorials designed to help students bridge into coding mastery.
+Explore interactive lessons designed to strengthen foundational web development skills.
 </p>
 
 <div class="cards-grid">
 
 <!-- HTML -->
 <div class="tutorial-card card">
-<div class="thumb">HTML</div>
-<h3>HTML Foundations</h3>
-<p>Structure web content using modern semantic markup.</p>
-
-<button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/HTML','_blank')">
-MDN Guide
-</button>
-
-<button onclick="window.open('https://www.w3schools.com/html/','_blank')">
-Practice
-</button>
-
-<iframe width="100%" height="180"
-src="https://www.youtube.com/embed/it1rTvBcfRg"
-title="HTML Tutorial"
-allowfullscreen>
-</iframe>
+    <div class="thumb">HTML</div>
+    <h3>HTML Foundations</h3>
+    <p>Defines the structure and content of webpages.</p>
+    <button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/HTML','_blank')">MDN Docs</button>
+    <button onclick="window.open('https://www.w3schools.com/html/','_blank')">Practice</button>
 </div>
 
 <!-- CSS -->
 <div class="tutorial-card card">
-<div class="thumb">CSS</div>
-<h3>CSS Design</h3>
-<p>Learn layout, Flexbox, Grid, and responsive styling.</p>
-
-<button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/CSS','_blank')">
-MDN Guide
-</button>
-
-<button onclick="window.open('https://www.w3schools.com/css/','_blank')">
-Practice
-</button>
-
-<iframe width="100%" height="180"
-src="https://www.youtube.com/embed/VSwaoQ3TFkQ"
-title="CSS Tutorial"
-allowfullscreen>
-</iframe>
+    <div class="thumb">CSS</div>
+    <h3>CSS Styling</h3>
+    <p>Controls layout, colors, and responsive design.</p>
+    <button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/CSS','_blank')">MDN Docs</button>
+    <button onclick="window.open('https://www.w3schools.com/css/','_blank')">Practice</button>
 </div>
 
 <!-- JavaScript -->
 <div class="tutorial-card card">
-<div class="thumb">JS</div>
-<h3>JavaScript Interaction</h3>
-<p>Add real interactivity and dynamic behavior.</p>
-
-<button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/JavaScript','_blank')">
-MDN Guide
-</button>
-
-<button onclick="window.open('https://www.w3schools.com/js/','_blank')">
-Practice
-</button>
-
-<iframe width="100%" height="180"
-src="https://www.youtube.com/embed/zofMnllkVfI"
-title="JS Tutorial"
-allowfullscreen>
-</iframe>
+    <div class="thumb">JS</div>
+    <h3>JavaScript Interactivity</h3>
+    <p>Adds dynamic behavior and user interaction.</p>
+    <button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/JavaScript','_blank')">MDN Docs</button>
+    <button onclick="window.open('https://www.w3schools.com/js/','_blank')">Practice</button>
 </div>
 
 <!-- Project -->
 <div class="tutorial-card card">
-<div class="thumb">PROJ</div>
-<h3>Build a Web Project</h3>
-<p>Apply HTML, CSS, and JS to create a real site.</p>
-
-<button onclick="window.open('https://developer.mozilla.org/','_blank')">
-Reference
-</button>
-
-<button onclick="window.open('https://www.w3schools.com/','_blank')">
-Practice
-</button>
-
-<iframe width="100%" height="180"
-src="https://www.youtube.com/embed/it1rTvBcfRg"
-title="Project Tutorial"
-allowfullscreen>
-</iframe>
+    <div class="thumb">PROJ</div>
+    <h3>Web Project</h3>
+    <p>Apply HTML, CSS, and JavaScript together.</p>
+    <button onclick="window.open('https://developer.mozilla.org/','_blank')">Reference</button>
+    <button onclick="window.open('https://www.w3schools.com/','_blank')">Practice</button>
 </div>
 
 </div>
 
-    <hr style="margin:40px 0">
+<hr style="margin:40px 0">
+
+<!-- ================= QUIZ ================= -->
 
 <h2>Knowledge Check</h2>
 <p style="color:var(--muted)">
-Test your understanding of the learning resources above.
+Test your understanding of the resources above.
 </p>
 
 <form id="quiz-form">
 
 <div class="quiz-q">
 <p>1️⃣ What does HTML primarily control?</p>
-<label><input type="radio" name="q1" value="a"> Page styling</label><br>
-<label><input type="radio" name="q1" value="b"> Page structure</label><br>
+<label><input type="radio" name="q1" value="a"> Styling</label><br>
+<label><input type="radio" name="q1" value="b"> Structure</label><br>
 <label><input type="radio" name="q1" value="c"> Interactivity</label>
 </div>
 
 <div class="quiz-q">
-<p>2️⃣ Which CSS tool helps create flexible layouts?</p>
+<p>2️⃣ Which CSS feature helps create flexible layouts?</p>
 <label><input type="radio" name="q2" value="a"> Variables</label><br>
 <label><input type="radio" name="q2" value="b"> Flexbox</label><br>
 <label><input type="radio" name="q2" value="c"> Console</label>
@@ -157,19 +111,19 @@ Test your understanding of the learning resources above.
 
 <div class="quiz-q">
 <p>3️⃣ JavaScript is mainly used for:</p>
-<label><input type="radio" name="q3" value="a"> Styling pages</label><br>
-<label><input type="radio" name="q3" value="b"> Structuring pages</label><br>
-<label><input type="radio" name="q3" value="c"> Adding interactivity</label>
+<label><input type="radio" name="q3" value="a"> Page structure</label><br>
+<label><input type="radio" name="q3" value="b"> Page styling</label><br>
+<label><input type="radio" name="q3" value="c"> Interactivity</label>
 </div>
 
 <div class="quiz-q">
-<p>4️⃣ Which resource is best for official documentation?</p>
+<p>4️⃣ Which site provides official web documentation?</p>
 <label><input type="radio" name="q4" value="a"> MDN</label><br>
 <label><input type="radio" name="q4" value="b"> Random blogs</label><br>
 <label><input type="radio" name="q4" value="c"> Social media</label>
 </div>
 
-<button type="button" class="primary" onclick="gradeQuiz()">
+<button type="button" class="primary quiz-btn" onclick="gradeQuiz()">
 Submit Quiz
 </button>
 
@@ -178,12 +132,10 @@ Submit Quiz
 <div id="quiz-result" style="margin-top:15px;font-weight:bold;"></div>
 
 </section>
-
 </main>
 
 <footer class="footer">
-Open educational resources used:
-MDN Web Docs • W3Schools • YouTube EDU
+Educational resources provided by MDN Web Docs, W3Schools, and YouTube EDU.
 </footer>
 
 </div>

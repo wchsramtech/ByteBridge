@@ -327,3 +327,11 @@ aside .card {
 .booking-confirmation li button:hover {
     opacity: 0.85;
 }
+
+.quiz-q{
+    background: rgba(0,0,0,0.03);
+    padding:15px;
+    border-radius:10px;
+    margin:12px 0;
+}
+

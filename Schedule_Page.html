@@ -1,73 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>ByteBridge - Schedule</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="schedule.js" defer></script>
+<title>Schedule</title>
+<link rel="stylesheet" href="styles.css">
+<script src="script.js"></script>
 </head>
+
 <body>
-<div class="container">
-    <header class="header">
-        <div class="brand">
-            <img src="ByteBridge_Logo.png" alt="ByteBridge Logo" class="logo-img">
-            <div>
-                <div class="site-title">ByteBridge</div>
-                <div class="slogan">Bridging Learning, One Click at a Time</div>
-            </div>
-        </div>
 
-        <nav class="top-nav">
-            <a href="index.html"><button class="primary">Home</button></a>
-            <a href="Resources_Page.html"><button>Resources</button></a>
-            <a href="Schedule_Page.html"><button>Schedule</button></a>
-            <a href="Student_Dashboard.html"><button>Dashboard</button></a>
-            <button id="theme-toggle" title="Toggle dark mode">🌙</button>
-        </nav>
-    </header>
+<nav>
+<div>
+<a href="index.html">Home</a>
+<a href="resources.html">Resources</a>
+<a href="schedule.html">Schedule</a>
+<a href="progress.html">Progress</a>
+</div>
+<button class="toggle-btn" onclick="toggleMode()">Mode</button>
+</nav>
 
-    <main class="main-grid">
-        <section class="card">
-            <h1>Book Your Tutoring Session</h1>
-            <p class="hero-text">Select a date and time that works for you. Click a slot to reserve it — your booking will appear below!</p>
+<div class="container card">
 
-            <!-- Calendar / Schedule -->
-            <div class="schedule-grid">
-                <div class="day-column">
-                    <h3>Monday</h3>
-                    <button class="slot" data-day="Monday" data-time="3:30 PM - 5:00 PM">3:30 PM - 5:00 PM</button>
-                </div>
-                <div class="day-column">
-                    <h3>Tuesday</h3>
-                    <button class="slot" data-day="Tuesday" data-time="3:00 PM - 6:00 PM">3:00 PM - 6:00 PM</button>
-                </div>
-                <div class="day-column">
-                    <h3>Wednesday</h3>
-                    <button class="slot" data-day="Wednesday" data-time="3:30 PM - 5:00 PM">3:30 PM - 5:00 PM</button>
-                </div>
-                <div class="day-column">
-                    <h3>Thursday</h3>
-                    <button class="slot" data-day="Thursday" data-time="3:00 PM - 6:00 PM">3:00 PM - 6:00 PM</button>
-                    <button class="slot" data-day="Thursday" data-time="3:30 PM - 5:00 PM">3:30 PM - 5:00 PM</button>
-                </div>
-            </div>
+<h2>Book Tutoring</h2>
 
-            <!-- Booking Confirmation -->
-            <div class="booking-confirmation">
-                <h3>Your Bookings</h3>
-                <ul id="booking-list">
-                    <li>No sessions booked yet.</li>
-                </ul>
-            </div>
-        </section>
-    </main>
+<button class="slot" onclick="book(this)">Monday 3PM</button>
+<button class="slot" onclick="book(this)">Tuesday 4PM</button>
+<button class="slot" onclick="book(this)">Wednesday 5PM</button>
 
-    <footer class="footer">
-        Made with open-source patterns. Tutorials sourced from W3Schools & MDN.
-    </footer>
 </div>
 </body>
 </html>

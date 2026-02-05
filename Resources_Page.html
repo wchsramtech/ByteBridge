@@ -1,43 +1,147 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Resources</title>
-<link rel="stylesheet" href="styles.css">
-<script src="script.js"></script>
+    <meta charset="UTF-8">
+    <title>ByteBridge | Resources</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
-
 <body>
+    <div class="container">
 
-<nav>
-<div>
-<a href="index.html">Home</a>
-<a href="resources.html">Resources</a>
-<a href="schedule.html">Schedule</a>
-<a href="progress.html">Progress</a>
-</div>
-<button class="toggle-btn" onclick="toggleMode()">Mode</button>
-</nav>
+        <header class="header">
+            <div class="brand">
+                <div class="logo">BB</div>
+                <div>
+                    <div class="site-title">ByteBridge</div>
+                    <div style="font-size:12px;color:var(--muted)">Bridging Learning • One Click at a Time</div>
+                </div>
+            </div>
 
-<div class="container">
+            <nav class="top-nav">
+                <a href="index.html"><button>Home</button></a>
+                <a href="Resources_Page.html"><button class="primary">Resources</button></a>
+                <a href="Schedule_Page.html"><button>Schedule</button></a>
+                <a href="Student_Dashboard.html"><button>Dashboard</button></a>
+                <button id="theme-toggle" title="Toggle dark mode">🌙</button>
+            </nav>
+        </header>
 
-<div class="card">
+        <main>
+            <section class="card">
+                <h1>Learning Resources</h1>
 
-<h2>Knowledge Check</h2>
+                <div class="cards-grid">
 
-<p>1️⃣ HTML stands for?</p>
-<input type="radio" name="q1" value="a">Hyper Trainer<br>
-<input type="radio" name="q1" value="b">Hyper Text Markup Language<br>
+                    <div class="tutorial-card card">
+                        <h3>HTML</h3>
+                        <button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/HTML')">MDN</button>
+                        <button onclick="window.open('https://www.w3schools.com/html/')">Practice</button>
 
-<p>2️⃣ Python is a?</p>
-<input type="radio" name="q2" value="a">Programming Language<br>
-<input type="radio" name="q2" value="b">Snake Only<br>
+                        <!-- Working embedded video -->
+                        <div style="margin-top:12px;">
+                            <iframe width="100%" height="160" 
+                                src="https://www.youtube.com/embed/zofMnllkVfI" 
+                                title="HTML Tutorial" frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
 
-<br>
-<button onclick="gradeQuiz()">Submit</button>
-<p id="result"></p>
+                    <div class="tutorial-card card">
+                        <h3>CSS</h3>
+                        <button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/CSS')">MDN</button>
+                        <button onclick="window.open('https://www.w3schools.com/css/')">Practice</button>
 
-</div>
+                        <div style="margin-top:12px;">
+                            <iframe width="100%" height="160"
+                                src="https://www.youtube.com/embed/VSwaoQ3TFkQ"
+                                title="CSS Tutorial" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
 
-</div>
+                    <div class="tutorial-card card">
+                        <h3>JavaScript</h3>
+                        <button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/JavaScript')">MDN</button>
+                        <button onclick="window.open('https://www.w3schools.com/js/')">Practice</button>
+
+                        <div style="margin-top:12px;">
+                            <iframe width="100%" height="160"
+                                src="https://www.youtube.com/embed/zofMnllkVfI"
+                                title="JavaScript Tutorial" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-card card">
+                        <h3>Web Design Project</h3>
+                        <button onclick="window.open('https://www.w3schools.com/')">W3Schools</button>
+                        <button onclick="window.open('https://developer.mozilla.org/')">MDN</button>
+
+                        <div style="margin-top:12px;">
+                            <iframe width="100%" height="160"
+                                src="https://www.youtube.com/embed/it1rTvBcfRg"
+                                title="Web Design Project Tutorial" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr style="margin:40px 0">
+
+                <h2>Knowledge Check</h2>
+                <form id="quiz-form">
+                    <div class="quiz-q">
+                        <p>HTML controls:</p>
+                        <label><input type="radio" name="q1" value="a"> Style</label>
+                        <label><input type="radio" name="q1" value="b"> Structure</label>
+                        <label><input type="radio" name="q1" value="c"> Interaction</label>
+                    </div>
+
+                    <div class="quiz-q">
+                        <p>CSS layout tool:</p>
+                        <label><input type="radio" name="q2" value="a"> Console</label>
+                        <label><input type="radio" name="q2" value="b"> Flexbox</label>
+                        <label><input type="radio" name="q2" value="c"> Compiler</label>
+                    </div>
+
+                    <div class="quiz-q">
+                        <p>JavaScript adds:</p>
+                        <label><input type="radio" name="q3" value="a"> Structure</label>
+                        <label><input type="radio" name="q3" value="b"> Styling</label>
+                        <label><input type="radio" name="q3" value="c"> Interactivity</label>
+                    </div>
+
+                    <div class="quiz-q">
+                        <p>Official documentation:</p>
+                        <label><input type="radio" name="q4" value="a"> MDN</label>
+                        <label><input type="radio" name="q4" value="b"> Reddit</label>
+                        <label><input type="radio" name="q4" value="c"> TikTok</label>
+                    </div>
+
+                    <button type="button" class="primary" onclick="gradeQuiz()">Submit Quiz</button>
+                </form>
+
+                <div id="quiz-result"></div>
+
+            </section>
+        </main>
+
+        <footer class="footer">
+            Open resources: MDN Web Docs & W3Schools
+        </footer>
+
+    </div>
 </body>
 </html>
+

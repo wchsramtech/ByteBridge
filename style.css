@@ -1,0 +1,388 @@
+/* ===== Variables ===== */
+:root {
+    --brand: #00AEEF;       /* Electric Blue */
+    --dark: #0A0A23;        /* Dark Navy */
+    --light: #F4F4F9;       /* Soft Gray */
+    --text: #1a1a1a;
+    --muted: #6c6c6c;
+    --card-bg: #ffffff;
+    --radius: 12px;
+    --transition: 0.3s;
+}
+
+/* ===== Base Styles ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: var(--light);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+/* ===== Header ===== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: var(--dark);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius);
+}
+
+.site-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.slogan {
+    font-size: 12px;
+    color: #ccc;
+}
+
+/* ===== Navigation ===== */
+.top-nav button {
+    margin-left: 8px;
+    padding: 6px 14px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+    background-color: transparent;
+    color: #fff;
+    font-weight: 600;
+}
+
+.top-nav button.primary {
+    background-color: var(--brand);
+}
+
+.top-nav button:hover {
+    opacity: 0.85;
+}
+
+/* ===== Main Grid ===== */
+.main-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    padding: 20px;
+}
+
+/* ===== Hero Section ===== */
+.hero-card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.welcome h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    color: var(--dark);
+}
+
+.hero-text {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.hero-buttons button {
+    margin-top: 12px;
+    margin-right: 8px;
+    padding: 10px 18px;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.hero-buttons button.primary {
+    background-color: var(--brand);
+    color: #fff;
+}
+
+.hero-buttons button:hover {
+    opacity: 0.85;
+}
+
+/* ===== Tutorial Cards ===== */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.tutorial-card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform var(--transition);
+}
+
+.tutorial-card:hover {
+    transform: translateY(-4px);
+}
+
+.thumb {
+    font-weight: 700;
+    font-size: 16px;
+    padding: 4px 8px;
+    border-radius: var(--radius);
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.html-thumb { background-color: #e34c26; }
+.css-thumb { background-color: #264de4; }
+.js-thumb { background-color: #f0db4f; color:#000; }
+.wd-thumb { background-color: #ff6f61; }
+
+.tutorial-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+.tutorial-links button {
+    margin-right: 6px;
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 13px;
+}
+
+.tutorial-links button:hover {
+    opacity: 0.85;
+}
+
+.play-btn {
+    background-color: var(--brand);
+    color: #fff;
+}
+
+/* ===== Aside ===== */
+aside .card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.muted-text {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+/* ===== Footer ===== */
+.footer {
+    text-align: center;
+    padding: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    background-color: var(--dark);
+    color: #fff;
+}
+
+/* ===== Responsive ===== */
+@media(max-width: 900px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        flex-direction: column;
+    }
+}
+
+/* ===== Progress Bar ===== */
+.progress-bar {
+    background-color: #eee;
+    border-radius: var(--radius);
+    overflow: hidden;
+    height: 22px;
+    margin-bottom: 8px;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--brand);
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.4s ease;
+    border-radius: var(--radius);
+}
+
+/* ===== Schedule Page Buttons ===== */
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.day-column {
+    background-color: var(--card-bg);
+    padding: 8px;
+    border-radius: var(--radius);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+}
+
+.day-column h3 {
+    text-align: center;
+    margin-bottom: 6px;
+    font-size: 16px;
+    color: var(--dark);
+}
+
+/* Slot buttons */
+.slot {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 6px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    background-color: var(--light);
+    color: var(--text);
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.slot:hover {
+    background-color: var(--brand);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.slot.booked {
+    background-color: #aaa;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+/* Booking Confirmation List */
+.booking-confirmation ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 8px;
+}
+
+.booking-confirmation li {
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.booking-confirmation li button {
+    padding: 3px 6px;
+    border: none;
+    border-radius: var(--radius);
+    background-color: var(--brand);
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.2s;
+}
+
+.booking-confirmation li button:hover {
+    opacity: 0.85;
+}
+
+.quiz-q{
+    background: rgba(0,0,0,0.03);
+    padding:15px;
+    border-radius:10px;
+    margin:12px 0;
+}
+
+.quiz-btn {
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+iframe {
+    pointer-events: auto;
+}
+
+/* ===== BYTEBRIDGE VISUAL UPGRADE ===== */
+
+body{
+    background: linear-gradient(120deg,#0A0A23,#1b1f4a);
+    color:#111;
+}
+
+/* Main cards pop */
+.card{
+    background:white;
+    border-radius:14px;
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+    padding:20px;
+}
+
+/* Buttons more modern */
+button{
+    border:none;
+    border-radius:8px;
+    padding:10px 16px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+
+/* Resource blocks */
+.tutorial-card{
+    border-left:6px solid #00AEEF;
+}
+
+/* Quiz styling */
+.quiz-q{
+    background:#f5f7ff;
+    border-left:5px solid #00AEEF;
+}
+

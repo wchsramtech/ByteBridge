@@ -1,51 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>ByteBridge | Schedule</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+<meta charset="utf-8">
+<title>ByteBridge Schedule</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="brand">
-                <div class="logo">BB</div>
-                <div>
-                    <div class="site-title">ByteBridge</div>
-                    <div style="font-size:12px;color:var(--muted)">Bridging Learning • One Click at a Time</div>
-                </div>
+<div class="container">
+
+<header class="header">
+    <div class="brand">
+        <div class="logo">BB</div>
+        <div>
+            <div class="site-title">ByteBridge</div>
+            <div style="font-size:12px;color:var(--muted)">
+                Bridging Learning • One Click at a Time
             </div>
-
-            <nav class="top-nav">
-                <a href="index.html"><button>Home</button></a>
-                <a href="Resources_Page.html"><button>Resources</button></a>
-                <a href="Schedule_Page.html"><button class="primary">Schedule</button></a>
-                <a href="Student_Dashboard.html"><button>Dashboard</button></a>
-                <button id="theme-toggle" title="Toggle dark mode">🌙</button>
-            </nav>
-        </header>
-
-        <main>
-            <section class="card">
-                <h1>Tutoring Schedule</h1>
-                <p>Click a slot to book your tutoring session:</p>
-
-                <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:12px">
-                    <button onclick="book(this)">Monday 3:30 PM</button>
-                    <button onclick="book(this)">Tuesday 4:00 PM</button>
-                    <button onclick="book(this)">Wednesday 3:30 PM</button>
-                    <button onclick="book(this)">Thursday 4:00 PM</button>
-                    <button onclick="book(this)">Friday 3:00 PM</button>
-                </div>
-            </section>
-        </main>
-
-        <footer class="footer">
-            Open-source platform built for student learning.
-        </footer>
+        </div>
     </div>
+    <nav class="top-nav">
+        <a href="index.html"><button>Home</button></a>
+        <a href="Resources_Page.html"><button>Resources</button></a>
+        <a href="Schedule_Page.html"><button class="primary">Schedule</button></a>
+        <a href="Student_Dashboard.html"><button>Dashboard</button></a>
+        <button id="theme-toggle" title="Toggle dark mode">🌙</button>
+    </nav>
+</header>
+
+<main class="card">
+<h1>Book a Tutoring Session</h1>
+<p>Click below to book a session. Progress will be recorded.</p>
+
+<button onclick="bookedSession()" class="primary">Book Monday 3:30 PM</button>
+<button onclick="bookedSession()" class="primary">Book Wednesday 3:30 PM</button>
+<button onclick="bookedSession()" class="primary">Book Thursday 3:30 PM</button>
+</main>
+
+<footer class="footer">
+ByteBridge Scheduling
+</footer>
+</div>
 </body>
 </html>

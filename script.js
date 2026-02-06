@@ -1,138 +1,92 @@
-// ==========================
-// ByteBridge Unified Script
-// ==========================
+// ---------------- Dark Mode ----------------
+const themeToggle = document.getElementById('theme-toggle');
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+  });
 
-document.addEventListener("DOMContentLoaded", () => {
+  // Load saved theme
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+  }
+}
 
-    // --------------------------
-    // Dark Mode Toggle
-    // --------------------------
-    const themeBtn = document.getElementById("theme-toggle");
-    themeBtn?.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
-        themeBtn.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
-        localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+// ---------------- Interactive Quiz ----------------
+const quizForm = document.getElementById('quiz-form');
+if (quizForm) {
+  quizForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let score = 0;
+    const total = quizForm.querySelectorAll('.quiz-question').length;
+
+    quizForm.querySelectorAll('.quiz-question').forEach(q => {
+      const selected = q.querySelector('input[type="radio"]:checked');
+      if (selected && selected.value === q.dataset.answer) score++;
     });
 
-    // Persist dark mode
-    if (localStorage.getItem("darkMode") === "true") {
-        document.body.classList.add("dark-mode");
-        themeBtn.textContent = "☀️";
+    alert(`You scored ${score} / ${total}`);
+    localStorage.setItem('quizCompleted', score);
+    updateProgress();
+  });
+}
+
+// ---------------- Video Completion ----------------
+document.querySelectorAll('.tutorial-video').forEach(video => {
+  video.addEventListener('ended', () => {
+    const completedVideos = JSON.parse(localStorage.getItem('videosCompleted') || '[]');
+    if (!completedVideos.includes(video.id)) {
+      completedVideos.push(video.id);
+      localStorage.setItem('videosCompleted', JSON.stringify(completedVideos));
+      updateProgress();
     }
-
-    // --------------------------
-    // Resources Page Quiz
-    // --------------------------
-    const quizForm = document.getElementById("resources-quiz");
-    if (quizForm) {
-        quizForm.addEventListener("submit", e => {
-            e.preventDefault();
-            let score = 0;
-            const fieldsets = quizForm.querySelectorAll("fieldset");
-            fieldsets.forEach(fs => {
-                const correct = fs.dataset.correct;
-                const checked = fs.querySelector("input[type=radio]:checked");
-                if (checked && checked.value === correct) score++;
-            });
-            const resultDiv = document.getElementById("quiz-result");
-            resultDiv.textContent = `You scored ${score} / ${fieldsets.length}`;
-            resultDiv.style.color = score === fieldsets.length ? "green" : "orange";
-
-            // Mark completion for dashboard
-            localStorage.setItem("quizCompleted", score === fieldsets.length ? "true" : "false");
-        });
-    }
-
-    // --------------------------
-    // Tutorial Completion Buttons
-    // --------------------------
-    const tutorialButtons = document.querySelectorAll(".mark-complete");
-    tutorialButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const id = btn.dataset.id;
-            localStorage.setItem(`tutorial-${id}`, "completed");
-            btn.textContent = "✅ Completed";
-            updateDashboard();
-        });
-
-        // Show completed state if already done
-        const id = btn.dataset.id;
-        if (localStorage.getItem(`tutorial-${id}`) === "completed") {
-            btn.textContent = "✅ Completed";
-        }
-    });
-
-    // --------------------------
-    // Schedule Page Buttons
-    // --------------------------
-    const scheduleBtns = document.querySelectorAll(".schedule-btn");
-    scheduleBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const session = btn.dataset.session;
-            localStorage.setItem(`session-${session}`, "booked");
-            btn.textContent = "✅ Booked";
-            updateDashboard();
-        });
-
-        // Pre-mark booked sessions
-        const session = btn.dataset.session;
-        if (localStorage.getItem(`session-${session}`) === "booked") {
-            btn.textContent = "✅ Booked";
-        }
-    });
-
-    // --------------------------
-    // Dashboard Progress Tracking
-    // --------------------------
-    function updateDashboard() {
-        const progressBar = document.getElementById("progressBar");
-        const activityList = document.getElementById("activityList");
-        const sessionList = document.getElementById("dashboard-sessions");
-
-        if (!progressBar) return;
-
-        let completed = 0;
-        const activities = [];
-
-        // Count tutorial completions
-        document.querySelectorAll(".mark-complete").forEach(btn => {
-            const id = btn.dataset.id;
-            if (localStorage.getItem(`tutorial-${id}`) === "completed") {
-                completed++;
-                activities.push(`Completed: ${id}`);
-            }
-        });
-
-        // Quiz completion
-        if (localStorage.getItem("quizCompleted") === "true") {
-            completed++;
-            activities.push("Completed: Quiz");
-        }
-
-        // Count booked sessions
-        const sessions = [];
-        document.querySelectorAll(".schedule-btn").forEach(btn => {
-            const session = btn.dataset.session;
-            if (localStorage.getItem(`session-${session}`) === "booked") {
-                completed++;
-                sessions.push(session);
-            }
-        });
-
-        // Calculate % progress
-        const totalItems = document.querySelectorAll(".mark-complete").length + 1 + document.querySelectorAll(".schedule-btn").length;
-        const percent = totalItems ? Math.min(100, Math.round((completed / totalItems) * 100)) : 0;
-        progressBar.style.width = `${percent}%`;
-
-        // Update dashboard lists
-        if (activityList) {
-            activityList.innerHTML = activities.map(a => `<li>${a}</li>`).join("");
-        }
-        if (sessionList) {
-            sessionList.innerHTML = sessions.map(s => `<li>${s}</li>`).join("");
-        }
-    }
-
-    // Initial dashboard update
-    updateDashboard();
+  });
 });
+
+// ---------------- Schedule Booking ----------------
+function handleBooking(btn) {
+  const session = btn.closest('li').dataset.session;
+  let booked = JSON.parse(localStorage.getItem('bookedSessions') || '[]');
+  if (!booked.includes(session)) booked.push(session);
+  localStorage.setItem('bookedSessions', JSON.stringify(booked));
+  updateBookedSessions();
+  updateProgress();
+}
+
+document.querySelectorAll('.book-btn').forEach(btn => {
+  btn.addEventListener('click', () => handleBooking(btn));
+});
+
+function updateBookedSessions() {
+  const ul = document.getElementById('booked-sessions');
+  if (!ul) return;
+  const booked = JSON.parse(localStorage.getItem('bookedSessions') || '[]');
+  ul.innerHTML = '';
+  booked.forEach(s => {
+    const li = document.createElement('li');
+    li.textContent = s;
+    ul.appendChild(li);
+  });
+}
+
+// ---------------- Dashboard Progress ----------------
+function updateProgress() {
+  const progressBar = document.getElementById('progressBar');
+  if (!progressBar) return;
+
+  // Calculate progress: videos + quiz + booked sessions
+  const videosCompleted = JSON.parse(localStorage.getItem('videosCompleted') || '[]').length;
+  const quizScore = localStorage.getItem('quizCompleted') ? 1 : 0;
+  const bookedSessions = JSON.parse(localStorage.getItem('bookedSessions') || '[]').length;
+
+  // Total items (example: 4 videos + 1 quiz + 4 sessions = 9)
+  const totalItems = 4 + 1 + 4;
+  const completed = videosCompleted + quizScore + bookedSessions;
+
+  const percent = Math.min((completed / totalItems) * 100, 100);
+  progressBar.style.width = percent + '%';
+}
+
+// Initialize on load
+updateBookedSessions();
+updateProgress();

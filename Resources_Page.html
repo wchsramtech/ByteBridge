@@ -24,97 +24,51 @@
             <a href="Resources_Page.html"><button class="primary">Resources</button></a>
             <a href="Schedule_Page.html"><button>Schedule</button></a>
             <a href="Student_Dashboard.html"><button>Dashboard</button></a>
+            <button id="theme-toggle" title="Toggle dark mode">🌙</button>
         </nav>
     </header>
 
-    <main class="main-grid">
+    <main>
         <section class="card">
             <h2>Learning Materials</h2>
-            <p style="color:var(--muted)">Downloadable guides, practice activities, and embedded tutorials.</p>
+            <p style="color:var(--muted);margin-top:8px">Downloadable guides, practice activities, tutorial videos, and external references.</p>
 
-            <div class="cards-grid" style="margin-top:12px;">
-                <div class="card">
+            <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+                <div class="card" style="flex:1;min-width:240px">
                     <h3>Study Guides</h3>
-                    <p style="color:var(--muted)">HTML & CSS quick reference PDFs</p>
-                    <button onclick="window.open('Media/WebDevelopmentStudyGuide.pdf')">View PDF</button>
+                    <p style="color:var(--muted);font-size:14px">HTML & CSS PDFs.</p>
+                    <button onclick="window.open('Media/WebDevelopmentStudyGuide.pdf')">View</button>
                 </div>
-
-                <div class="card">
+                <div class="card" style="flex:1;min-width:240px">
                     <h3>Practice Activities</h3>
-                    <p style="color:var(--muted)">Short exercises to practice coding concepts.</p>
-                    <button onclick="window.open('Media/HTML%20Basics.pdf')">View PDF</button>
+                    <p style="color:var(--muted);font-size:14px">Short exercises for coding practice.</p>
+                    <button onclick="window.open('Media/HTML%20Basics.pdf')">View</button>
                 </div>
-
-                <div class="card">
+                <div class="card" style="flex:1;min-width:240px">
                     <h3>Tutorial Videos</h3>
-                    <p style="color:var(--muted)">Embedded video tutorials:</p>
-                    <iframe width="100%" height="160" src="https://www.youtube.com/embed/zofMnllkVfI" allowfullscreen></iframe>
-                    <iframe width="100%" height="160" src="https://www.youtube.com/embed/VSwaoQ3TFkQ" allowfullscreen style="margin-top:8px;"></iframe>
-                    <iframe width="100%" height="160" src="https://www.youtube.com/embed/it1rTvBcfRg" allowfullscreen style="margin-top:8px;"></iframe>
+                    <p style="color:var(--muted);font-size:14px">Embedded videos.</p>
+                    <iframe width="100%" height="160" src="https://www.youtube.com/embed/zofMnllkVfI" frameborder="0" allowfullscreen></iframe>
                 </div>
+            </div>
+
+            <div id="quizContainer" class="card" style="margin-top:12px">
+                <h2>Knowledge Check Quiz</h2>
             </div>
 
             <div style="margin-top:12px">
                 <h3>External References</h3>
-                <ul style="color:var(--muted)">
+                <ul style="color:var(--muted);line-height:1.8">
                     <li><a href="https://www.w3schools.com/html/" target="_blank">W3Schools - HTML</a></li>
                     <li><a href="https://www.w3schools.com/css/" target="_blank">W3Schools - CSS</a></li>
-                    <li><a href="https://developer.mozilla.org/en-US/" target="_blank">MDN Web Docs</a></li>
+                    <li><a href="https://developer.mozilla.org/" target="_blank">MDN Web Docs</a></li>
                 </ul>
             </div>
-        </section>
-
-        <section class="card">
-            <h2>Knowledge Check Quiz</h2>
-            <p style="color:var(--muted)">Test yourself on HTML, CSS, and JavaScript concepts. Your progress will update automatically.</p>
-            
-            <form id="quiz-form">
-                <div class="quiz-question">
-                    <p>1. Which tag is used for a paragraph in HTML?</p>
-                    <label><input type="radio" name="q1" value="a"> &lt;p&gt;</label><br>
-                    <label><input type="radio" name="q1" value="b"> &lt;div&gt;</label><br>
-                    <label><input type="radio" name="q1" value="c"> &lt;span&gt;</label>
-                </div>
-
-                <div class="quiz-question">
-                    <p>2. Which property changes text color in CSS?</p>
-                    <label><input type="radio" name="q2" value="a"> font-size</label><br>
-                    <label><input type="radio" name="q2" value="b"> color</label><br>
-                    <label><input type="radio" name="q2" value="c"> background-color</label>
-                </div>
-
-                <div class="quiz-question">
-                    <p>3. How do you declare a variable in JavaScript?</p>
-                    <label><input type="radio" name="q3" value="a"> let myVar;</label><br>
-                    <label><input type="radio" name="q3" value="b"> var myVar;</label><br>
-                    <label><input type="radio" name="q3" value="c"> Both a and b</label>
-                </div>
-
-                <div class="quiz-question">
-                    <p>4. Which CSS layout method is best for 2D grids?</p>
-                    <label><input type="radio" name="q4" value="a"> Flexbox</label><br>
-                    <label><input type="radio" name="q4" value="b"> Grid</label><br>
-                    <label><input type="radio" name="q4" value="c"> Float</label>
-                </div>
-
-                <div class="quiz-question">
-                    <p>5. What does DOM stand for?</p>
-                    <label><input type="radio" name="q5" value="a"> Document Object Model</label><br>
-                    <label><input type="radio" name="q5" value="b"> Data Object Method</label><br>
-                    <label><input type="radio" name="q5" value="c"> Document Outline Model</label>
-                </div>
-
-                <button type="button" id="submit-quiz">Submit Quiz</button>
-            </form>
-
-            <div id="quiz-result" style="margin-top:12px;color:var(--brand);font-weight:600"></div>
         </section>
     </main>
 
     <footer class="footer">
-        Resources page — interactive quizzes and tutorial links included.
+        Resources page — open-source components and links to W3Schools / MDN.
     </footer>
 </div>
 </body>
 </html>
-

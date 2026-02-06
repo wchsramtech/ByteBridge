@@ -1,66 +1,124 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>ByteBridge - Dashboard</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-</head>
-<body>
+// ================================
+// Dark Mode Toggle
+// ================================
+const themeToggle = document.getElementById("theme-toggle");
+themeToggle?.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    if (document.body.classList.contains("dark-mode")) {
+        themeToggle.textContent = "☀️";
+        localStorage.setItem("darkMode", "enabled");
+    } else {
+        themeToggle.textContent = "🌙";
+        localStorage.setItem("darkMode", "disabled");
+    }
+});
 
-<div class="container">
+// Initialize dark mode from storage
+if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+    if (themeToggle) themeToggle.textContent = "☀️";
+}
 
-    <header class="header">
-        <div class="brand">
-            <div class="logo">BB</div>
-            <div>
-                <div class="site-title">ByteBridge</div>
-                <div class="slogan">Connecting Learning, One Click at a Time</div>
-            </div>
-        </div>
-        <nav class="top-nav">
-            <a href="index.html"><button>Home</button></a>
-            <a href="Resources_Page.html"><button>Resources</button></a>
-            <a href="Schedule_Page.html"><button>Schedule</button></a>
-            <a href="Student_Dashboard.html"><button class="primary">Dashboard</button></a>
-            <button id="theme-toggle">🌙</button>
-        </nav>
-    </header>
+// ================================
+// Schedule Page - Interactive Calendar
+// ================================
+const liveTutoringTimes = ["Mon 3:30 PM", "Wed 3:30 PM", "Thu 3:30 PM"];
+const groupTutoringTimes = ["Tue 3:00 PM", "Thu 3:00 PM"];
 
-    <main class="main-grid">
+function createCalendarSlots(containerId, times) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
-        <section class="card">
-            <h2>Your Progress</h2>
+    container.innerHTML = "";
+    times.forEach(time => {
+        const slot = document.createElement("div");
+        slot.className = "calendar-slot";
+        slot.textContent = time;
 
-            <h3>Overall Completion</h3>
-            <div class="progress-wrapper">
-                <div id="progressBar" class="progress-bar"></div>
-            </div>
+        // Check if already booked
+        const booked = JSON.parse(localStorage.getItem("bookedSessions") || "[]");
+        if (booked.includes(time)) slot.classList.add("booked");
 
-            <h3 style="margin-top:12px">Completed Activities</h3>
-            <ul id="activityList" class="activity-list"></ul>
+        slot.addEventListener("click", () => {
+            if (!slot.classList.contains("booked")) {
+                slot.classList.add("booked");
+                booked.push(time);
+                localStorage.setItem("bookedSessions", JSON.stringify(booked));
+                alert(`Session booked for ${time}! Check your Dashboard.`);
+                updateDashboardBookedSessions();
+            }
+        });
 
-            <h3 style="margin-top:12px">Upcoming Tutoring</h3>
-            <ul id="dashboard-sessions" class="session-list"></ul>
-        </section>
+        container.appendChild(slot);
+    });
+}
 
-        <aside>
-            <div class="card">
-                <h3>Continue Learning</h3>
-                <a href="Resources_Page.html"><button>Resources</button></a>
-            </div>
-        </aside>
+createCalendarSlots("calendar-live", liveTutoringTimes);
+createCalendarSlots("calendar-group", groupTutoringTimes);
 
-    </main>
+// ================================
+// Dashboard - Show Booked Sessions
+// ================================
+function updateDashboardBookedSessions() {
+    const booked = JSON.parse(localStorage.getItem("bookedSessions") || "[]");
+    const dashboardList = document.querySelector("#dashboardBookedSessions");
+    if (!dashboardList) return;
 
-    <footer class="footer">
-        ByteBridge Dashboard — see your progress and booked sessions.
-    </footer>
+    dashboardList.innerHTML = "";
+    if (booked.length === 0) {
+        const li = document.createElement("li");
+        li.textContent = "No sessions booked yet.";
+        dashboardList.appendChild(li);
+    } else {
+        booked.forEach(session => {
+            const li = document.createElement("li");
+            li.textContent = session;
+            dashboardList.appendChild(li);
+        });
+    }
+}
 
-</div>
+// ================================
+// Progress Bar Updates
+// ================================
+const progressBar = document.getElementById("progressBar");
+let progressPoints = JSON.parse(localStorage.getItem("progressPoints") || "0");
 
-</body>
-</html>
+function updateProgress(points = 1) {
+    progressPoints += points;
+    if (progressPoints > 100) progressPoints = 100;
+    localStorage.setItem("progressPoints", JSON.stringify(progressPoints));
+    if (progressBar) progressBar.style.width = progressPoints + "%";
+}
 
+// Update on load
+if (progressBar) progressBar.style.width = progressPoints + "%";
+
+// ================================
+// Interactive Quiz Handling
+// ================================
+const quizForm = document.getElementById("quizForm");
+if (quizForm) {
+    quizForm.addEventListener("submit", e => {
+        e.preventDefault();
+        let correct = 0;
+        quizForm.querySelectorAll(".quiz-question").forEach(q => {
+            const selected = q.querySelector("input[type='radio']:checked");
+            if (selected && selected.value === q.dataset.answer) correct++;
+        });
+        alert(`You scored ${correct} out of ${quizForm.querySelectorAll(".quiz-question").length}`);
+        updateProgress(correct * 10); // each correct adds to progress
+    });
+}
+
+// ================================
+// Embedded Videos / Docs Click Tracker
+// ================================
+document.querySelectorAll(".track-progress").forEach(el => {
+    el.addEventListener("click", () => {
+        updateProgress(5); // small increment per click
+    });
+});
+
+// Initialize dashboard on load
+updateDashboardBookedSessions();

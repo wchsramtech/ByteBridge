@@ -1,124 +1,77 @@
-// ================================
-// Dark Mode Toggle
-// ================================
-const themeToggle = document.getElementById("theme-toggle");
-themeToggle?.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    if (document.body.classList.contains("dark-mode")) {
-        themeToggle.textContent = "☀️";
-        localStorage.setItem("darkMode", "enabled");
-    } else {
-        themeToggle.textContent = "🌙";
-        localStorage.setItem("darkMode", "disabled");
-    }
-});
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Dashboard - ByteBridge</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="brand">
+                <div class="logo">BB</div>
+                <div>
+                    <div class="site-title">ByteBridge</div>
+                    <div style="font-size:12px;color:var(--muted)">Dashboard</div>
+                </div>
+            </div>
 
-// Initialize dark mode from storage
-if (localStorage.getItem("darkMode") === "enabled") {
-    document.body.classList.add("dark-mode");
-    if (themeToggle) themeToggle.textContent = "☀️";
-}
+            <nav class="top-nav">
+                <a href="index.html" class="track-progress"><button>Home</button></a>
+                <a href="Resources_Page.html" class="track-progress"><button>Resources</button></a>
+                <a href="Schedule_Page.html" class="track-progress"><button>Schedule</button></a>
+                <a href="Student_Dashboard.html" class="track-progress"><button class="primary">Dashboard</button></a>
+            </nav>
+        </header>
 
-// ================================
-// Schedule Page - Interactive Calendar
-// ================================
-const liveTutoringTimes = ["Mon 3:30 PM", "Wed 3:30 PM", "Thu 3:30 PM"];
-const groupTutoringTimes = ["Tue 3:00 PM", "Thu 3:00 PM"];
+        <main class="main-grid">
+            <section class="card">
+                <h2>Learning Progress</h2>
+                <p style="color:var(--muted)">Track your progress across skills and topics.</p>
 
-function createCalendarSlots(containerId, times) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
+                <div style="margin-top:12px">
+                    <h3>Overall Skill</h3>
+                    <div id="progressWrapper" style="margin-top:8px; background:#ddd; width:100%; height:22px; border-radius:10px; overflow:hidden;">
+                        <div id="progressBar" style="height:100%; width:0%; background:var(--primary); transition:0.4s;"></div>
+                    </div>
+                </div>
 
-    container.innerHTML = "";
-    times.forEach(time => {
-        const slot = document.createElement("div");
-        slot.className = "calendar-slot";
-        slot.textContent = time;
+                <div style="margin-top:14px">
+                    <h3>Recent Activities</h3>
+                    <ul id="dashboardRecentActivities" style="margin-top:8px;color:var(--muted);line-height:1.8">
+                        <!-- JS will dynamically populate recent activities -->
+                    </ul>
+                </div>
 
-        // Check if already booked
-        const booked = JSON.parse(localStorage.getItem("bookedSessions") || "[]");
-        if (booked.includes(time)) slot.classList.add("booked");
+                <div style="margin-top:14px">
+                    <h3>Booked Sessions</h3>
+                    <ul id="dashboardBookedSessions" style="margin-top:8px;color:var(--muted);line-height:1.8">
+                        <!-- Booked sessions from Schedule page -->
+                    </ul>
+                </div>
+            </section>
 
-        slot.addEventListener("click", () => {
-            if (!slot.classList.contains("booked")) {
-                slot.classList.add("booked");
-                booked.push(time);
-                localStorage.setItem("bookedSessions", JSON.stringify(booked));
-                alert(`Session booked for ${time}! Check your Dashboard.`);
-                updateDashboardBookedSessions();
-            }
-        });
+            <aside>
+                <div class="card">
+                    <h3>Next Tutoring</h3>
+                    <p style="color:var(--muted)">Check the schedule page to join a session.</p>
+                    <a href="Schedule_Page.html" class="track-progress"><button>Open Calendar</button></a>
+                </div>
 
-        container.appendChild(slot);
-    });
-}
+                <div class="card" style="margin-top:12px">
+                    <h3>Tutorials</h3>
+                    <p style="color:var(--muted)">Jump back into your tutorial videos and project work.</p>
+                    <a href="Resources_Page.html" class="track-progress"><button>Resources</button></a>
+                </div>
+            </aside>
+        </main>
 
-createCalendarSlots("calendar-live", liveTutoringTimes);
-createCalendarSlots("calendar-group", groupTutoringTimes);
-
-// ================================
-// Dashboard - Show Booked Sessions
-// ================================
-function updateDashboardBookedSessions() {
-    const booked = JSON.parse(localStorage.getItem("bookedSessions") || "[]");
-    const dashboardList = document.querySelector("#dashboardBookedSessions");
-    if (!dashboardList) return;
-
-    dashboardList.innerHTML = "";
-    if (booked.length === 0) {
-        const li = document.createElement("li");
-        li.textContent = "No sessions booked yet.";
-        dashboardList.appendChild(li);
-    } else {
-        booked.forEach(session => {
-            const li = document.createElement("li");
-            li.textContent = session;
-            dashboardList.appendChild(li);
-        });
-    }
-}
-
-// ================================
-// Progress Bar Updates
-// ================================
-const progressBar = document.getElementById("progressBar");
-let progressPoints = JSON.parse(localStorage.getItem("progressPoints") || "0");
-
-function updateProgress(points = 1) {
-    progressPoints += points;
-    if (progressPoints > 100) progressPoints = 100;
-    localStorage.setItem("progressPoints", JSON.stringify(progressPoints));
-    if (progressBar) progressBar.style.width = progressPoints + "%";
-}
-
-// Update on load
-if (progressBar) progressBar.style.width = progressPoints + "%";
-
-// ================================
-// Interactive Quiz Handling
-// ================================
-const quizForm = document.getElementById("quizForm");
-if (quizForm) {
-    quizForm.addEventListener("submit", e => {
-        e.preventDefault();
-        let correct = 0;
-        quizForm.querySelectorAll(".quiz-question").forEach(q => {
-            const selected = q.querySelector("input[type='radio']:checked");
-            if (selected && selected.value === q.dataset.answer) correct++;
-        });
-        alert(`You scored ${correct} out of ${quizForm.querySelectorAll(".quiz-question").length}`);
-        updateProgress(correct * 10); // each correct adds to progress
-    });
-}
-
-// ================================
-// Embedded Videos / Docs Click Tracker
-// ================================
-document.querySelectorAll(".track-progress").forEach(el => {
-    el.addEventListener("click", () => {
-        updateProgress(5); // small increment per click
-    });
-});
-
-// Initialize dashboard on load
-updateDashboardBookedSessions();
+        <footer class="footer">
+            Dashboard — interactive elements use open-source patterns.
+        </footer>
+    </div>
+</body>
+</html>

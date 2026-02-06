@@ -28,87 +28,84 @@
         </nav>
     </header>
 
-    <main class="main-grid">
+    <main>
         <section class="card">
             <h2>Learning Materials</h2>
             <p style="color:var(--muted);margin-top:8px">Downloadable guides, practice activities, and helpful links for web development and coding.</p>
 
-            <div class="cards-grid">
+            <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
                 <!-- Study Guides -->
-                <div class="card tutorial-card">
+                <div class="card" style="flex:1;min-width:240px">
                     <h3>Study Guides</h3>
                     <p style="color:var(--muted);font-size:14px">HTML & CSS quick reference PDFs (placeholders).</p>
-                    <button onclick="window.open('Media/WebDevelopmentStudyGuide.pdf')">View</button>
+                    <button onclick="window.open('Media/WebDevelopmentStudyGuide.pdf'); trackProgress('resource')">View</button>
                 </div>
 
                 <!-- Practice Activities -->
-                <div class="card tutorial-card">
+                <div class="card" style="flex:1;min-width:240px">
                     <h3>Practice Activities</h3>
                     <p style="color:var(--muted);font-size:14px">Short exercises to practice coding concepts.</p>
-                    <button onclick="window.open('Media/HTML%20Basics.pdf')">View</button>
+                    <button onclick="window.open('Media/HTML%20Basics.pdf'); trackProgress('resource')">View</button>
                 </div>
 
                 <!-- Tutorial Videos -->
-                <div class="card tutorial-card">
+                <div class="card" style="flex:1;min-width:240px">
                     <h3>Tutorial Videos</h3>
-                    <p style="color:var(--muted);font-size:14px">Watch and mark as complete to track progress.</p>
-                    <iframe width="100%" height="160" src="https://www.youtube.com/embed/it1rTvBcfRg" title="HTML Tutorial" frameborder="0" allowfullscreen></iframe>
-                    <button class="mark-complete" data-id="HTML Video">Mark Complete</button>
-                    <iframe width="100%" height="160" src="https://www.youtube.com/embed/VSwaoQ3TFkQ" title="CSS Tutorial" frameborder="0" allowfullscreen style="margin-top:8px;"></iframe>
-                    <button class="mark-complete" data-id="CSS Video">Mark Complete</button>
-                    <iframe width="100%" height="160" src="https://www.youtube.com/embed/zofMnllkVfI" title="JS Tutorial" frameborder="0" allowfullscreen style="margin-top:8px;"></iframe>
-                    <button class="mark-complete" data-id="JS Video">Mark Complete</button>
+                    <p style="color:var(--muted);font-size:14px">Embedded tutorial videos for instructors to add content.</p>
+                    <iframe width="100%" height="160" src="https://www.youtube.com/embed/it1rTvBcfRg"
+                            title="Tutorial Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen data-track="video"></iframe>
                 </div>
             </div>
 
-            <!-- External References -->
-            <div class="card" style="margin-top:12px">
+            <div style="margin-top:12px">
                 <h3>External References</h3>
                 <ul style="margin-top:8px;color:var(--muted);line-height:1.8">
-                    <li><a href="https://www.w3schools.com/html/" target="_blank">W3Schools - HTML</a></li>
-                    <li><a href="https://www.w3schools.com/css/" target="_blank">W3Schools - CSS</a></li>
-                    <li><a href="https://developer.mozilla.org/en-US/" target="_blank">MDN Web Docs</a></li>
+                    <li><a href="https://www.w3schools.com/html/" target="_blank" onclick="trackProgress('resource')">W3Schools - HTML</a></li>
+                    <li><a href="https://www.w3schools.com/css/" target="_blank" onclick="trackProgress('resource')">W3Schools - CSS</a></li>
+                    <li><a href="https://developer.mozilla.org/en-US/" target="_blank" onclick="trackProgress('resource')">MDN Web Docs</a></li>
                 </ul>
             </div>
         </section>
 
-        <!-- Interactive Quiz Section -->
         <section class="card" style="margin-top:12px">
-            <h2>Knowledge Check</h2>
-            <p style="color:var(--muted)">Test your understanding of HTML, CSS, and JavaScript.</p>
+            <h2>Knowledge Check: Interactive Quiz</h2>
+            <p style="color:var(--muted)">Answer the following questions to test your understanding.</p>
 
             <form id="quizForm">
                 <div class="quiz-question">
-                    <p>1. Which tag is used for the main heading in HTML?</p>
-                    <label><input type="radio" name="q1" value="a"> &lt;h1&gt;</label><br>
-                    <label><input type="radio" name="q1" value="b"> &lt;head&gt;</label><br>
-                    <label><input type="radio" name="q1" value="c"> &lt;header&gt;</label>
+                    <p>1. Which HTML tag is used for a paragraph?</p>
+                    <label><input type="radio" name="q1" value="a"> &lt;p&gt;</label><br>
+                    <label><input type="radio" name="q1" value="b"> &lt;div&gt;</label><br>
+                    <label><input type="radio" name="q1" value="c"> &lt;h1&gt;</label>
                 </div>
 
-                <div class="quiz-question" style="margin-top:8px">
-                    <p>2. Which CSS property changes the background color?</p>
+                <div class="quiz-question">
+                    <p>2. Which property sets the background color in CSS?</p>
                     <label><input type="radio" name="q2" value="a"> color</label><br>
                     <label><input type="radio" name="q2" value="b"> background-color</label><br>
-                    <label><input type="radio" name="q2" value="c"> border-color</label>
+                    <label><input type="radio" name="q2" value="c"> font-color</label>
                 </div>
 
-                <div class="quiz-question" style="margin-top:8px">
-                    <p>3. How do you create a function in JavaScript?</p>
-                    <label><input type="radio" name="q3" value="a"> function myFunction() { }</label><br>
-                    <label><input type="radio" name="q3" value="b"> func myFunction() { }</label><br>
-                    <label><input type="radio" name="q3" value="c"> def myFunction() { }</label>
+                <div style="margin-top:8px">
+                    <button type="submit">Submit Quiz</button>
                 </div>
-
-                <button type="submit" class="primary" style="margin-top:8px">Submit Quiz</button>
             </form>
 
-            <div id="quizResults" style="margin-top:10px;color:var(--brand);font-weight:600"></div>
+            <div id="quizResult" style="margin-top:12px;color:var(--brand);font-weight:700"></div>
+        </section>
+
+        <section class="card" style="margin-top:12px">
+            <h2>Support</h2>
+            <p style="color:var(--muted)">If you need tech support or tutoring assistance, use the Schedule page to sign up for sessions.</p>
+            <button onclick="window.location.href='Schedule_Page.html'">Go to Schedule</button>
         </section>
     </main>
 
     <footer class="footer">
-        ByteBridge Resources — interactive tutorials, videos, and self-graded quizzes.
+        Resources page — open-source components and links to W3Schools / MDN.
     </footer>
 </div>
 </body>
 </html>
+

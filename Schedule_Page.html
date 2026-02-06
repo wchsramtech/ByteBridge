@@ -24,35 +24,25 @@
             <a href="Resources_Page.html"><button>Resources</button></a>
             <a href="Schedule_Page.html"><button class="primary">Schedule</button></a>
             <a href="Student_Dashboard.html"><button>Dashboard</button></a>
-            <button id="theme-toggle" title="Toggle dark mode">🌙</button>
         </nav>
     </header>
 
-    <main class="main-grid">
-        <section class="card">
-            <h2>Live Tutoring Sessions</h2>
-            <p style="color:var(--muted)">Click a slot to book your session. Booked sessions will appear on your Dashboard.</p>
-
-            <div class="calendar-row">
-                <div class="calendar card">
-                    <h3>Mon, Wed, Thu • 3:30 PM - 5:00 PM</h3>
-                    <div id="live-sessions" class="sessions-grid">
-                        <!-- Slots generated dynamically -->
-                    </div>
-                </div>
-
-                <div class="calendar card">
-                    <h3>Tue, Thu • 3:00 PM - 6:00 PM</h3>
-                    <div id="group-sessions" class="sessions-grid">
-                        <!-- Slots generated dynamically -->
-                    </div>
-                </div>
+    <main class="card">
+        <h2>Live Tutoring & Group Tutoring</h2>
+        <div class="calendar-row">
+            <div class="calendar card">
+                <h3>Live Tutoring</h3>
+                <div id="calendar-live"></div>
             </div>
-        </section>
+            <div class="calendar card">
+                <h3>Group Tutoring</h3>
+                <div id="calendar-group"></div>
+            </div>
+        </div>
     </main>
 
     <footer class="footer">
-        Schedule — interactive booking system for tutoring sessions.
+        Schedule — click a session to book. Bookings appear on Dashboard.
     </footer>
 </div>
 </body>

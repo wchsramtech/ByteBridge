@@ -1,98 +1,181 @@
-// ===== Dark / Light Mode =====
-const themeToggle = document.getElementById('theme-toggle');
-themeToggle?.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+/* ==============================
+   ByteBridge - Final Script
+   Handles Dark Mode, Quiz, Schedule, Progress
+   ============================== */
+
+// ---------- Dark Mode Toggle ----------
+const themeToggle = document.getElementById("theme-toggle");
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem(
+      "dark-mode",
+      document.body.classList.contains("dark-mode")
+    );
+  });
+
+  // Load saved theme
+  if (localStorage.getItem("dark-mode") === "true") {
+    document.body.classList.add("dark-mode");
+  }
+}
+
+// ---------- Progress Tracking ----------
+const progressBar = document.getElementById("progressBar");
+let progressPoints = 0;
+let totalPoints = 0;
+
+// Update progress bar
+function updateProgress() {
+  if (!progressBar) return;
+  const percent = totalPoints ? Math.min((progressPoints / totalPoints) * 100, 100) : 0;
+  progressBar.style.width = percent + "%";
+}
+
+// ---------- Interactive Quiz ----------
+const quizData = [
+  {
+    question: "HTML stands for?",
+    options: ["HyperText Markup Language", "HighText Machine Language", "HyperTabular Markup Language"],
+    answer: 0,
+  },
+  {
+    question: "Which tag is used for a paragraph?",
+    options: ["<p>", "<div>", "<span>"],
+    answer: 0,
+  },
+  {
+    question: "CSS is used to?",
+    options: ["Style webpages", "Structure content", "Add images"],
+    answer: 0,
+  },
+  {
+    question: "JavaScript can manipulate?",
+    options: ["HTML DOM", "Server files", "Images only"],
+    answer: 0,
+  },
+  {
+    question: "The <a> tag is for?",
+    options: ["Links", "Buttons", "Tables"],
+    answer: 0,
+  },
+];
+
+// Render quiz if quiz container exists
+const quizContainer = document.getElementById("quizContainer");
+if (quizContainer) {
+  totalPoints += quizData.length; // Each question = 1 point
+
+  quizData.forEach((q, i) => {
+    const qDiv = document.createElement("div");
+    qDiv.className = "quiz-question";
+    qDiv.innerHTML = `<p>${i + 1}. ${q.question}</p>`;
+    q.options.forEach((opt, j) => {
+      const btn = document.createElement("button");
+      btn.textContent = opt;
+      btn.addEventListener("click", () => {
+        if (btn.dataset.answered) return;
+        btn.dataset.answered = true;
+        if (j === q.answer) {
+          btn.style.backgroundColor = "green";
+          progressPoints++;
+        } else {
+          btn.style.backgroundColor = "red";
+        }
+        // Mark all options disabled
+        qDiv.querySelectorAll("button").forEach(b => (b.disabled = true));
+        updateProgress();
+      });
+      qDiv.appendChild(btn);
+    });
+    quizContainer.appendChild(qDiv);
+  });
+}
+
+// ---------- Video & PDF Click Tracking ----------
+document.querySelectorAll("iframe, button").forEach(el => {
+  if (el.tagName === "IFRAME") {
+    el.addEventListener("click", () => {
+      progressPoints++;
+      totalPoints++;
+      updateProgress();
+    });
+  } else if (el.tagName === "BUTTON") {
+    el.addEventListener("click", () => {
+      // Only count resource buttons for PDFs/Links
+      if (!el.classList.contains("primary")) {
+        progressPoints++;
+        totalPoints++;
+        updateProgress();
+      }
+    });
+  }
 });
 
-// Load saved theme
-if(localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark-mode');
+// ---------- Interactive Schedule ----------
+let bookedSessions = JSON.parse(localStorage.getItem("bookedSessions") || "[]");
+
+function renderSchedule() {
+  const liveContainer = document.getElementById("calendar-live");
+  const groupContainer = document.getElementById("calendar-group");
+  if (!liveContainer || !groupContainer) return;
+
+  const daysLive = ["Mon", "Wed", "Thu"];
+  const daysGroup = ["Tue", "Thu"];
+  const timesLive = "3:30 PM - 5:00 PM";
+  const timesGroup = "3:00 PM - 6:00 PM";
+
+  liveContainer.innerHTML = "";
+  groupContainer.innerHTML = "";
+
+  daysLive.forEach(d => {
+    const btn = document.createElement("button");
+    btn.textContent = `${d} • ${timesLive}`;
+    btn.addEventListener("click", () => bookSession(d, timesLive));
+    liveContainer.appendChild(btn);
+  });
+
+  daysGroup.forEach(d => {
+    const btn = document.createElement("button");
+    btn.textContent = `${d} • ${timesGroup}`;
+    btn.addEventListener("click", () => bookSession(d, timesGroup));
+    groupContainer.appendChild(btn);
+  });
 }
 
-// ===== Progress Bar =====
-const progressBar = document.getElementById('progressBar');
-let progress = JSON.parse(localStorage.getItem('progress')) || 0;
-
-function updateProgress(amount) {
-    progress += amount;
-    if(progress > 100) progress = 100;
-    localStorage.setItem('progress', progress);
-    if(progressBar) progressBar.style.width = `${progress}%`;
+function bookSession(day, time) {
+  const session = { day, time };
+  bookedSessions.push(session);
+  localStorage.setItem("bookedSessions", JSON.stringify(bookedSessions));
+  alert(`Booked ${day} ${time}`);
+  updateDashboard();
+  progressPoints++;
+  totalPoints++;
+  updateProgress();
 }
 
-// Initialize progress on page load
-if(progressBar) progressBar.style.width = `${progress}%`;
+// ---------- Dashboard Display ----------
+function updateDashboard() {
+  const dashboardContainer = document.getElementById("dashboard-sessions");
+  if (!dashboardContainer) return;
+  dashboardContainer.innerHTML = "";
 
-// ===== Quiz Handling =====
-const quizForm = document.getElementById('quizForm');
-if(quizForm){
-    quizForm.addEventListener('submit', function(e){
-        e.preventDefault();
-        const answers = { q1:'b', q2:'a', q3:'c', q4:'b', q5:'a' }; // Extend to 5 questions
-        let score = 0;
+  if (!bookedSessions.length) {
+    dashboardContainer.innerHTML = "<p>No booked sessions yet.</p>";
+    return;
+  }
 
-        Object.keys(answers).forEach(q=>{
-            const val = quizForm[q].value;
-            if(val === answers[q]) score++;
-        });
-
-        alert(`You scored ${score} out of ${Object.keys(answers).length}`);
-        if(score > 0) updateProgress(10); // Increment progress
-    });
+  bookedSessions.forEach(s => {
+    const p = document.createElement("p");
+    p.textContent = `${s.day} • ${s.time}`;
+    dashboardContainer.appendChild(p);
+  });
 }
 
-// ===== Schedule Booking =====
-const liveSlots = document.getElementById('live-sessions');
-const groupSlots = document.getElementById('group-sessions');
-let bookedSessions = JSON.parse(localStorage.getItem('bookedSessions')) || [];
-
-function createSlots(container, times, type){
-    times.forEach(time=>{
-        const btn = document.createElement('button');
-        btn.textContent = time;
-        btn.className = bookedSessions.includes(`${type}|${time}`) ? 'booked' : '';
-        btn.addEventListener('click', ()=>{
-            const key = `${type}|${time}`;
-            if(!bookedSessions.includes(key)){
-                bookedSessions.push(key);
-                localStorage.setItem('bookedSessions', JSON.stringify(bookedSessions));
-                btn.classList.add('booked');
-                updateProgress(5); // Update progress for booking
-                alert(`Session booked: ${time}`);
-            } else {
-                alert('You already booked this session.');
-            }
-        });
-        container.appendChild(btn);
-    });
-}
-
-if(liveSlots){
-    createSlots(liveSlots, ['3:30 PM','4:00 PM','4:30 PM'], 'Live');
-}
-if(groupSlots){
-    createSlots(groupSlots, ['3:00 PM','3:30 PM','4:00 PM','4:30 PM','5:00 PM','5:30 PM'], 'Group');
-}
-
-// ===== Dashboard Display =====
-const dashboardProgressBar = document.getElementById('progressBar');
-if(dashboardProgressBar) dashboardProgressBar.style.width = `${progress}%`;
-
-const dashboardSessions = document.querySelector('#dashboard-sessions');
-if(dashboardSessions && bookedSessions.length){
-    dashboardSessions.innerHTML = '';
-    bookedSessions.forEach(session=>{
-        const [type, time] = session.split('|');
-        const li = document.createElement('li');
-        li.textContent = `${type} Tutoring: ${time}`;
-        dashboardSessions.appendChild(li);
-    });
-}
-
-// ===== Track Resource Clicks =====
-document.querySelectorAll('.track-progress-resource').forEach(el=>{
-    el.addEventListener('click', ()=>{
-        updateProgress(5); // Increment progress for viewing a resource
-    });
+// ---------- Init ----------
+document.addEventListener("DOMContentLoaded", () => {
+  renderSchedule();
+  updateDashboard();
+  updateProgress();
 });

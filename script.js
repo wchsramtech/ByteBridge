@@ -1,107 +1,126 @@
 // ===============================
-// ByteBridge Global Script
-// Tracks progress and schedule
+// ByteBridge Unified Script
+// Handles Dark Mode, Progress, Quiz, and Schedule
 // ===============================
 
-// THEME TOGGLE
+// ===== DARK MODE TOGGLE =====
 const toggle = document.getElementById("theme-toggle");
-if(toggle){
-    toggle.onclick = () => {
+if (toggle) {
+    toggle.addEventListener("click", () => {
         document.body.classList.toggle("dark");
-        localStorage.setItem("bb_theme",
-            document.body.classList.contains("dark"));
-    };
-    if(localStorage.getItem("bb_theme") === "true"){
+        localStorage.setItem("bb_theme", document.body.classList.contains("dark"));
+    });
+    if (localStorage.getItem("bb_theme") === "true") {
         document.body.classList.add("dark");
     }
 }
 
-// ======== PROGRESS STORAGE ========
-function getProgress(){
+// ===== GLOBAL STORAGE =====
+function getProgress() {
     return JSON.parse(localStorage.getItem("bb_progress") || "{}");
 }
 
-function setProgress(key){
-    let p = getProgress();
-    p[key] = true;
-    localStorage.setItem("bb_progress", JSON.stringify(p));
+function setProgress(key) {
+    let progress = getProgress();
+    progress[key] = true;
+    localStorage.setItem("bb_progress", JSON.stringify(progress));
 }
 
-// ======== CALCULATE PERCENT ========
-function calcPercent(){
+function getSessions() {
+    return JSON.parse(localStorage.getItem("bb_sessions") || "[]");
+}
+
+function addSession(time) {
+    let sessions = getSessions();
+    if (!sessions.includes(time)) {
+        sessions.push(time);
+        localStorage.setItem("bb_sessions", JSON.stringify(sessions));
+        setProgress("schedule");
+        displaySessions();
+        updateProgressBar();
+    }
+}
+
+// ===== PROGRESS CALCULATION =====
+function calculateProgress() {
     const p = getProgress();
-    const total = 3; // quiz + video + schedule
-    let score = 0;
-    if(p.quiz) score++;
-    if(p.video) score++;
-    if(p.schedule) score++;
-    return Math.round((score/total)*100);
+    const totalTasks = 3; // quiz, video, schedule
+    let completed = 0;
+    if (p.quiz) completed++;
+    if (p.video) completed++;
+    if (p.schedule) completed++;
+    return Math.round((completed / totalTasks) * 100);
 }
 
-// ======== VIDEO TRACK ========
-document.querySelectorAll("iframe").forEach(v=>{
-    v.addEventListener("mouseenter",()=>setProgress("video"));
+function updateProgressBar() {
+    const percent = calculateProgress();
+    const bar = document.getElementById("progressFill");
+    const text = document.getElementById("progressText");
+    if (bar) bar.style.width = percent + "%";
+    if (text) text.innerText = percent + "% Complete";
+}
+
+// ===== VIDEO TRACKING =====
+document.querySelectorAll("iframe").forEach(video => {
+    video.addEventListener("mouseenter", () => {
+        setProgress("video");
+        updateProgressBar();
+    });
 });
 
-// ======== QUIZ ========
-function gradeQuiz(){
+// ===== QUIZ HANDLER =====
+function gradeQuiz() {
     let score = 0;
-    if(document.querySelector('input[name=q1]:checked')?.value==="b") score++;
-    if(document.querySelector('input[name=q2]:checked')?.value==="c") score++;
-    if(document.querySelector('input[name=q3]:checked')?.value==="a") score++;
-    document.getElementById("quizResult").innerHTML = `Score: ${score}/3`;
+    // Update these answers to match your quiz questions
+    if (document.querySelector('input[name="q1"]:checked')?.value === "b") score++;
+    if (document.querySelector('input[name="q2"]:checked')?.value === "c") score++;
+    if (document.querySelector('input[name="q3"]:checked')?.value === "a") score++;
+
+    const result = document.getElementById("quizResult");
+    if (result) result.innerText = `Score: ${score}/3`;
+
     setProgress("quiz");
-    loadDashboard();
+    updateProgressBar();
 }
 
-// ======== SCHEDULE ========
-function initSchedule(){
+// ===== SCHEDULE HANDLER =====
+function initSchedule() {
     const buttons = document.querySelectorAll(".schedule-btn");
-    buttons.forEach(btn=>{
-        btn.addEventListener("click",()=>{
-            const time = btn.dataset.time;
-            addSession(time);
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            addSession(btn.dataset.time);
         });
     });
     displaySessions();
 }
 
-function addSession(time){
-    let sessions = JSON.parse(localStorage.getItem("bb_sessions") || "[]");
-    if(!sessions.includes(time)){
-        sessions.push(time);
-        localStorage.setItem("bb_sessions", JSON.stringify(sessions));
-        setProgress("schedule");
-        displaySessions();
-        loadDashboard();
-    }
-}
-
-function displaySessions(){
+function displaySessions() {
     const list = document.getElementById("selectedSessions") || document.getElementById("dashboardSessions");
-    if(!list) return;
+    if (!list) return;
+
     list.innerHTML = "";
-    let sessions = JSON.parse(localStorage.getItem("bb_sessions") || "[]");
-    sessions.forEach(s=>{
+    const sessions = getSessions();
+    sessions.forEach(s => {
         const li = document.createElement("li");
-        li.textContent = s;
+        li.innerText = s;
         list.appendChild(li);
     });
 }
 
-// ======== DASHBOARD ========
-function loadDashboard(){
-    const percent = calcPercent();
-    const bar = document.getElementById("progressFill");
-    const text = document.getElementById("progressText");
-    if(bar) bar.style.width = percent + "%";
-    if(text) text.innerText = percent + "% Complete";
-
+// ===== DASHBOARD INITIALIZATION =====
+function initDashboard() {
+    updateProgressBar();
     displaySessions();
 }
 
-// ======== INITIALIZE ========
-window.onload = ()=>{
-    loadDashboard();
+// ===== WINDOW ONLOAD =====
+window.addEventListener("DOMContentLoaded", () => {
     initSchedule();
-}
+    initDashboard();
+
+    // If quiz submit button exists
+    const quizBtn = document.getElementById("quizSubmit");
+    if (quizBtn) {
+        quizBtn.addEventListener("click", gradeQuiz);
+    }
+});

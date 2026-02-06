@@ -1,152 +1,122 @@
-/* ===== Progress Bar ===== */
-.progress-bar {
-    background-color: #eee;
-    border-radius: var(--radius);
-    overflow: hidden;
-    height: 22px;
-    margin-bottom: 8px;
+/* ========= RESET ========= */
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, sans-serif;
 }
-
-.progress-fill {
-    height: 100%;
-    background-color: var(--brand);
-    color: #fff;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: width 0.4s ease;
-    border-radius: var(--radius);
-}
-
-/* ===== Schedule Page Buttons ===== */
-.schedule-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
-    gap: 12px;
-    margin-top: 12px;
-}
-
-.day-column {
-    background-color: var(--card-bg);
-    padding: 8px;
-    border-radius: var(--radius);
-    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
-}
-
-.day-column h3 {
-    text-align: center;
-    margin-bottom: 6px;
-    font-size: 16px;
-    color: var(--dark);
-}
-
-/* Slot buttons */
-.slot {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 6px;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    background-color: var(--light);
-    color: var(--text);
-    font-weight: 600;
-    transition: all 0.25s ease;
-}
-
-.slot:hover {
-    background-color: var(--brand);
-    color: #fff;
-    transform: translateY(-2px);
-}
-
-.slot.booked {
-    background-color: #aaa;
-    color: #fff;
-    cursor: not-allowed;
-}
-
-/* Booking Confirmation List */
-.booking-confirmation ul {
-    list-style: none;
-    padding-left: 0;
-    margin-top: 8px;
-}
-
-.booking-confirmation li {
-    margin-bottom: 6px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.booking-confirmation li button {
-    padding: 3px 6px;
-    border: none;
-    border-radius: var(--radius);
-    background-color: var(--brand);
-    color: #fff;
-    cursor: pointer;
-    font-size: 12px;
-    transition: 0.2s;
-}
-
-.booking-confirmation li button:hover {
-    opacity: 0.85;
-}
-
-/* ===== VISUAL UPGRADE ===== */
 
 body{
-    background: linear-gradient(120deg,#0A0A23,#1b1f4a);
+    background:#0A0A23;
+    color:white;
 }
 
-.card{
-    background:white;
-    border-radius:14px;
-    box-shadow:0 8px 18px rgba(0,0,0,.15);
+/* ========= COLOR SYSTEM ========= */
+:root{
+    --brand:#00AEEF;
+    --card:#141432;
+    --muted:#b8c1ff;
+}
+
+/* ========= LAYOUT ========= */
+.container{
+    max-width:1200px;
+    margin:auto;
     padding:20px;
 }
 
-button{
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.brand{
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+.logo{
+    width:42px;
+    height:42px;
+    background:var(--brand);
+    color:#0A0A23;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+}
+
+.site-title{
+    font-size:20px;
+    font-weight:bold;
+}
+
+/* ========= NAV ========= */
+.top-nav button{
+    margin-left:8px;
+    padding:8px 14px;
     border:none;
     border-radius:8px;
-    padding:10px 16px;
+    background:#1f1f46;
+    color:white;
     cursor:pointer;
-    font-weight:600;
+}
+
+.top-nav button.primary{
+    background:var(--brand);
+    color:#0A0A23;
+}
+
+/* ========= CARDS ========= */
+.card{
+    background:var(--card);
+    padding:20px;
+    border-radius:14px;
+    margin-bottom:18px;
+}
+
+.cards-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:16px;
+    margin-top:12px;
+}
+
+.thumb{
+    background:#1f1f46;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+/* ========= HERO ========= */
+.hero{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    margin-bottom:14px;
+}
+
+/* ========= BUTTON ========= */
+button{
     transition:.2s;
 }
 
 button:hover{
-    transform:translateY(-2px);
+    transform:scale(1.05);
 }
 
-.quiz-q{
-    background:#f5f7ff;
-    border-left:5px solid #00AEEF;
-    padding:12px;
-    margin:10px 0;
-    border-radius:8px;
+/* ========= FOOTER ========= */
+.footer{
+    text-align:center;
+    font-size:12px;
+    margin-top:30px;
+    color:#888;
 }
 
-/* DARK MODE */
-
-.dark-mode{
-    background: linear-gradient(120deg,#050510,#10143a);
-    color:#eee;
-}
-
-.dark-mode .card{
-    background:#1e224f;
-    color:#eee;
-}
-
-.dark-mode button{
-    background:#2e3370;
-    color:white;
-}
-
-.dark-mode .quiz-q{
-    background:#2a2f66;
-}

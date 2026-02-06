@@ -28,31 +28,32 @@
         </nav>
     </header>
 
-    <main class="card">
-        <h2>Live Tutoring & Group Tutoring Calendar</h2>
-        <p style="color:var(--muted);margin-top:8px">
-            Click on a time slot to reserve it. Your reserved sessions will appear on your dashboard.
-        </p>
+    <main class="main-grid">
+        <section class="card">
+            <h2>Live Tutoring Sessions</h2>
+            <p style="color:var(--muted)">Click a slot to book your session. Booked sessions will appear on your Dashboard.</p>
 
-        <div class="calendar-row">
-            <!-- Live Tutoring Calendar -->
-            <div class="calendar card">
-                <h3>Live Tutoring</h3>
-                <div id="calendar-live" class="calendar-grid"></div>
-            </div>
+            <div class="calendar-row">
+                <div class="calendar card">
+                    <h3>Mon, Wed, Thu • 3:30 PM - 5:00 PM</h3>
+                    <div id="live-sessions" class="sessions-grid">
+                        <!-- Slots generated dynamically -->
+                    </div>
+                </div>
 
-            <!-- Group Tutoring Calendar -->
-            <div class="calendar card">
-                <h3>Group Tutoring</h3>
-                <div id="calendar-group" class="calendar-grid"></div>
+                <div class="calendar card">
+                    <h3>Tue, Thu • 3:00 PM - 6:00 PM</h3>
+                    <div id="group-sessions" class="sessions-grid">
+                        <!-- Slots generated dynamically -->
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
     </main>
 
     <footer class="footer">
-        Click on a slot to reserve. All booked sessions appear on your dashboard. Patterns inspired by W3Schools/MDN examples.
+        Schedule — interactive booking system for tutoring sessions.
     </footer>
 </div>
 </body>
 </html>
-

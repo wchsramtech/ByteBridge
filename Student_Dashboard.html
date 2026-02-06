@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ByteBridge - Dashboard</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <div class="brand">
+            <div class="logo">BB</div>
+            <div>
+                <div class="site-title">ByteBridge</div>
+                <div style="font-size:12px;color:var(--muted)">Dashboard</div>
+            </div>
+        </div>
+
+        <nav class="top-nav">
+            <a href="index.html" class="track-progress"><button>Home</button></a>
+            <a href="Resources_Page.html" class="track-progress"><button>Resources</button></a>
+            <a href="Schedule_Page.html" class="track-progress"><button>Schedule</button></a>
+            <a href="Student_Dashboard.html" class="track-progress"><button class="primary">Dashboard</button></a>
+            <button id="theme-toggle" title="Toggle dark mode">🌙</button>
+        </nav>
+    </header>
+
+    <main class="main-grid">
+        <!-- Main Progress Section -->
+        <section class="card">
+            <h2>Learning Progress</h2>
+            <p style="color:var(--muted)">Track your progress across tutorials and projects.</p>
+
+            <div style="margin-top:12px">
+                <h3>Overall Skill</h3>
+                <div id="progressWrapper" class="progress-wrapper">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+            </div>
+
+            <div style="margin-top:14px">
+                <h3>Recent Activities</h3>
+                <ul id="recentActivities" class="recent-activities">
+                    <!-- JS will populate completed/attempted items -->
+                </ul>
+            </div>
+
+            <div style="margin-top:14px">
+                <h3>Completed Tutorials</h3>
+                <div id="tutorialProgress" class="tutorial-progress">
+                    <!-- Each tutorial will show a small progress bar -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sidebar -->
+        <aside>
+            <div class="card">
+                <h3>Upcoming Tutoring</h3>
+                <ul id="upcomingTutoring" style="margin-top:8px;color:var(--muted);line-height:1.8">
+                    <!-- JS will populate upcoming signed-up sessions -->
+                </ul>
+                <a href="Schedule_Page.html" class="track-progress"><button>Open Schedule</button></a>
+            </div>
+
+            <div class="card" style="margin-top:12px">
+                <h3>Tutorials & Resources</h3>
+                <p style="color:var(--muted)">Jump back into your tutorial videos and project work.</p>
+                <a href="Resources_Page.html" class="track-progress"><button>Resources</button></a>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        ByteBridge Dashboard — interactive progress and upcoming sessions.
+    </footer>
+</div>
+</body>
+</html>

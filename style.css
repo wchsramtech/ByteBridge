@@ -1,0 +1,233 @@
+/* ===========================
+   ByteBridge Unified Styles
+   Dark Blue Modern Theme
+============================== */
+
+/* Root Variables */
+:root {
+    --primary: #1E3A8A; /* dark blue */
+    --secondary: #2563EB; /* lighter blue */
+    --background: #f5f7fa;
+    --card-bg: #ffffff;
+    --muted: #6b7280;
+    --text: #111827;
+    --border: #e5e7eb;
+    --button-bg: #2563EB;
+    --button-text: #ffffff;
+}
+
+/* Dark Mode */
+body.dark {
+    --background: #0f172a;
+    --card-bg: #1e293b;
+    --muted: #94a3b8;
+    --text: #f1f5f9;
+    --border: #334155;
+    --button-bg: #3b82f6;
+    --button-text: #f1f5f9;
+}
+
+/* ===========================
+   Global Styles
+============================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--secondary);
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 12px;
+}
+
+/* ===========================
+   Header & Nav
+============================== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.site-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.top-nav button {
+    margin-left: 6px;
+    padding: 6px 12px;
+    background: transparent;
+    border: 1px solid var(--primary);
+    border-radius: 6px;
+    color: var(--primary);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.top-nav button.primary {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+}
+
+.top-nav button:hover {
+    opacity: 0.85;
+}
+
+/* ===========================
+   Main Grid Layout
+============================== */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+@media (max-width: 900px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===========================
+   Cards
+============================== */
+.card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    border: 1px solid var(--border);
+}
+
+/* ===========================
+   Hero Section (Home page)
+============================== */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+    font-size: 28px;
+}
+
+.hero p {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+/* ===========================
+   Cards Grid (Home Tutorials)
+============================== */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.tutorial-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.tutorial-card .thumb {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--card-bg);
+    background: var(--primary);
+    border-radius: 6px 6px 0 0;
+    padding: 6px;
+}
+
+.tutorial-card button {
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tutorial-card button:hover {
+    opacity: 0.85;
+}
+
+/* ===========================
+   Buttons
+============================== */
+button {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+/* ===========================
+   Progress Bars (Dashboard)
+============================== */
+.progress-wrapper {
+    background: #d1d5db;
+    width: 100%;
+    height: 22px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--primary);
+    transition: 0.4s;
+}
+
+/* ===========================
+   Footer
+============================== */
+.footer {
+    text-align: center;
+    padding: 12px;
+    margin-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+}

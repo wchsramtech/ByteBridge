@@ -28,76 +28,59 @@
     </nav>
 </header>
 
-<main class="main-grid">
-    <section class="card">
-        <div class="hero">
-            <div class="welcome">
-                <h1>Welcome back, Student!</h1>
-                <p style="color:var(--muted);margin-top:8px">
-                    Jump into coding tutorials, check your tutoring schedule, or track your learning progress from the dashboard.
-                </p>
-            </div>
-            <div style="min-width:220px;text-align:right">
-                <div style="font-size:32px;font-weight:700;color:var(--brand)">Hello 👋</div>
-                <div style="font-size:13px;color:var(--muted);margin-top:6px">Quick Links</div>
-                <div style="margin-top:8px;display:flex;gap:8px;justify-content:flex-end">
-                    <a href="Resources_Page.html"><button>Resources</button></a>
-                    <a href="Student_Dashboard.html"><button class="primary">Dashboard</button></a>
-                </div>
-            </div>
+<main>
+    <!-- HERO SECTION -->
+    <section class="hero-card">
+        <div class="hero-text">
+            <h1>Welcome to ByteBridge!</h1>
+            <p>Learn coding, track your progress, and schedule tutoring sessions — all in one place.</p>
+            <a href="Resources_Page.html"><button class="primary">Explore Tutorials</button></a>
         </div>
+        <div class="hero-image">
+            <img src="https://img.icons8.com/ios-filled/250/00AEEF/code.png" alt="Coding Graphic">
+        </div>
+    </section>
 
-        <h2 style="margin-top:6px">Featured Tutorials</h2>
+    <!-- FEATURED TUTORIALS -->
+    <section>
+        <h2 class="section-title">Featured Tutorials</h2>
         <div class="cards-grid">
-            <div class="tutorial-card card tutorial">
-                <div class="thumb">HTML</div>
-                <div>
-                    <h3>Intro to HTML</h3>
-                    <div style="margin-top:8px">
-                        <iframe width="100%" height="160" 
-                            src="https://www.youtube.com/embed/zofMnllkVfI" 
-                            title="HTML Tutorial" frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
+            <div class="tutorial-card card">
+                <div class="thumb" style="background:#FF6F61">HTML</div>
+                <h3>Intro to HTML</h3>
+                <iframe width="100%" height="160" 
+                    src="https://www.youtube.com/embed/zofMnllkVfI" 
+                    title="HTML Tutorial" frameborder="0" allowfullscreen>
+                </iframe>
             </div>
 
-            <div class="tutorial-card card tutorial">
-                <div class="thumb">CSS</div>
-                <div>
-                    <h3>Styling with CSS</h3>
-                    <div style="margin-top:8px">
-                        <iframe width="100%" height="160" 
-                            src="https://www.youtube.com/embed/VSwaoQ3TFkQ" 
-                            title="CSS Tutorial" frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
+            <div class="tutorial-card card">
+                <div class="thumb" style="background:#6B5B95">CSS</div>
+                <h3>Styling with CSS</h3>
+                <iframe width="100%" height="160" 
+                    src="https://www.youtube.com/embed/VSwaoQ3TFkQ" 
+                    title="CSS Tutorial" frameborder="0" allowfullscreen>
+                </iframe>
             </div>
 
-            <div class="tutorial-card card tutorial">
-                <div class="thumb">JS</div>
-                <div>
-                    <h3>JavaScript Basics</h3>
-                    <div style="margin-top:8px">
-                        <iframe width="100%" height="160" 
-                            src="https://www.youtube.com/embed/zofMnllkVfI" 
-                            title="JS Tutorial" frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
+            <div class="tutorial-card card">
+                <div class="thumb" style="background:#88B04B">JavaScript</div>
+                <h3>JavaScript Basics</h3>
+                <iframe width="100%" height="160" 
+                    src="https://www.youtube.com/embed/zofMnllkVfI" 
+                    title="JS Tutorial" frameborder="0" allowfullscreen>
+                </iframe>
             </div>
         </div>
+    </section>
 
-        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-            <a href="Resources_Page.html"><button>All Resources</button></a>
+    <!-- QUICK LINKS -->
+    <section class="quick-links">
+        <h2>Quick Access</h2>
+        <div class="quick-btns">
+            <a href="Resources_Page.html"><button class="primary">All Resources</button></a>
             <a href="Schedule_Page.html"><button>View Tutoring Schedule</button></a>
+            <a href="Student_Dashboard.html"><button>Go to Dashboard</button></a>
         </div>
     </section>
 </main>
@@ -109,3 +92,4 @@
 </div>
 </body>
 </html>
+

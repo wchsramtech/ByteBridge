@@ -1,59 +1,36 @@
-/* =============================
-   Root Colors & Dark Mode Toggle
-============================= */
 :root {
-    --primary: #1e3a8a;       /* Dark Blue Primary */
-    --secondary: #2563eb;     /* Lighter Blue Accent */
-    --background: #f9fafb;    /* Light Background */
-    --card-bg: #ffffff;        /* Card background */
-    --text: #111827;           /* Main text */
-    --muted: #6b7280;          /* Muted text */
-    --success: #16a34a;        /* Progress bar green */
-}
-
-body.dark {
-    --background: #111827;
-    --card-bg: #1f2937;
-    --text: #f9fafb;
-    --muted: #9ca3af;
-}
-
-/* =============================
-   Global Reset
-============================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    --primary: #1e3a8a;
+    --secondary: #2563eb;
+    --accent: #facc15;
+    --bg-light: #f9fafb;
+    --bg-dark: #1f2937;
+    --text-light: #ffffff;
+    --text-dark: #111827;
+    --muted: #6b7280;
+    --card-bg-light: #ffffff;
+    --card-bg-dark: #111827;
 }
 
 body {
-    background: var(--background);
-    color: var(--text);
-    line-height: 1.5;
-    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    transition: background 0.3s, color 0.3s;
 }
 
-/* =============================
-   Container
-============================= */
 .container {
     max-width: 1200px;
     margin: auto;
     padding: 12px;
 }
 
-/* =============================
-   Header
-============================= */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    flex-wrap: wrap;
+    padding: 10px 0;
+    border-bottom: 2px solid var(--primary);
 }
 
 .brand {
@@ -63,16 +40,16 @@ body {
 }
 
 .logo {
-    font-size: 28px;
+    background: var(--primary);
+    color: var(--text-light);
     font-weight: 700;
-    color: var(--primary);
-    background: var(--secondary);
-    width: 50px;
-    height: 50px;
-    border-radius: 12px;
+    font-size: 24px;
+    width: 48px;
+    height: 48px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    border-radius: 8px;
 }
 
 .site-title {
@@ -80,188 +57,131 @@ body {
     font-weight: 600;
 }
 
-/* =============================
-   Navigation
-============================= */
-.top-nav {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
 .top-nav button {
-    padding: 6px 14px;
-    font-size: 14px;
+    padding: 8px 14px;
     border: none;
     border-radius: 6px;
+    background: var(--secondary);
+    color: var(--text-light);
     cursor: pointer;
-    background: var(--card-bg);
-    color: var(--text);
-    transition: 0.2s;
+    transition: background 0.3s;
 }
 
 .top-nav button.primary {
     background: var(--primary);
-    color: #fff;
 }
 
 .top-nav button:hover {
-    opacity: 0.85;
+    background: var(--accent);
 }
 
-/* =============================
-   Main Grid
-============================= */
 .main-grid {
     display: grid;
     grid-template-columns: 3fr 1fr;
     gap: 16px;
-    margin-top: 16px;
+    margin-top: 20px;
 }
 
-@media (max-width: 900px) {
-    .main-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* =============================
-   Card Component
-============================= */
 .card {
-    background: var(--card-bg);
+    background: var(--card-bg-light);
     padding: 16px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: background 0.3s, color 0.3s;
 }
 
-/* =============================
-   Hero Section
-============================= */
-.hero {
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.tutorial-card .thumb {
+    background: var(--primary);
+    color: var(--text-light);
+    font-weight: 700;
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    border-radius: 4px;
+    margin-bottom: 8px;
 }
 
-.welcome h1 {
-    font-size: 24px;
-    color: var(--primary);
-}
-
-/* =============================
-   Buttons
-============================= */
 button {
-    border: none;
-    border-radius: 6px;
-    padding: 6px 12px;
-    font-size: 14px;
     cursor: pointer;
-    background: var(--secondary);
-    color: #fff;
-    transition: 0.2s;
+    transition: background 0.3s;
 }
 
 button:hover {
     opacity: 0.85;
 }
 
-button.primary {
+.footer {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 12px 0;
+}
+
+/* Responsive */
+@media(max-width: 900px){
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background: var(--bg-dark);
+    color: var(--text-light);
+}
+
+body.dark-mode .card {
+    background: var(--card-bg-dark);
+    color: var(--text-light);
+}
+
+body.dark-mode .top-nav button {
+    background: var(--secondary);
+    color: var(--text-light);
+}
+
+body.dark-mode .top-nav button.primary {
     background: var(--primary);
 }
 
-/* =============================
-   Cards Grid (for tutorials)
-============================= */
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-    margin-top: 12px;
-}
-
-.tutorial-card .thumb {
-    font-weight: 700;
-    font-size: 14px;
-    color: #fff;
-    background: var(--primary);
-    padding: 4px 8px;
-    border-radius: 6px;
-    display: inline-block;
-    margin-bottom: 8px;
-}
-
-/* =============================
-   Progress Bars
-============================= */
+/* Progress Bar */
 #progressWrapper {
-    background: #ddd;
-    border-radius: 12px;
+    background: #374151;
+    border-radius: 10px;
     overflow: hidden;
 }
 
 #progressBar {
-    background: var(--success);
     height: 100%;
     width: 0%;
+    background: var(--accent);
     transition: width 0.4s ease;
 }
 
-/* =============================
-   Quiz
-============================= */
-.quiz-question {
-    margin-top: 12px;
-    padding: 8px;
-    border-left: 4px solid var(--primary);
-    background: rgba(30, 58, 138,0.05);
-    border-radius: 6px;
+/* Calendar / Schedule Buttons */
+.calendar button.time-slot {
+    padding: 6px 10px;
+    margin: 3px;
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+    background: var(--bg-light);
+    color: var(--text-dark);
 }
 
-.quiz-question p {
-    font-weight: 600;
+body.dark-mode .calendar button.time-slot {
+    background: var(--card-bg-dark);
+    color: var(--text-light);
 }
 
-/* =============================
-   Calendar
-============================= */
-.calendar-row {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-}
-
-.calendar {
-    flex: 1;
-    min-width: 280px;
-}
-
-/* =============================
-   Footer
-============================= */
-.footer {
-    margin-top: 24px;
-    text-align: center;
-    font-size: 12px;
-    color: var(--muted);
-}
-
-/* =============================
-   Media Queries for Responsiveness
-============================= */
-@media (max-width: 600px) {
-    .hero {
-        flex-direction: column;
-    }
-
-    .top-nav {
-        justify-content: center;
-    }
-
-    .cards-grid {
-        grid-template-columns: 1fr;
-    }
+.calendar button.time-slot.booked {
+    background: var(--accent);
+    color: var(--text-dark);
 }

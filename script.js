@@ -1,125 +1,121 @@
-// ================================
-// Dark Mode Toggle
-// ================================
-const themeToggle = document.getElementById("theme-toggle");
-themeToggle?.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    if (document.body.classList.contains("dark-mode")) {
-        themeToggle.textContent = "☀️";
-        localStorage.setItem("darkMode", "enabled");
-    } else {
-        themeToggle.textContent = "🌙";
-        localStorage.setItem("darkMode", "disabled");
+/* =============================
+   Dark Mode Toggle
+============================= */
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle?.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    themeToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+});
+
+/* =============================
+   Progress Tracking
+============================= */
+let progress = {
+    videos: {},
+    pdfs: {},
+    quiz: {}
+};
+
+function updateProgressBar() {
+    const totalItems = Object.keys(progress.videos).length + Object.keys(progress.pdfs).length + Object.keys(progress.quiz).length;
+    const completedItems = Object.values(progress.videos).filter(v => v).length +
+        Object.values(progress.pdfs).filter(v => v).length +
+        Object.values(progress.quiz).filter(v => v).length;
+    const percent = totalItems ? (completedItems / totalItems) * 100 : 0;
+    const progressBar = document.getElementById('progressBar');
+    if (progressBar) progressBar.style.width = percent + '%';
+}
+
+/* -----------------------------
+   Track Video Clicks
+----------------------------- */
+document.querySelectorAll('iframe').forEach((frame, index) => {
+    frame.addEventListener('load', () => {
+        // Placeholder: consider user clicked to "watch"
+        progress.videos[index] = false; // init
+    });
+});
+
+document.querySelectorAll('.play-btn').forEach((btn, index) => {
+    btn.addEventListener('click', () => {
+        progress.videos[index] = true;
+        updateProgressBar();
+    });
+});
+
+/* -----------------------------
+   Track PDF Clicks
+----------------------------- */
+document.querySelectorAll('button').forEach(btn => {
+    const href = btn.getAttribute('onclick');
+    if (href && href.includes('.pdf')) {
+        btn.addEventListener('click', () => {
+            progress.pdfs[href] = true;
+            updateProgressBar();
+        });
     }
 });
 
-// Initialize dark mode from storage
-if (localStorage.getItem("darkMode") === "enabled") {
-    document.body.classList.add("dark-mode");
-    if (themeToggle) themeToggle.textContent = "☀️";
-}
-
-// ================================
-// Schedule Page - Interactive Calendar
-// ================================
-const liveTutoringTimes = ["Mon 3:30 PM", "Wed 3:30 PM", "Thu 3:30 PM"];
-const groupTutoringTimes = ["Tue 3:00 PM", "Thu 3:00 PM"];
-
-function createCalendarSlots(containerId, times) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    container.innerHTML = "";
-    times.forEach(time => {
-        const slot = document.createElement("div");
-        slot.className = "calendar-slot";
-        slot.textContent = time;
-
-        // Check if already booked
-        const booked = JSON.parse(localStorage.getItem("bookedSessions") || "[]");
-        if (booked.includes(time)) slot.classList.add("booked");
-
-        slot.addEventListener("click", () => {
-            if (!slot.classList.contains("booked")) {
-                slot.classList.add("booked");
-                booked.push(time);
-                localStorage.setItem("bookedSessions", JSON.stringify(booked));
-                alert(`Session booked for ${time}! Check your Dashboard.`);
-                updateDashboardBookedSessions();
-            }
-        });
-
-        container.appendChild(slot);
-    });
-}
-
-createCalendarSlots("calendar-live", liveTutoringTimes);
-createCalendarSlots("calendar-group", groupTutoringTimes);
-
-// ================================
-// Dashboard - Show Booked Sessions
-// ================================
-function updateDashboardBookedSessions() {
-    const booked = JSON.parse(localStorage.getItem("bookedSessions") || "[]");
-    const dashboardList = document.querySelector("#dashboardBookedSessions");
-    if (!dashboardList) return;
-
-    dashboardList.innerHTML = "";
-    if (booked.length === 0) {
-        const li = document.createElement("li");
-        li.textContent = "No sessions booked yet.";
-        dashboardList.appendChild(li);
-    } else {
-        booked.forEach(session => {
-            const li = document.createElement("li");
-            li.textContent = session;
-            dashboardList.appendChild(li);
-        });
-    }
-}
-
-// ================================
-// Progress Bar Updates
-// ================================
-const progressBar = document.getElementById("progressBar");
-let progressPoints = JSON.parse(localStorage.getItem("progressPoints") || "0");
-
-function updateProgress(points = 1) {
-    progressPoints += points;
-    if (progressPoints > 100) progressPoints = 100;
-    localStorage.setItem("progressPoints", JSON.stringify(progressPoints));
-    if (progressBar) progressBar.style.width = progressPoints + "%";
-}
-
-// Update on load
-if (progressBar) progressBar.style.width = progressPoints + "%";
-
-// ================================
-// Interactive Quiz Handling
-// ================================
-const quizForm = document.getElementById("quizForm");
-if (quizForm) {
-    quizForm.addEventListener("submit", e => {
+/* =============================
+   Quiz Submission & Grading
+============================= */
+document.querySelectorAll('.quiz-form').forEach(form => {
+    form.addEventListener('submit', e => {
         e.preventDefault();
-        let correct = 0;
-        quizForm.querySelectorAll(".quiz-question").forEach(q => {
-            const selected = q.querySelector("input[type='radio']:checked");
-            if (selected && selected.value === q.dataset.answer) correct++;
+        const formData = new FormData(form);
+        let correct = 0, total = 0;
+        form.querySelectorAll('.quiz-question').forEach((q, idx) => {
+            const selected = formData.get('q' + idx);
+            if (selected === q.dataset.answer) {
+                correct++;
+                progress.quiz[idx] = true;
+            } else {
+                progress.quiz[idx] = false;
+            }
+            total++;
         });
-        alert(`You scored ${correct} out of ${quizForm.querySelectorAll(".quiz-question").length}`);
-        updateProgress(correct * 10); // each correct adds to progress
-    });
-}
-
-// ================================
-// Embedded Videos / Docs Click Tracker
-// ================================
-document.querySelectorAll(".track-progress").forEach(el => {
-    el.addEventListener("click", () => {
-        updateProgress(5); // small increment per click
+        updateProgressBar();
+        alert(`You scored ${correct} / ${total}`);
     });
 });
 
-// Initialize dashboard on load
-updateDashboardBookedSessions();
+/* =============================
+   Schedule Booking
+============================= */
+let schedule = JSON.parse(localStorage.getItem('schedule')) || [];
+
+document.querySelectorAll('.calendar-cell').forEach(cell => {
+    cell.addEventListener('click', () => {
+        const date = cell.dataset.date;
+        const time = cell.dataset.time;
+        const exists = schedule.find(s => s.date === date && s.time === time);
+        if (!exists) {
+            schedule.push({ date, time });
+            localStorage.setItem('schedule', JSON.stringify(schedule));
+            cell.classList.add('booked');
+            alert(`Booked session on ${date} at ${time}`);
+            updateDashboardSchedule();
+        } else {
+            alert(`Session already booked`);
+        }
+    });
+});
+
+/* =============================
+   Update Dashboard with Booked Sessions
+============================= */
+function updateDashboardSchedule() {
+    const dashboardList = document.getElementById('dashboard-schedule-list');
+    if (!dashboardList) return;
+    dashboardList.innerHTML = '';
+    schedule.forEach(s => {
+        const li = document.createElement('li');
+        li.textContent = `${s.date} • ${s.time}`;
+        dashboardList.appendChild(li);
+    });
+}
+
+/* Run on page load */
+updateDashboardSchedule();
+updateProgressBar();
 

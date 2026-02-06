@@ -10,6 +10,7 @@
 </head>
 <body>
 <div class="container">
+    <!-- Header -->
     <header class="header">
         <div class="brand">
             <div class="logo">BB</div>
@@ -28,60 +29,121 @@
         </nav>
     </header>
 
+    <!-- Hero Section -->
     <main class="main-grid">
-        <section class="card hero-section">
-            <div class="welcome">
+        <section class="card" style="flex-basis:100%">
+            <img src="https://images.unsplash.com/photo-1581091870625-0eeb8990f273?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDF8fGNvZGluZyUyMGZlYXR1cmV8ZW58MHx8fHwxNjg4MjA3NDYw&ixlib=rb-4.0.3&q=80&w=1200" 
+                 alt="Coding hero" class="hero-image">
+            <div style="margin-top:12px">
                 <h1>Welcome to ByteBridge!</h1>
-                <p style="color:var(--muted);margin-top:8px">
-                    Learn, practice, and track your coding progress — all in one place.
-                </p>
-            </div>
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1523475496153-3b0fce7c14a2?auto=format&fit=crop&w=800&q=80" alt="Coding illustration">
+                <p style="color:var(--muted);font-size:15px;">Jump into coding tutorials, check your tutoring schedule, or track your learning progress from the dashboard.</p>
             </div>
         </section>
 
-        <section class="card">
+        <!-- Featured Tutorials -->
+        <section class="card" style="flex-basis:100%; margin-top:12px">
             <h2>Featured Tutorials</h2>
             <div class="cards-grid">
-                <!-- HTML Tutorial -->
+
+                <!-- HTML Card -->
                 <div class="tutorial-card card tutorial">
-                    <div class="thumb">HTML</div>
-                    <h3>Intro to HTML</h3>
-                    <iframe width="100%" height="160" src="https://www.youtube.com/embed/zofMnllkVfI" title="HTML Tutorial" frameborder="0" allowfullscreen></iframe>
-                    <button class="mark-complete" data-id="HTML Basics">Mark Complete</button>
+                    <div class="thumb"><span class="material-icons">language</span> HTML</div>
+                    <div>
+                        <h3>Intro to HTML</h3>
+                        <p style="color:var(--muted);font-size:13px">Learn webpage structure — tags, elements, and building blocks.</p>
+                        <div style="margin-top:8px;display:flex;gap:8px">
+                            <button onclick="window.open('https://www.w3schools.com/html/','_blank')">W3Schools</button>
+                            <button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/HTML','_blank')">MDN</button>
+                            <button onclick="window.open('https://www.youtube.com/watch?v=it1rTvBcfRg','_blank')" class="play-btn">
+                                <span class="material-icons" style="vertical-align:middle">play_circle</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- CSS Tutorial -->
+                <!-- CSS Card -->
                 <div class="tutorial-card card tutorial">
-                    <div class="thumb">CSS</div>
-                    <h3>Styling with CSS</h3>
-                    <iframe width="100%" height="160" src="https://www.youtube.com/embed/VSwaoQ3TFkQ" title="CSS Tutorial" frameborder="0" allowfullscreen></iframe>
-                    <button class="mark-complete" data-id="CSS Basics">Mark Complete</button>
+                    <div class="thumb"><span class="material-icons">palette</span> CSS</div>
+                    <div>
+                        <h3>Styling with CSS</h3>
+                        <p style="color:var(--muted);font-size:13px">Selectors, layouts, flexbox, grid, and responsive design.</p>
+                        <div style="margin-top:8px;display:flex;gap:8px">
+                            <button onclick="window.open('https://www.w3schools.com/css/','_blank')">W3Schools</button>
+                            <button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/CSS','_blank')">MDN</button>
+                            <button onclick="window.open('https://www.youtube.com/watch?v=VSwaoQ3TFkQ','_blank')" class="play-btn">
+                                <span class="material-icons" style="vertical-align:middle">play_circle</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- JS Tutorial -->
+                <!-- JavaScript Card -->
                 <div class="tutorial-card card tutorial">
-                    <div class="thumb">JS</div>
-                    <h3>JavaScript Basics</h3>
-                    <iframe width="100%" height="160" src="https://www.youtube.com/embed/zofMnllkVfI" title="JS Tutorial" frameborder="0" allowfullscreen></iframe>
-                    <button class="mark-complete" data-id="JS Basics">Mark Complete</button>
+                    <div class="thumb"><span class="material-icons">code</span> JS</div>
+                    <div>
+                        <h3>JavaScript Basics</h3>
+                        <p style="color:var(--muted);font-size:13px">Variables, functions, DOM, and events to make pages interactive.</p>
+                        <div style="margin-top:8px;display:flex;gap:8px">
+                            <button onclick="window.open('https://www.w3schools.com/js/','_blank')">W3Schools</button>
+                            <button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/JavaScript','_blank')">MDN</button>
+                            <button onclick="window.open('https://www.youtube.com/watch?v=zofMnllkVfI','_blank')" class="play-btn">
+                                <span class="material-icons" style="vertical-align:middle">play_circle</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Web Design Project -->
                 <div class="tutorial-card card tutorial">
-                    <div class="thumb">WD</div>
-                    <h3>Web Design Project</h3>
-                    <iframe width="100%" height="160" src="https://www.youtube.com/embed/it1rTvBcfRg" title="Web Design Project" frameborder="0" allowfullscreen></iframe>
-                    <button class="mark-complete" data-id="Web Design Project">Mark Complete</button>
+                    <div class="thumb"><span class="material-icons">web</span> WD</div>
+                    <div>
+                        <h3>Web Design Project</h3>
+                        <p style="color:var(--muted);font-size:13px">Mini-project: build a landing page using HTML, CSS, and JS.</p>
+                        <div style="margin-top:8px;display:flex;gap:8px">
+                            <button onclick="window.open('https://www.w3schools.com/','_blank')">W3Schools</button>
+                            <button onclick="window.open('https://developer.mozilla.org/','_blank')">MDN</button>
+                            <button onclick="window.open('https://www.youtube.com/watch?v=it1rTvBcfRg&list=PLP9IO4UYNF0VdAajP_5pYG-jG2JRrG72s','_blank')" class="play-btn">
+                                <span class="material-icons" style="vertical-align:middle">play_circle</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
+
+            </div>
+
+            <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+                <a href="Resources_Page.html"><button>All Resources</button></a>
+                <a href="Schedule_Page.html"><button>View Tutoring Schedule</button></a>
             </div>
         </section>
+
+        <!-- Sidebar -->
+        <aside>
+            <div class="card">
+                <h3>Upcoming Tutoring</h3>
+                <p style="color:var(--muted);font-size:14px">Live Tutoring: Mon, Wed, Thu — 3:30 PM to 5:00 PM</p>
+                <p style="color:var(--muted);font-size:14px">Group Tutoring: Tue, Thu — 3:00 PM to 6:00 PM</p>
+                <div style="margin-top:12px">
+                    <a href="Schedule_Page.html"><button>Open Calendar</button></a>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top:12px">
+                <h3>Quick Links</h3>
+                <ul style="margin-top:8px;color:var(--muted);line-height:1.8">
+                    <li><a href="https://www.w3schools.com/html/" target="_blank">W3Schools - HTML</a></li>
+                    <li><a href="https://www.w3schools.com/css/" target="_blank">W3Schools - CSS</a></li>
+                    <li><a href="https://www.w3schools.com/js/" target="_blank">W3Schools - JavaScript</a></li>
+                </ul>
+            </div>
+        </aside>
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
-        Made with open-source components. Tutorials sourced from W3Schools & MDN.
+        Made with open-source patterns. Tutorials sourced from W3Schools & MDN.
     </footer>
 </div>
 </body>
 </html>
+

@@ -15,9 +15,7 @@
         <div class="logo">BB</div>
         <div>
             <div class="site-title">ByteBridge</div>
-            <div style="font-size:12px;color:var(--muted)">
-                Bridging Learning • One Click at a Time
-            </div>
+            <div style="font-size:12px;color:var(--muted)">Bridging Learning • One Click at a Time</div>
         </div>
     </div>
     <nav class="top-nav">
@@ -25,17 +23,22 @@
         <a href="Resources_Page.html"><button>Resources</button></a>
         <a href="Schedule_Page.html"><button class="primary">Schedule</button></a>
         <a href="Student_Dashboard.html"><button>Dashboard</button></a>
-        <button id="theme-toggle" title="Toggle dark mode">🌙</button>
+        <button id="theme-toggle">🌙</button>
     </nav>
 </header>
 
 <main class="card">
 <h1>Book a Tutoring Session</h1>
-<p>Click below to book a session. Progress will be recorded.</p>
+<p>Select the sessions you want to attend. Your choices will appear on the Dashboard.</p>
 
-<button onclick="bookedSession()" class="primary">Book Monday 3:30 PM</button>
-<button onclick="bookedSession()" class="primary">Book Wednesday 3:30 PM</button>
-<button onclick="bookedSession()" class="primary">Book Thursday 3:30 PM</button>
+<div class="schedule-buttons">
+    <button class="schedule-btn" data-time="Monday 3:30 PM">Monday 3:30 PM</button>
+    <button class="schedule-btn" data-time="Wednesday 3:30 PM">Wednesday 3:30 PM</button>
+    <button class="schedule-btn" data-time="Thursday 3:30 PM">Thursday 3:30 PM</button>
+</div>
+
+<h2 style="margin-top:20px">Selected Sessions:</h2>
+<ul id="selectedSessions"></ul>
 </main>
 
 <footer class="footer">
@@ -44,3 +47,4 @@ ByteBridge Scheduling
 </div>
 </body>
 </html>
+

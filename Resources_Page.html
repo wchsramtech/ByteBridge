@@ -1,125 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>ByteBridge - Resources</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
+
 <div class="container">
+
     <header class="header">
         <div class="brand">
             <div class="logo">BB</div>
             <div>
                 <div class="site-title">ByteBridge</div>
-                <div class="slogan" style="font-size:12px;color:var(--muted)">
-                    Connecting Learning • One Click at a Time
-                </div>
+                <div class="slogan">Connecting Learning, One Click at a Time</div>
             </div>
         </div>
-
         <nav class="top-nav">
             <a href="index.html"><button>Home</button></a>
             <a href="Resources_Page.html"><button class="primary">Resources</button></a>
             <a href="Schedule_Page.html"><button>Schedule</button></a>
             <a href="Student_Dashboard.html"><button>Dashboard</button></a>
-            <button id="theme-toggle" title="Toggle dark mode">🌙</button>
+            <button id="theme-toggle">🌙</button>
         </nav>
     </header>
 
-    <main>
-        <!-- Learning Materials -->
-        <section class="card">
-            <h2>Learning Materials</h2>
-            <p style="color:var(--muted);margin-top:8px">
-                Downloadable guides, practice activities, and embedded tutorials.
-            </p>
+    <!-- Video Tutorials -->
+    <section class="card">
+        <h2>Video Tutorials</h2>
+        <div class="cards-grid">
 
-            <div class="cards-grid" style="margin-top:12px">
-                <!-- Study Guides -->
-                <div class="resource-card">
-                    <h3>Study Guides</h3>
-                    <p style="color:var(--muted);font-size:14px">HTML & CSS quick reference PDFs.</p>
-                    <button onclick="window.open('Media/WebDevelopmentStudyGuide.pdf')">View</button>
-                </div>
-
-                <!-- Practice Activities -->
-                <div class="resource-card">
-                    <h3>Practice Activities</h3>
-                    <p style="color:var(--muted);font-size:14px">Short exercises to practice coding concepts.</p>
-                    <button onclick="window.open('Media/HTML%20Basics.pdf')">View</button>
-                </div>
-
-                <!-- Tutorial Videos -->
-                <div class="resource-card">
-                    <h3>Tutorial Videos</h3>
-                    <p style="color:var(--muted);font-size:14px">Embedded tutorials to learn web development.</p>
-                    <iframe width="100%" height="180" 
-                        src="https://www.youtube.com/embed/it1rTvBcfRg" 
-                        title="HTML Tutorial" frameborder="0" allowfullscreen></iframe>
-                </div>
+            <div class="resource-video">
+                <h3>Intro to HTML</h3>
+                <iframe width="100%" height="180" src="https://www.youtube.com/embed/zofMnllkVfI" allowfullscreen></iframe>
             </div>
 
-            <!-- External References -->
-            <div style="margin-top:12px">
-                <h3>External References</h3>
-                <ul style="margin-top:8px;color:var(--muted);line-height:1.8">
-                    <li><a href="https://www.w3schools.com/html/" target="_blank">W3Schools - HTML</a></li>
-                    <li><a href="https://www.w3schools.com/css/" target="_blank">W3Schools - CSS</a></li>
-                    <li><a href="https://developer.mozilla.org/" target="_blank">MDN Web Docs</a></li>
-                </ul>
+            <div class="resource-video">
+                <h3>CSS Essentials</h3>
+                <iframe width="100%" height="180" src="https://www.youtube.com/embed/VSwaoQ3TFkQ" allowfullscreen></iframe>
             </div>
-        </section>
 
-        <!-- Self-Grading Quiz -->
-        <section class="card" style="margin-top:12px">
-            <h2>Knowledge Check</h2>
-            <p style="color:var(--muted)">Test your understanding of the resources below!</p>
+            <div class="resource-video">
+                <h3>JavaScript Intro</h3>
+                <iframe width="100%" height="180" src="https://www.youtube.com/embed/zofMnllkVfI" allowfullscreen></iframe>
+            </div>
 
-            <form id="quiz-form">
-                <div class="quiz-question">
-                    <p>1. Which HTML tag is used for a hyperlink?</p>
-                    <label><input type="radio" name="q1" value="a"> &lt;a&gt;</label><br>
-                    <label><input type="radio" name="q1" value="b"> &lt;link&gt;</label><br>
-                    <label><input type="radio" name="q1" value="c"> &lt;href&gt;</label>
-                </div>
+        </div>
+    </section>
 
-                <div class="quiz-question">
-                    <p>2. Which CSS property controls the text color?</p>
-                    <label><input type="radio" name="q2" value="a"> font-style</label><br>
-                    <label><input type="radio" name="q2" value="b"> color</label><br>
-                    <label><input type="radio" name="q2" value="c"> text-color</label>
-                </div>
+    <!-- Self‑Grading Quiz -->
+    <section class="card">
+        <h2>Knowledge Check Quiz</h2>
+        <p style="color:var(--muted)">Answer the questions below and submit to view your score.</p>
 
-                <div class="quiz-question">
-                    <p>3. In JavaScript, how do you log to the console?</p>
-                    <label><input type="radio" name="q3" value="a"> console.print()</label><br>
-                    <label><input type="radio" name="q3" value="b"> console.log()</label><br>
-                    <label><input type="radio" name="q3" value="c"> print()</label>
-                </div>
+        <form id="resources-quiz">
+            <fieldset data-correct="a">
+                <legend>1. Which tag is used for links in HTML?</legend>
+                <label><input type="radio" name="q1" value="a"> &lt;a&gt;</label><br>
+                <label><input type="radio" name="q1" value="b"> &lt;p&gt;</label><br>
+                <label><input type="radio" name="q1" value="c"> &lt;div&gt;</label>
+            </fieldset>
 
-                <button type="button" onclick="gradeQuiz()" class="primary" style="margin-top:8px">Submit Quiz</button>
-            </form>
+            <fieldset data-correct="b">
+                <legend>2. What property changes text color in CSS?</legend>
+                <label><input type="radio" name="q2" value="a"> font-size</label><br>
+                <label><input type="radio" name="q2" value="b"> color</label><br>
+                <label><input type="radio" name="q2" value="c"> display</label>
+            </fieldset>
 
-            <div id="quiz-result" style="margin-top:8px;color:var(--muted);font-weight:bold"></div>
-        </section>
+            <fieldset data-correct="b">
+                <legend>3. How do you log to the console in JavaScript?</legend>
+                <label><input type="radio" name="q3" value="a"> console.print()</label><br>
+                <label><input type="radio" name="q3" value="b"> console.log()</label><br>
+                <label><input type="radio" name="q3" value="c"> print()</label>
+            </fieldset>
 
-        <!-- Support Section -->
-        <section class="card" style="margin-top:12px">
-            <h2>Support</h2>
-            <p style="color:var(--muted)">
-                Need tech support or tutoring assistance? Sign up for sessions on the Schedule page.
-            </p>
-            <button onclick="window.location.href='Schedule_Page.html'">Go to Schedule</button>
-        </section>
-    </main>
+            <button type="submit" class="primary">Submit Quiz</button>
+        </form>
+
+        <div id="quiz-result" class="quiz-result"></div>
+    </section>
+
+    <!-- External Links -->
+    <section class="card">
+        <h2>Useful References</h2>
+        <ul class="external-list">
+            <li><a href="https://www.w3schools.com/html/" target="_blank">W3Schools — HTML</a></li>
+            <li><a href="https://www.w3schools.com/css/" target="_blank">W3Schools — CSS</a></li>
+            <li><a href="https://developer.mozilla.org/" target="_blank">MDN Web Docs</a></li>
+        </ul>
+    </section>
 
     <footer class="footer">
-        ByteBridge Resources — open-source components and links to W3Schools / MDN.
+        ByteBridge Resources — video lessons and self‑grading quiz.
     </footer>
+
 </div>
+
 </body>
 </html>

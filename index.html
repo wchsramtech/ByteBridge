@@ -1,129 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>ByteBridge</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
+
 <div class="container">
+
     <header class="header">
         <div class="brand">
             <div class="logo">BB</div>
             <div>
                 <div class="site-title">ByteBridge</div>
-                <div class="slogan" style="font-size:12px;color:var(--muted)">
-                    Connecting Learning • One Click at a Time
-                </div>
+                <div class="slogan">Connecting Learning, One Click at a Time</div>
             </div>
         </div>
-
         <nav class="top-nav">
             <a href="index.html"><button class="primary">Home</button></a>
             <a href="Resources_Page.html"><button>Resources</button></a>
             <a href="Schedule_Page.html"><button>Schedule</button></a>
             <a href="Student_Dashboard.html"><button>Dashboard</button></a>
-            <button id="theme-toggle" title="Toggle dark mode">🌙</button>
+            <button id="theme-toggle">🌙</button>
         </nav>
     </header>
 
-    <main class="main-grid">
-        <section class="hero-card card">
-            <div class="hero-content">
-                <h1>Welcome back, Student!</h1>
-                <p style="color:var(--muted);margin-top:8px">
-                    Jump into coding tutorials, check your tutoring schedule, or track your learning progress.
-                </p>
-                <div class="quick-links">
-                    <a href="Resources_Page.html"><button class="primary">Resources</button></a>
-                    <a href="Student_Dashboard.html"><button>Dashboard</button></a>
-                </div>
-            </div>
-            <div class="hero-graphic">
-                <img src="assets/learning_graphic.png" alt="Learning Illustration">
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <section class="hero-card card">
+        <div class="hero-text">
+            <h1>Welcome to ByteBridge!</h1>
+            <p>Learn coding, track your progress, and schedule tutoring — all in one modern platform.</p>
+            <a href="Resources_Page.html"><button class="primary">Explore Tutorials</button></a>
+        </div>
+        <div class="hero-img">
+            <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg" alt="Learning Together">
+        </div>
+    </section>
 
-        <section class="featured-tutorials card">
-            <h2>Featured Tutorials</h2>
-            <div class="cards-grid">
+    <!-- Featured Tutorials -->
+    <section class="card">
+        <h2>Featured Tutorials</h2>
+        <div class="cards-grid">
 
-                <!-- HTML Card -->
-                <div class="tutorial-card">
-                    <div class="thumb">HTML</div>
-                    <h3>Intro to HTML</h3>
-                    <p style="color:var(--muted);font-size:13px">Learn the structure of webpages — tags, elements, and building blocks.</p>
-                    <iframe width="100%" height="180" 
-                        src="https://www.youtube.com/embed/zofMnllkVfI" 
-                        title="HTML Tutorial" frameborder="0" allowfullscreen></iframe>
-                    <div class="btn-group">
-                        <button onclick="window.open('https://www.w3schools.com/html/','_blank')">W3Schools</button>
-                        <button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/HTML','_blank')">MDN</button>
-                    </div>
-                </div>
-
-                <!-- CSS Card -->
-                <div class="tutorial-card">
-                    <div class="thumb">CSS</div>
-                    <h3>Styling with CSS</h3>
-                    <p style="color:var(--muted);font-size:13px">Selectors, layout, flexbox, grid, and responsive design.</p>
-                    <iframe width="100%" height="180" 
-                        src="https://www.youtube.com/embed/VSwaoQ3TFkQ" 
-                        title="CSS Tutorial" frameborder="0" allowfullscreen></iframe>
-                    <div class="btn-group">
-                        <button onclick="window.open('https://www.w3schools.com/css/','_blank')">W3Schools</button>
-                        <button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/CSS','_blank')">MDN</button>
-                    </div>
-                </div>
-
-                <!-- JS Card -->
-                <div class="tutorial-card">
-                    <div class="thumb">JS</div>
-                    <h3>JavaScript Basics</h3>
-                    <p style="color:var(--muted);font-size:13px">Variables, functions, DOM, and events — start making pages interactive.</p>
-                    <iframe width="100%" height="180" 
-                        src="https://www.youtube.com/embed/zofMnllkVfI" 
-                        title="JS Tutorial" frameborder="0" allowfullscreen></iframe>
-                    <div class="btn-group">
-                        <button onclick="window.open('https://www.w3schools.com/js/','_blank')">W3Schools</button>
-                        <button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/JavaScript','_blank')">MDN</button>
-                    </div>
-                </div>
-
-            </div>
-            <div class="view-more">
-                <a href="Resources_Page.html"><button>All Resources</button></a>
-                <a href="Schedule_Page.html"><button>View Tutoring Schedule</button></a>
-            </div>
-        </section>
-
-        <aside class="sidebar">
-            <div class="card">
-                <h3>Upcoming Tutoring</h3>
-                <p style="color:var(--muted);font-size:14px">Live Tutoring: Mon, Wed, Thu — 3:30 PM to 5:00 PM</p>
-                <p style="color:var(--muted);font-size:14px">Group Tutoring: Tue, Thu — 3:00 PM to 6:00 PM</p>
-                <div class="btn-group" style="margin-top:10px">
-                    <a href="Schedule_Page.html"><button>Open Calendar</button></a>
-                </div>
+            <div class="tutorial-card">
+                <div class="thumb">HTML</div>
+                <h3>Intro to HTML</h3>
+                <iframe width="100%" height="160" src="https://www.youtube.com/embed/zofMnllkVfI" allowfullscreen></iframe>
             </div>
 
-            <div class="card">
-                <h3>Quick Links</h3>
-                <ul style="margin-top:8px;color:var(--muted);line-height:1.8">
-                    <li><a href="https://www.w3schools.com/html/" target="_blank">W3Schools - HTML</a></li>
-                    <li><a href="https://www.w3schools.com/css/" target="_blank">W3Schools - CSS</a></li>
-                    <li><a href="https://www.w3schools.com/js/" target="_blank">W3Schools - JavaScript</a></li>
-                </ul>
+            <div class="tutorial-card">
+                <div class="thumb">CSS</div>
+                <h3>Styling with CSS</h3>
+                <iframe width="100%" height="160" src="https://www.youtube.com/embed/VSwaoQ3TFkQ" allowfullscreen></iframe>
             </div>
-        </aside>
-    </main>
+
+            <div class="tutorial-card">
+                <div class="thumb">JS</div>
+                <h3>JavaScript Basics</h3>
+                <iframe width="100%" height="160" src="https://www.youtube.com/embed/zofMnllkVfI" allowfullscreen></iframe>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="card quick-links">
+        <h2>Quick Access</h2>
+        <div class="quick-btns">
+            <a href="Resources_Page.html"><button class="primary">All Resources</button></a>
+            <a href="Schedule_Page.html"><button>Book Tutoring</button></a>
+            <a href="Student_Dashboard.html"><button>View Dashboard</button></a>
+        </div>
+    </section>
 
     <footer class="footer">
-        Made with open-source patterns. Tutorials sourced from W3Schools & MDN.
+        Made with open‑source components. Tutorials sourced from W3Schools & MDN.
     </footer>
+
 </div>
+
 </body>
 </html>

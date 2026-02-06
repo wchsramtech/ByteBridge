@@ -1,64 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Schedule - ByteBridge</title>
+    <meta charset="UTF-8">
+    <title>ByteBridge - Schedule</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
+
 <div class="container">
+
     <header class="header">
         <div class="brand">
             <div class="logo">BB</div>
             <div>
                 <div class="site-title">ByteBridge</div>
-                <div style="font-size:12px;color:var(--muted)">Schedule</div>
+                <div class="slogan">Connecting Learning, One Click at a Time</div>
             </div>
         </div>
-
         <nav class="top-nav">
             <a href="index.html"><button>Home</button></a>
             <a href="Resources_Page.html"><button>Resources</button></a>
             <a href="Schedule_Page.html"><button class="primary">Schedule</button></a>
             <a href="Student_Dashboard.html"><button>Dashboard</button></a>
+            <button id="theme-toggle">🌙</button>
         </nav>
     </header>
 
-    <main class="main-grid">
-        <section class="card">
-            <h2>Sign Up for Tutoring Sessions</h2>
-            <p style="color:var(--muted);margin-top:8px">Click a session below to reserve your spot. Your selections will appear on your dashboard.</p>
+    <main class="card">
+        <h2>Book Tutoring Sessions</h2>
+        <p style="color:var(--muted)">Click a session below to reserve it. It will appear on your dashboard.</p>
 
-            <div class="calendar-row">
-                <div class="calendar card">
-                    <div class="calendar-header">
-                        <h3>Live Tutoring</h3>
-                        <div style="font-size:13px;color:var(--muted)">Mon, Wed, Thu • 3:30 - 5:00 PM</div>
-                    </div>
-                    <div id="calendar-live" class="calendar-body">
-                        <!-- JS will populate interactive buttons for each session -->
-                    </div>
-                </div>
-
-                <div class="calendar card">
-                    <div class="calendar-header">
-                        <h3>Group Tutoring</h3>
-                        <div style="font-size:13px;color:var(--muted)">Tue, Thu • 3:00 - 6:00 PM</div>
-                    </div>
-                    <div id="calendar-group" class="calendar-body">
-                        <!-- JS will populate interactive buttons for each session -->
-                    </div>
-                </div>
+        <div class="schedule-grid">
+            <!-- Live Tutoring -->
+            <div class="session-group">
+                <h3>Live Tutoring</h3>
+                <button class="schedule-btn" data-session="Mon 3:30–5:00 PM">Mon 3:30–5:00 PM</button>
+                <button class="schedule-btn" data-session="Wed 3:30–5:00 PM">Wed 3:30–5:00 PM</button>
+                <button class="schedule-btn" data-session="Thu 3:30–5:00 PM">Thu 3:30–5:00 PM</button>
             </div>
-        </section>
+
+            <!-- Group Tutoring -->
+            <div class="session-group">
+                <h3>Group Tutoring</h3>
+                <button class="schedule-btn" data-session="Tue 3:00–6:00 PM">Tue 3:00–6:00 PM</button>
+                <button class="schedule-btn" data-session="Thu 3:00–6:00 PM">Thu 3:00–6:00 PM</button>
+            </div>
+        </div>
     </main>
 
     <footer class="footer">
-        Schedule your sessions and track them in your ByteBridge dashboard. Designed with open-source JS patterns.
+        ByteBridge Scheduling — reserve your tutoring sessions.
     </footer>
+
 </div>
+
 </body>
 </html>
+

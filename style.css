@@ -1,68 +1,59 @@
-/* ===========================
-   ByteBridge Unified Styles
-   Dark Blue Modern Theme
-============================== */
-
-/* Root Variables */
+/* -------------------- Base -------------------- */
 :root {
-    --primary: #1E3A8A; /* dark blue */
-    --secondary: #2563EB; /* lighter blue */
-    --background: #f5f7fa;
+    --primary: #0d47a1;        /* Dark Blue */
+    --secondary: #1976d2;      /* Medium Blue */
+    --accent: #4fc3f7;         /* Light Blue */
+    --text: #f5f5f5;
+    --muted: #b0bec5;
+    --bg: #e3f2fd;
     --card-bg: #ffffff;
-    --muted: #6b7280;
-    --text: #111827;
-    --border: #e5e7eb;
-    --button-bg: #2563EB;
-    --button-text: #ffffff;
-}
-
-/* Dark Mode */
-body.dark {
-    --background: #0f172a;
-    --card-bg: #1e293b;
-    --muted: #94a3b8;
-    --text: #f1f5f9;
-    --border: #334155;
-    --button-bg: #3b82f6;
-    --button-text: #f1f5f9;
-}
-
-/* ===========================
-   Global Styles
-============================== */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
+    --card-border: rgba(0,0,0,0.08);
+    --success: #43a047;        /* Green for progress */
 }
 
 body {
-    background: var(--background);
-    color: var(--text);
-    line-height: 1.6;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    color: #222;
+    transition: background 0.3s, color 0.3s;
 }
 
 a {
-    color: var(--secondary);
     text-decoration: none;
+    color: var(--primary);
 }
 
+/* -------------------- Dark Mode -------------------- */
+body.dark-mode {
+    background: #121b2b;
+    color: var(--text);
+}
+
+body.dark-mode .card {
+    background: #1e2a40;
+    border-color: rgba(255,255,255,0.1);
+}
+
+body.dark-mode a {
+    color: var(--accent);
+}
+
+/* -------------------- Container -------------------- */
 .container {
     max-width: 1200px;
-    margin: auto;
-    padding: 12px;
+    margin: 0 auto;
+    padding: 0 12px;
 }
 
-/* ===========================
-   Header & Nav
-============================== */
+/* -------------------- Header -------------------- */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 12px 0;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--card-border);
+    flex-wrap: wrap;
 }
 
 .brand {
@@ -72,162 +63,197 @@ a {
 }
 
 .logo {
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 32px;
+    font-weight: 700;
     color: var(--primary);
+    background: var(--accent);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
 }
 
 .site-title {
-    font-size: 20px;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+/* -------------------- Navigation -------------------- */
+.top-nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
 .top-nav button {
-    margin-left: 6px;
-    padding: 6px 12px;
-    background: transparent;
-    border: 1px solid var(--primary);
+    border: none;
+    padding: 8px 14px;
     border-radius: 6px;
-    color: var(--primary);
+    background: var(--secondary);
+    color: #fff;
     cursor: pointer;
+    font-weight: 600;
     transition: 0.3s;
 }
 
 .top-nav button.primary {
     background: var(--primary);
-    color: #fff;
-    border: none;
 }
 
 .top-nav button:hover {
     opacity: 0.85;
 }
 
-/* ===========================
-   Main Grid Layout
-============================== */
+/* -------------------- Main Grid -------------------- */
 .main-grid {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 16px;
-    margin-top: 16px;
-}
-
-@media (max-width: 900px) {
-    .main-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* ===========================
-   Cards
-============================== */
-.card {
-    background: var(--card-bg);
-    border-radius: 10px;
-    padding: 16px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    border: 1px solid var(--border);
-}
-
-/* ===========================
-   Hero Section (Home page)
-============================== */
-.hero {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    gap: 12px;
     flex-wrap: wrap;
-    gap: 12px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
-}
-
-.hero h1 {
-    font-size: 28px;
-}
-
-.hero p {
-    font-size: 14px;
-    color: var(--muted);
-}
-
-/* ===========================
-   Cards Grid (Home Tutorials)
-============================== */
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 12px;
     margin-top: 12px;
 }
 
-.tutorial-card {
+/* -------------------- Cards -------------------- */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    flex: 1;
+}
+
+.hero {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.hero .welcome h1 {
+    margin: 0;
+}
+
+.cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.tutorial-card {
+    flex: 1 1 220px;
 }
 
 .tutorial-card .thumb {
     font-weight: 700;
-    font-size: 14px;
-    color: var(--card-bg);
-    background: var(--primary);
-    border-radius: 6px 6px 0 0;
-    padding: 6px;
+    margin-bottom: 6px;
+    color: var(--primary);
 }
 
-.tutorial-card button {
-    background: var(--button-bg);
-    color: var(--button-text);
+/* -------------------- Buttons -------------------- */
+button {
     border: none;
     border-radius: 6px;
-    padding: 6px 10px;
+    padding: 8px 12px;
     cursor: pointer;
-    transition: 0.3s;
-}
-
-.tutorial-card button:hover {
-    opacity: 0.85;
-}
-
-/* ===========================
-   Buttons
-============================== */
-button {
-    cursor: pointer;
-    transition: 0.3s;
+    transition: 0.2s;
+    font-weight: 600;
 }
 
 button:hover {
     opacity: 0.85;
 }
 
-/* ===========================
-   Progress Bars (Dashboard)
-============================== */
-.progress-wrapper {
-    background: #d1d5db;
-    width: 100%;
-    height: 22px;
-    border-radius: 10px;
+/* -------------------- Progress Bars -------------------- */
+#progressWrapper {
+    background: #ddd;
+    border-radius: 12px;
     overflow: hidden;
 }
 
-.progress-bar {
-    width: 0%;
+#progressBar {
     height: 100%;
-    background: var(--primary);
+    width: 0%;
+    background: var(--success);
     transition: 0.4s;
 }
 
-/* ===========================
-   Footer
-============================== */
-.footer {
-    text-align: center;
+/* -------------------- Calendar / Schedule -------------------- */
+.calendar-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.calendar {
+    flex: 1 1 300px;
     padding: 12px;
-    margin-top: 24px;
-    border-top: 1px solid var(--border);
-    font-size: 12px;
+}
+
+li.book-btn {
+    cursor: pointer;
+    color: #fff;
+    background: var(--primary);
+    padding: 6px 10px;
+    margin-top: 4px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+li.book-btn:hover {
+    background: var(--accent);
+}
+
+/* -------------------- Footer -------------------- */
+.footer {
+    margin-top: 12px;
+    padding: 12px 0;
+    text-align: center;
+    font-size: 13px;
     color: var(--muted);
+}
+
+/* -------------------- Responsive -------------------- */
+@media screen and (max-width: 768px) {
+    .main-grid {
+        flex-direction: column;
+    }
+
+    .hero {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .top-nav button {
+        padding: 6px 8px;
+        font-size: 14px;
+    }
+}
+
+/* -------------------- Images on Home -------------------- */
+.hero-image {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-top: 12px;
+}
+
+/* -------------------- Quiz -------------------- */
+.quiz-question {
+    margin-bottom: 12px;
+}
+
+.quiz-question label {
+    display: block;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+/* -------------------- Misc -------------------- */
+ul {
+    padding-left: 20px;
 }

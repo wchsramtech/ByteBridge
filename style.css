@@ -1,58 +1,58 @@
-/* -------------------- Base -------------------- */
+/* =============================
+   Root Colors & Dark Mode Toggle
+============================= */
 :root {
-    --primary: #0d47a1;        /* Dark Blue */
-    --secondary: #1976d2;      /* Medium Blue */
-    --accent: #4fc3f7;         /* Light Blue */
-    --text: #f5f5f5;
-    --muted: #b0bec5;
-    --bg: #e3f2fd;
-    --card-bg: #ffffff;
-    --card-border: rgba(0,0,0,0.08);
-    --success: #43a047;        /* Green for progress */
+    --primary: #1e3a8a;       /* Dark Blue Primary */
+    --secondary: #2563eb;     /* Lighter Blue Accent */
+    --background: #f9fafb;    /* Light Background */
+    --card-bg: #ffffff;        /* Card background */
+    --text: #111827;           /* Main text */
+    --muted: #6b7280;          /* Muted text */
+    --success: #16a34a;        /* Progress bar green */
+}
+
+body.dark {
+    --background: #111827;
+    --card-bg: #1f2937;
+    --text: #f9fafb;
+    --muted: #9ca3af;
+}
+
+/* =============================
+   Global Reset
+============================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
 }
 
 body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--bg);
-    color: #222;
-    transition: background 0.3s, color 0.3s;
-}
-
-a {
-    text-decoration: none;
-    color: var(--primary);
-}
-
-/* -------------------- Dark Mode -------------------- */
-body.dark-mode {
-    background: #121b2b;
+    background: var(--background);
     color: var(--text);
+    line-height: 1.5;
+    min-height: 100vh;
 }
 
-body.dark-mode .card {
-    background: #1e2a40;
-    border-color: rgba(255,255,255,0.1);
-}
-
-body.dark-mode a {
-    color: var(--accent);
-}
-
-/* -------------------- Container -------------------- */
+/* =============================
+   Container
+============================= */
 .container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 12px;
+    margin: auto;
+    padding: 12px;
 }
 
-/* -------------------- Header -------------------- */
+/* =============================
+   Header
+============================= */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 12px 0;
-    border-bottom: 1px solid var(--card-border);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
     flex-wrap: wrap;
 }
 
@@ -63,109 +63,140 @@ body.dark-mode a {
 }
 
 .logo {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
     color: var(--primary);
-    background: var(--accent);
-    width: 48px;
-    height: 48px;
+    background: var(--secondary);
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
 }
 
 .site-title {
-    font-weight: 700;
     font-size: 18px;
+    font-weight: 600;
 }
 
-/* -------------------- Navigation -------------------- */
+/* =============================
+   Navigation
+============================= */
 .top-nav {
     display: flex;
+    align-items: center;
     gap: 8px;
     flex-wrap: wrap;
 }
 
 .top-nav button {
+    padding: 6px 14px;
+    font-size: 14px;
     border: none;
-    padding: 8px 14px;
     border-radius: 6px;
-    background: var(--secondary);
-    color: #fff;
     cursor: pointer;
-    font-weight: 600;
-    transition: 0.3s;
+    background: var(--card-bg);
+    color: var(--text);
+    transition: 0.2s;
 }
 
 .top-nav button.primary {
     background: var(--primary);
+    color: #fff;
 }
 
 .top-nav button:hover {
     opacity: 0.85;
 }
 
-/* -------------------- Main Grid -------------------- */
+/* =============================
+   Main Grid
+============================= */
 .main-grid {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 12px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
 }
 
-/* -------------------- Cards -------------------- */
+@media (max-width: 900px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =============================
+   Card Component
+============================= */
 .card {
     background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
     padding: 16px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    flex: 1;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
+/* =============================
+   Hero Section
+============================= */
 .hero {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    align-items: center;
-}
-
-.hero .welcome h1 {
-    margin: 0;
-}
-
-.cards-grid {
-    display: flex;
-    flex-wrap: wrap;
     gap: 12px;
 }
 
-.tutorial-card {
-    flex: 1 1 220px;
-}
-
-.tutorial-card .thumb {
-    font-weight: 700;
-    margin-bottom: 6px;
+.welcome h1 {
+    font-size: 24px;
     color: var(--primary);
 }
 
-/* -------------------- Buttons -------------------- */
+/* =============================
+   Buttons
+============================= */
 button {
     border: none;
     border-radius: 6px;
-    padding: 8px 12px;
+    padding: 6px 12px;
+    font-size: 14px;
     cursor: pointer;
+    background: var(--secondary);
+    color: #fff;
     transition: 0.2s;
-    font-weight: 600;
 }
 
 button:hover {
     opacity: 0.85;
 }
 
-/* -------------------- Progress Bars -------------------- */
+button.primary {
+    background: var(--primary);
+}
+
+/* =============================
+   Cards Grid (for tutorials)
+============================= */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.tutorial-card .thumb {
+    font-weight: 700;
+    font-size: 14px;
+    color: #fff;
+    background: var(--primary);
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+/* =============================
+   Progress Bars
+============================= */
 #progressWrapper {
     background: #ddd;
     border-radius: 12px;
@@ -173,87 +204,64 @@ button:hover {
 }
 
 #progressBar {
+    background: var(--success);
     height: 100%;
     width: 0%;
-    background: var(--success);
-    transition: 0.4s;
+    transition: width 0.4s ease;
 }
 
-/* -------------------- Calendar / Schedule -------------------- */
+/* =============================
+   Quiz
+============================= */
+.quiz-question {
+    margin-top: 12px;
+    padding: 8px;
+    border-left: 4px solid var(--primary);
+    background: rgba(30, 58, 138,0.05);
+    border-radius: 6px;
+}
+
+.quiz-question p {
+    font-weight: 600;
+}
+
+/* =============================
+   Calendar
+============================= */
 .calendar-row {
     display: flex;
-    gap: 12px;
+    gap: 16px;
     flex-wrap: wrap;
 }
 
 .calendar {
-    flex: 1 1 300px;
-    padding: 12px;
+    flex: 1;
+    min-width: 280px;
 }
 
-li.book-btn {
-    cursor: pointer;
-    color: #fff;
-    background: var(--primary);
-    padding: 6px 10px;
-    margin-top: 4px;
-    border-radius: 6px;
-    display: inline-block;
-}
-
-li.book-btn:hover {
-    background: var(--accent);
-}
-
-/* -------------------- Footer -------------------- */
+/* =============================
+   Footer
+============================= */
 .footer {
-    margin-top: 12px;
-    padding: 12px 0;
+    margin-top: 24px;
     text-align: center;
-    font-size: 13px;
+    font-size: 12px;
     color: var(--muted);
 }
 
-/* -------------------- Responsive -------------------- */
-@media screen and (max-width: 768px) {
-    .main-grid {
-        flex-direction: column;
-    }
-
+/* =============================
+   Media Queries for Responsiveness
+============================= */
+@media (max-width: 600px) {
     .hero {
         flex-direction: column;
-        gap: 12px;
     }
-}
 
-@media screen and (max-width: 480px) {
-    .top-nav button {
-        padding: 6px 8px;
-        font-size: 14px;
+    .top-nav {
+        justify-content: center;
     }
-}
 
-/* -------------------- Images on Home -------------------- */
-.hero-image {
-    width: 100%;
-    max-height: 250px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-top: 12px;
-}
-
-/* -------------------- Quiz -------------------- */
-.quiz-question {
-    margin-bottom: 12px;
-}
-
-.quiz-question label {
-    display: block;
-    margin-top: 4px;
-    cursor: pointer;
-}
-
-/* -------------------- Misc -------------------- */
-ul {
-    padding-left: 20px;
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
 }

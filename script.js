@@ -1,7 +1,6 @@
 // ===============================
-// ByteBridge Global Script Engine
-// Tracks user interaction progress
-// Uses browser LocalStorage
+// ByteBridge Global Script
+// Tracks progress and schedule
 // ===============================
 
 // THEME TOGGLE
@@ -17,7 +16,7 @@ if(toggle){
     }
 }
 
-// PROGRESS SYSTEM
+// ======== PROGRESS STORAGE ========
 function getProgress(){
     return JSON.parse(localStorage.getItem("bb_progress") || "{}");
 }
@@ -28,6 +27,7 @@ function setProgress(key){
     localStorage.setItem("bb_progress", JSON.stringify(p));
 }
 
+// ======== CALCULATE PERCENT ========
 function calcPercent(){
     const p = getProgress();
     const total = 3; // quiz + video + schedule
@@ -38,12 +38,12 @@ function calcPercent(){
     return Math.round((score/total)*100);
 }
 
-// VIDEO TRACK
+// ======== VIDEO TRACK ========
 document.querySelectorAll("iframe").forEach(v=>{
     v.addEventListener("mouseenter",()=>setProgress("video"));
 });
 
-// QUIZ FUNCTION
+// ======== QUIZ ========
 function gradeQuiz(){
     let score = 0;
     if(document.querySelector('input[name=q1]:checked')?.value==="b") score++;
@@ -54,20 +54,54 @@ function gradeQuiz(){
     loadDashboard();
 }
 
-// SCHEDULE TRACK
-function bookedSession(){
-    alert("Session Booked!");
-    setProgress("schedule");
-    loadDashboard();
+// ======== SCHEDULE ========
+function initSchedule(){
+    const buttons = document.querySelectorAll(".schedule-btn");
+    buttons.forEach(btn=>{
+        btn.addEventListener("click",()=>{
+            const time = btn.dataset.time;
+            addSession(time);
+        });
+    });
+    displaySessions();
 }
 
-// DASHBOARD UPDATE
+function addSession(time){
+    let sessions = JSON.parse(localStorage.getItem("bb_sessions") || "[]");
+    if(!sessions.includes(time)){
+        sessions.push(time);
+        localStorage.setItem("bb_sessions", JSON.stringify(sessions));
+        setProgress("schedule");
+        displaySessions();
+        loadDashboard();
+    }
+}
+
+function displaySessions(){
+    const list = document.getElementById("selectedSessions") || document.getElementById("dashboardSessions");
+    if(!list) return;
+    list.innerHTML = "";
+    let sessions = JSON.parse(localStorage.getItem("bb_sessions") || "[]");
+    sessions.forEach(s=>{
+        const li = document.createElement("li");
+        li.textContent = s;
+        list.appendChild(li);
+    });
+}
+
+// ======== DASHBOARD ========
 function loadDashboard(){
     const percent = calcPercent();
     const bar = document.getElementById("progressFill");
     const text = document.getElementById("progressText");
     if(bar) bar.style.width = percent + "%";
     if(text) text.innerText = percent + "% Complete";
+
+    displaySessions();
 }
 
-window.onload = loadDashboard;
+// ======== INITIALIZE ========
+window.onload = ()=>{
+    loadDashboard();
+    initSchedule();
+}

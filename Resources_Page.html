@@ -24,88 +24,77 @@
             <a href="Resources_Page.html"><button class="primary">Resources</button></a>
             <a href="Schedule_Page.html"><button>Schedule</button></a>
             <a href="Student_Dashboard.html"><button>Dashboard</button></a>
-            <button id="theme-toggle" title="Toggle dark mode">🌙</button>
         </nav>
     </header>
 
     <main>
         <section class="card">
             <h2>Learning Materials</h2>
-            <p style="color:var(--muted);margin-top:8px">Downloadable guides, practice activities, and helpful links for web development and coding.</p>
+            <p style="color:var(--muted);margin-top:8px">Downloadable guides, practice activities, embedded videos, and helpful links for web development.</p>
 
-            <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
-                <!-- Study Guides -->
-                <div class="card" style="flex:1;min-width:240px">
-                    <h3>Study Guides</h3>
-                    <p style="color:var(--muted);font-size:14px">HTML & CSS quick reference PDFs (placeholders).</p>
-                    <button onclick="window.open('Media/WebDevelopmentStudyGuide.pdf'); trackProgress('resource')">View</button>
+            <div class="cards-grid" style="margin-top:12px">
+                <div class="tutorial-card card tutorial">
+                    <div class="thumb">HTML</div>
+                    <div>
+                        <h3>HTML Basics</h3>
+                        <p style="color:var(--muted);font-size:13px">Learn tags, elements, and page structure.</p>
+                        <button onclick="updateProgress(5); window.open('https://www.w3schools.com/html/','_blank')">W3Schools</button>
+                        <button onclick="updateProgress(5); window.open('https://developer.mozilla.org/en-US/docs/Web/HTML','_blank')">MDN</button>
+                        <div style="margin-top:8px">
+                            <iframe width="100%" height="160" src="https://www.youtube.com/embed/zofMnllkVfI" frameborder="0" allowfullscreen onclick="updateProgress(5)"></iframe>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Practice Activities -->
-                <div class="card" style="flex:1;min-width:240px">
-                    <h3>Practice Activities</h3>
-                    <p style="color:var(--muted);font-size:14px">Short exercises to practice coding concepts.</p>
-                    <button onclick="window.open('Media/HTML%20Basics.pdf'); trackProgress('resource')">View</button>
-                </div>
-
-                <!-- Tutorial Videos -->
-                <div class="card" style="flex:1;min-width:240px">
-                    <h3>Tutorial Videos</h3>
-                    <p style="color:var(--muted);font-size:14px">Embedded tutorial videos for instructors to add content.</p>
-                    <iframe width="100%" height="160" src="https://www.youtube.com/embed/it1rTvBcfRg"
-                            title="Tutorial Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen data-track="video"></iframe>
+                <div class="tutorial-card card tutorial">
+                    <div class="thumb">CSS</div>
+                    <div>
+                        <h3>CSS Basics</h3>
+                        <p style="color:var(--muted);font-size:13px">Selectors, layout, flexbox, grid.</p>
+                        <button onclick="updateProgress(5); window.open('https://www.w3schools.com/css/','_blank')">W3Schools</button>
+                        <button onclick="updateProgress(5); window.open('https://developer.mozilla.org/en-US/docs/Web/CSS','_blank')">MDN</button>
+                        <div style="margin-top:8px">
+                            <iframe width="100%" height="160" src="https://www.youtube.com/embed/VSwaoQ3TFkQ" frameborder="0" allowfullscreen onclick="updateProgress(5)"></iframe>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div style="margin-top:12px">
+            <div style="margin-top:20px">
+                <h3>Quick Quiz</h3>
+                <form id="quizForm">
+                    <div class="quiz-question" data-answer="b">
+                        <p>1. Which HTML tag is used for the largest heading?</p>
+                        <label><input type="radio" name="q1" value="a"> &lt;head&gt;</label><br>
+                        <label><input type="radio" name="q1" value="b"> &lt;h1&gt;</label><br>
+                        <label><input type="radio" name="q1" value="c"> &lt;body&gt;</label>
+                    </div>
+                    <div class="quiz-question" data-answer="c">
+                        <p>2. Which CSS property controls the text color?</p>
+                        <label><input type="radio" name="q2" value="a"> font-size</label><br>
+                        <label><input type="radio" name="q2" value="b"> text-align</label><br>
+                        <label><input type="radio" name="q2" value="c"> color</label>
+                    </div>
+                    <button type="submit">Submit Quiz</button>
+                </form>
+            </div>
+
+            <div style="margin-top:20px">
                 <h3>External References</h3>
-                <ul style="margin-top:8px;color:var(--muted);line-height:1.8">
-                    <li><a href="https://www.w3schools.com/html/" target="_blank" onclick="trackProgress('resource')">W3Schools - HTML</a></li>
-                    <li><a href="https://www.w3schools.com/css/" target="_blank" onclick="trackProgress('resource')">W3Schools - CSS</a></li>
-                    <li><a href="https://developer.mozilla.org/en-US/" target="_blank" onclick="trackProgress('resource')">MDN Web Docs</a></li>
+                <ul style="color:var(--muted);line-height:1.8">
+                    <li><a href="https://www.w3schools.com/html/" target="_blank">W3Schools - HTML</a></li>
+                    <li><a href="https://www.w3schools.com/css/" target="_blank">W3Schools - CSS</a></li>
+                    <li><a href="https://developer.mozilla.org/en-US/" target="_blank">MDN Web Docs</a></li>
                 </ul>
             </div>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-            <h2>Knowledge Check: Interactive Quiz</h2>
-            <p style="color:var(--muted)">Answer the following questions to test your understanding.</p>
-
-            <form id="quizForm">
-                <div class="quiz-question">
-                    <p>1. Which HTML tag is used for a paragraph?</p>
-                    <label><input type="radio" name="q1" value="a"> &lt;p&gt;</label><br>
-                    <label><input type="radio" name="q1" value="b"> &lt;div&gt;</label><br>
-                    <label><input type="radio" name="q1" value="c"> &lt;h1&gt;</label>
-                </div>
-
-                <div class="quiz-question">
-                    <p>2. Which property sets the background color in CSS?</p>
-                    <label><input type="radio" name="q2" value="a"> color</label><br>
-                    <label><input type="radio" name="q2" value="b"> background-color</label><br>
-                    <label><input type="radio" name="q2" value="c"> font-color</label>
-                </div>
-
-                <div style="margin-top:8px">
-                    <button type="submit">Submit Quiz</button>
-                </div>
-            </form>
-
-            <div id="quizResult" style="margin-top:12px;color:var(--brand);font-weight:700"></div>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-            <h2>Support</h2>
-            <p style="color:var(--muted)">If you need tech support or tutoring assistance, use the Schedule page to sign up for sessions.</p>
-            <button onclick="window.location.href='Schedule_Page.html'">Go to Schedule</button>
         </section>
     </main>
 
     <footer class="footer">
-        Resources page — open-source components and links to W3Schools / MDN.
+        Resources page — interactive elements update progress automatically.
     </footer>
 </div>
 </body>
 </html>
+
 

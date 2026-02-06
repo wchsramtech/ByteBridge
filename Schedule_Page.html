@@ -1,62 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>ByteBridge - Schedule</title>
+    <meta charset="utf-8">
+    <title>Schedule - ByteBridge</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-
 <div class="container">
-
     <header class="header">
         <div class="brand">
             <div class="logo">BB</div>
             <div>
                 <div class="site-title">ByteBridge</div>
-                <div class="slogan">Connecting Learning, One Click at a Time</div>
+                <div style="font-size:12px;color:var(--muted)">Schedule</div>
             </div>
         </div>
+
         <nav class="top-nav">
             <a href="index.html"><button>Home</button></a>
             <a href="Resources_Page.html"><button>Resources</button></a>
             <a href="Schedule_Page.html"><button class="primary">Schedule</button></a>
             <a href="Student_Dashboard.html"><button>Dashboard</button></a>
-            <button id="theme-toggle">🌙</button>
+            <button id="theme-toggle" title="Toggle dark mode">🌙</button>
         </nav>
     </header>
 
-    <main class="card">
-        <h2>Book Tutoring Sessions</h2>
-        <p style="color:var(--muted)">Click a session below to reserve it. It will appear on your dashboard.</p>
+    <main class="main-grid">
+        <section class="card">
+            <h2>Book a Tutoring Session</h2>
+            <p style="color:var(--muted);margin-top:8px">
+                Click a session below to reserve it. Your booked sessions will appear on your Dashboard.
+            </p>
 
-        <div class="schedule-grid">
-            <!-- Live Tutoring -->
-            <div class="session-group">
-                <h3>Live Tutoring</h3>
-                <button class="schedule-btn" data-session="Mon 3:30–5:00 PM">Mon 3:30–5:00 PM</button>
-                <button class="schedule-btn" data-session="Wed 3:30–5:00 PM">Wed 3:30–5:00 PM</button>
-                <button class="schedule-btn" data-session="Thu 3:30–5:00 PM">Thu 3:30–5:00 PM</button>
+            <div class="calendar-row" style="margin-top:12px;gap:12px;flex-wrap:wrap;">
+                <!-- Live Tutoring -->
+                <div class="card calendar-card">
+                    <h3>Live Tutoring (Mon, Wed, Thu • 3:30 - 5:00 PM)</h3>
+                    <ul id="live-sessions" class="session-list">
+                        <li data-session="Mon 3:30 PM" class="session">Mon 3:30 PM <button class="book-btn">Book</button></li>
+                        <li data-session="Wed 3:30 PM" class="session">Wed 3:30 PM <button class="book-btn">Book</button></li>
+                        <li data-session="Thu 3:30 PM" class="session">Thu 3:30 PM <button class="book-btn">Book</button></li>
+                    </ul>
+                </div>
+
+                <!-- Group Tutoring -->
+                <div class="card calendar-card">
+                    <h3>Group Tutoring (Tue, Thu • 3:00 - 6:00 PM)</h3>
+                    <ul id="group-sessions" class="session-list">
+                        <li data-session="Tue 3:00 PM" class="session">Tue 3:00 PM <button class="book-btn">Book</button></li>
+                        <li data-session="Thu 3:00 PM" class="session">Thu 3:00 PM <button class="book-btn">Book</button></li>
+                        <li data-session="Thu 4:00 PM" class="session">Thu 4:00 PM <button class="book-btn">Book</button></li>
+                        <li data-session="Thu 5:00 PM" class="session">Thu 5:00 PM <button class="book-btn">Book</button></li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Group Tutoring -->
-            <div class="session-group">
-                <h3>Group Tutoring</h3>
-                <button class="schedule-btn" data-session="Tue 3:00–6:00 PM">Tue 3:00–6:00 PM</button>
-                <button class="schedule-btn" data-session="Thu 3:00–6:00 PM">Thu 3:00–6:00 PM</button>
+            <div style="margin-top:14px">
+                <h3>Your Booked Sessions:</h3>
+                <ul id="booked-sessions" style="color:var(--muted);line-height:1.6"></ul>
             </div>
-        </div>
+        </section>
     </main>
 
     <footer class="footer">
-        ByteBridge Scheduling — reserve your tutoring sessions.
+        ByteBridge Scheduling — interactive sessions, updated in real-time.
     </footer>
-
 </div>
-
 </body>
 </html>
-

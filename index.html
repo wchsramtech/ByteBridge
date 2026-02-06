@@ -1,109 +1,181 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>ByteBridge</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-</head>
-<body>
-<div class="container">
-    <header class="header">
-        <div class="brand">
-            <div class="logo">BB</div>
-            <div>
-                <div class="site-title">ByteBridge</div>
-                <div style="font-size:12px;color:var(--muted)">Connecting Learning • One Click at a Time</div>
-            </div>
-        </div>
+/* ==============================
+   ByteBridge - Final Script
+   Handles Dark Mode, Quiz, Schedule, Progress
+   ============================== */
 
-        <nav class="top-nav">
-            <a href="index.html"><button class="primary">Home</button></a>
-            <a href="Resources_Page.html"><button>Resources</button></a>
-            <a href="Schedule_Page.html"><button>Schedule</button></a>
-            <a href="Student_Dashboard.html"><button>Dashboard</button></a>
-            <button id="theme-toggle" title="Toggle dark mode">🌙</button>
-        </nav>
-    </header>
+// ---------- Dark Mode Toggle ----------
+const themeToggle = document.getElementById("theme-toggle");
 
-    <main class="main-grid">
-        <section class="card hero-card">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Welcome Back!</h1>
-                    <p style="color:var(--muted)">Jump into tutorials, track your learning, or sign up for a tutoring session.</p>
-                    <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
-                        <a href="Resources_Page.html"><button class="primary">Resources</button></a>
-                        <a href="Student_Dashboard.html"><button>Dashboard</button></a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1581091870620-142b6d26bdbb?auto=format&fit=crop&w=600&q=80" alt="Coding illustration">
-                </div>
-            </div>
-        </section>
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem(
+      "dark-mode",
+      document.body.classList.contains("dark-mode")
+    );
+  });
 
-        <section class="card">
-            <h2>Featured Tutorials</h2>
-            <div class="cards-grid">
-                <div class="tutorial-card card">
-                    <div class="thumb">HTML</div>
-                    <h3>Intro to HTML</h3>
-                    <iframe width="100%" height="160" 
-                        src="https://www.youtube.com/embed/zofMnllkVfI" 
-                        title="HTML Tutorial" frameborder="0" allowfullscreen></iframe>
-                </div>
+  // Load saved theme
+  if (localStorage.getItem("dark-mode") === "true") {
+    document.body.classList.add("dark-mode");
+  }
+}
 
-                <div class="tutorial-card card">
-                    <div class="thumb">CSS</div>
-                    <h3>Styling with CSS</h3>
-                    <iframe width="100%" height="160" 
-                        src="https://www.youtube.com/embed/VSwaoQ3TFkQ" 
-                        title="CSS Tutorial" frameborder="0" allowfullscreen></iframe>
-                </div>
+// ---------- Progress Tracking ----------
+const progressBar = document.getElementById("progressBar");
+let progressPoints = 0;
+let totalPoints = 0;
 
-                <div class="tutorial-card card">
-                    <div class="thumb">JS</div>
-                    <h3>JavaScript Basics</h3>
-                    <iframe width="100%" height="160" 
-                        src="https://www.youtube.com/embed/zofMnllkVfI" 
-                        title="JS Tutorial" frameborder="0" allowfullscreen></iframe>
-                </div>
+// Update progress bar
+function updateProgress() {
+  if (!progressBar) return;
+  const percent = totalPoints ? Math.min((progressPoints / totalPoints) * 100, 100) : 0;
+  progressBar.style.width = percent + "%";
+}
 
-                <div class="tutorial-card card">
-                    <div class="thumb">WD</div>
-                    <h3>Web Design Project</h3>
-                    <iframe width="100%" height="160" 
-                        src="https://www.youtube.com/embed/it1rTvBcfRg" 
-                        title="Web Design Project" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-        </section>
+// ---------- Interactive Quiz ----------
+const quizData = [
+  {
+    question: "HTML stands for?",
+    options: ["HyperText Markup Language", "HighText Machine Language", "HyperTabular Markup Language"],
+    answer: 0,
+  },
+  {
+    question: "Which tag is used for a paragraph?",
+    options: ["<p>", "<div>", "<span>"],
+    answer: 0,
+  },
+  {
+    question: "CSS is used to?",
+    options: ["Style webpages", "Structure content", "Add images"],
+    answer: 0,
+  },
+  {
+    question: "JavaScript can manipulate?",
+    options: ["HTML DOM", "Server files", "Images only"],
+    answer: 0,
+  },
+  {
+    question: "The <a> tag is for?",
+    options: ["Links", "Buttons", "Tables"],
+    answer: 0,
+  },
+];
 
-        <aside>
-            <div class="card">
-                <h3>Upcoming Tutoring</h3>
-                <p style="color:var(--muted)">Live Tutoring: Mon, Wed, Thu — 3:30 PM to 5:00 PM</p>
-                <p style="color:var(--muted)">Group Tutoring: Tue, Thu — 3:00 PM to 6:00 PM</p>
-                <a href="Schedule_Page.html"><button>Open Calendar</button></a>
-            </div>
+// Render quiz if quiz container exists
+const quizContainer = document.getElementById("quizContainer");
+if (quizContainer) {
+  totalPoints += quizData.length; // Each question = 1 point
 
-            <div class="card" style="margin-top:12px">
-                <h3>Quick Links</h3>
-                <ul style="margin-top:8px;color:var(--muted);line-height:1.8">
-                    <li><a href="https://www.w3schools.com/html/" target="_blank">W3Schools - HTML</a></li>
-                    <li><a href="https://www.w3schools.com/css/" target="_blank">W3Schools - CSS</a></li>
-                    <li><a href="https://www.w3schools.com/js/" target="_blank">W3Schools - JavaScript</a></li>
-                </ul>
-            </div>
-        </aside>
-    </main>
+  quizData.forEach((q, i) => {
+    const qDiv = document.createElement("div");
+    qDiv.className = "quiz-question";
+    qDiv.innerHTML = `<p>${i + 1}. ${q.question}</p>`;
+    q.options.forEach((opt, j) => {
+      const btn = document.createElement("button");
+      btn.textContent = opt;
+      btn.addEventListener("click", () => {
+        if (btn.dataset.answered) return;
+        btn.dataset.answered = true;
+        if (j === q.answer) {
+          btn.style.backgroundColor = "green";
+          progressPoints++;
+        } else {
+          btn.style.backgroundColor = "red";
+        }
+        // Mark all options disabled
+        qDiv.querySelectorAll("button").forEach(b => (b.disabled = true));
+        updateProgress();
+      });
+      qDiv.appendChild(btn);
+    });
+    quizContainer.appendChild(qDiv);
+  });
+}
 
-    <footer class="footer">
-        Made with open-source patterns. Tutorials sourced from W3Schools & MDN.
-    </footer>
-</div>
-</body>
-</html>
+// ---------- Video & PDF Click Tracking ----------
+document.querySelectorAll("iframe, button").forEach(el => {
+  if (el.tagName === "IFRAME") {
+    el.addEventListener("click", () => {
+      progressPoints++;
+      totalPoints++;
+      updateProgress();
+    });
+  } else if (el.tagName === "BUTTON") {
+    el.addEventListener("click", () => {
+      // Only count resource buttons for PDFs/Links
+      if (!el.classList.contains("primary")) {
+        progressPoints++;
+        totalPoints++;
+        updateProgress();
+      }
+    });
+  }
+});
+
+// ---------- Interactive Schedule ----------
+let bookedSessions = JSON.parse(localStorage.getItem("bookedSessions") || "[]");
+
+function renderSchedule() {
+  const liveContainer = document.getElementById("calendar-live");
+  const groupContainer = document.getElementById("calendar-group");
+  if (!liveContainer || !groupContainer) return;
+
+  const daysLive = ["Mon", "Wed", "Thu"];
+  const daysGroup = ["Tue", "Thu"];
+  const timesLive = "3:30 PM - 5:00 PM";
+  const timesGroup = "3:00 PM - 6:00 PM";
+
+  liveContainer.innerHTML = "";
+  groupContainer.innerHTML = "";
+
+  daysLive.forEach(d => {
+    const btn = document.createElement("button");
+    btn.textContent = `${d} • ${timesLive}`;
+    btn.addEventListener("click", () => bookSession(d, timesLive));
+    liveContainer.appendChild(btn);
+  });
+
+  daysGroup.forEach(d => {
+    const btn = document.createElement("button");
+    btn.textContent = `${d} • ${timesGroup}`;
+    btn.addEventListener("click", () => bookSession(d, timesGroup));
+    groupContainer.appendChild(btn);
+  });
+}
+
+function bookSession(day, time) {
+  const session = { day, time };
+  bookedSessions.push(session);
+  localStorage.setItem("bookedSessions", JSON.stringify(bookedSessions));
+  alert(`Booked ${day} ${time}`);
+  updateDashboard();
+  progressPoints++;
+  totalPoints++;
+  updateProgress();
+}
+
+// ---------- Dashboard Display ----------
+function updateDashboard() {
+  const dashboardContainer = document.getElementById("dashboard-sessions");
+  if (!dashboardContainer) return;
+  dashboardContainer.innerHTML = "";
+
+  if (!bookedSessions.length) {
+    dashboardContainer.innerHTML = "<p>No booked sessions yet.</p>";
+    return;
+  }
+
+  bookedSessions.forEach(s => {
+    const p = document.createElement("p");
+    p.textContent = `${s.day} • ${s.time}`;
+    dashboardContainer.appendChild(p);
+  });
+}
+
+// ---------- Init ----------
+document.addEventListener("DOMContentLoaded", () => {
+  renderSchedule();
+  updateDashboard();
+  updateProgress();
+});

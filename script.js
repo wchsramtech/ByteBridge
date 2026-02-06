@@ -1,92 +1,150 @@
-// ---------------- Dark Mode ----------------
+// ======================
+// DARK MODE TOGGLE
+// ======================
 const themeToggle = document.getElementById('theme-toggle');
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-  });
+const body = document.body;
 
-  // Load saved theme
-  if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark-mode');
-  }
-}
-
-// ---------------- Interactive Quiz ----------------
-const quizForm = document.getElementById('quiz-form');
-if (quizForm) {
-  quizForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    let score = 0;
-    const total = quizForm.querySelectorAll('.quiz-question').length;
-
-    quizForm.querySelectorAll('.quiz-question').forEach(q => {
-      const selected = q.querySelector('input[type="radio"]:checked');
-      if (selected && selected.value === q.dataset.answer) score++;
-    });
-
-    alert(`You scored ${score} / ${total}`);
-    localStorage.setItem('quizCompleted', score);
-    updateProgress();
-  });
-}
-
-// ---------------- Video Completion ----------------
-document.querySelectorAll('.tutorial-video').forEach(video => {
-  video.addEventListener('ended', () => {
-    const completedVideos = JSON.parse(localStorage.getItem('videosCompleted') || '[]');
-    if (!completedVideos.includes(video.id)) {
-      completedVideos.push(video.id);
-      localStorage.setItem('videosCompleted', JSON.stringify(completedVideos));
-      updateProgress();
+function setTheme(isDark) {
+    if (isDark) {
+        body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.textContent = '☀️';
+    } else {
+        body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+        themeToggle.textContent = '🌙';
     }
-  });
-});
-
-// ---------------- Schedule Booking ----------------
-function handleBooking(btn) {
-  const session = btn.closest('li').dataset.session;
-  let booked = JSON.parse(localStorage.getItem('bookedSessions') || '[]');
-  if (!booked.includes(session)) booked.push(session);
-  localStorage.setItem('bookedSessions', JSON.stringify(booked));
-  updateBookedSessions();
-  updateProgress();
 }
 
-document.querySelectorAll('.book-btn').forEach(btn => {
-  btn.addEventListener('click', () => handleBooking(btn));
+// Initialize theme
+const savedTheme = localStorage.getItem('theme') || 'light';
+setTheme(savedTheme === 'dark');
+
+themeToggle?.addEventListener('click', () => {
+    setTheme(body.classList.contains('dark-mode') ? false : true);
 });
 
-function updateBookedSessions() {
-  const ul = document.getElementById('booked-sessions');
-  if (!ul) return;
-  const booked = JSON.parse(localStorage.getItem('bookedSessions') || '[]');
-  ul.innerHTML = '';
-  booked.forEach(s => {
-    const li = document.createElement('li');
-    li.textContent = s;
-    ul.appendChild(li);
-  });
-}
 
-// ---------------- Dashboard Progress ----------------
+// ======================
+// DASHBOARD PROGRESS TRACKING
+// ======================
+const progressBar = document.getElementById('progressBar');
+const totalContent = document.querySelectorAll('.track-progress, .track-video, .track-doc').length;
+let completedContent = JSON.parse(localStorage.getItem('completedContent')) || [];
+
 function updateProgress() {
-  const progressBar = document.getElementById('progressBar');
-  if (!progressBar) return;
-
-  // Calculate progress: videos + quiz + booked sessions
-  const videosCompleted = JSON.parse(localStorage.getItem('videosCompleted') || '[]').length;
-  const quizScore = localStorage.getItem('quizCompleted') ? 1 : 0;
-  const bookedSessions = JSON.parse(localStorage.getItem('bookedSessions') || '[]').length;
-
-  // Total items (example: 4 videos + 1 quiz + 4 sessions = 9)
-  const totalItems = 4 + 1 + 4;
-  const completed = videosCompleted + quizScore + bookedSessions;
-
-  const percent = Math.min((completed / totalItems) * 100, 100);
-  progressBar.style.width = percent + '%';
+    const completedCount = completedContent.length;
+    const percent = Math.round((completedCount / totalContent) * 100);
+    if(progressBar) progressBar.style.width = percent + '%';
 }
 
-// Initialize on load
-updateBookedSessions();
+// Mark content as completed
+function markCompleted(id) {
+    if (!completedContent.includes(id)) {
+        completedContent.push(id);
+        localStorage.setItem('completedContent', JSON.stringify(completedContent));
+        updateProgress();
+    }
+}
+
+// Track clicks for videos
+document.querySelectorAll('.track-video').forEach(btn => {
+    btn.addEventListener('click', () => {
+        markCompleted(btn.dataset.id);
+    });
+});
+
+// Track clicks for docs
+document.querySelectorAll('.track-doc').forEach(btn => {
+    btn.addEventListener('click', () => {
+        markCompleted(btn.dataset.id);
+    });
+});
+
+// Track navigation clicks (optional for overall progress)
+document.querySelectorAll('.track-progress').forEach(link => {
+    link.addEventListener('click', () => {
+        markCompleted(link.dataset.id || link.href);
+    });
+});
+
+// Initialize progress bar
+updateProgress();
+
+
+// ======================
+// RESOURCES QUIZ GRADING
+// ======================
+function gradeQuiz() {
+    const quizForm = document.getElementById('quizForm');
+    const result = document.getElementById('quizResult');
+    if(!quizForm || !result) return;
+
+    const correctAnswers = {
+        q1: 'b',
+        q2: 'c',
+        q3: 'a',
+        q4: 'b',
+        q5: 'c'
+    };
+
+    let score = 0;
+    for (let q in correctAnswers) {
+        const answer = quizForm.elements[q]?.value;
+        if (answer === correctAnswers[q]) score++;
+    }
+
+    const total = Object.keys(correctAnswers).length;
+    result.textContent = `You scored ${score} out of ${total}`;
+
+    // Mark quiz as completed for progress
+    if(score === total) {
+        markCompleted('quiz');
+    }
+}
+
+const submitQuizBtn = document.getElementById('submitQuiz');
+submitQuizBtn?.addEventListener('click', gradeQuiz);
+
+
+// ======================
+// SCHEDULE BOOKING
+// ======================
+let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+
+// Function to book a session
+function bookSession(date, time) {
+    const id = date + '_' + time;
+    if(!bookings.some(b => b.id === id)) {
+        bookings.push({id, date, time});
+        localStorage.setItem('bookings', JSON.stringify(bookings));
+        updateDashboardBookings();
+    }
+}
+
+// Populate dashboard with booked sessions
+function updateDashboardBookings() {
+    const dashboardList = document.getElementById('upcomingSessions');
+    if(!dashboardList) return;
+
+    dashboardList.innerHTML = '';
+    bookings.forEach(b => {
+        const li = document.createElement('li');
+        li.textContent = `Booked: ${b.date} at ${b.time}`;
+        dashboardList.appendChild(li);
+    });
+}
+
+// Example: connect calendar buttons (assuming you give each time slot a class "time-slot")
+document.querySelectorAll('.time-slot').forEach(slot => {
+    slot.addEventListener('click', () => {
+        const date = slot.dataset.date;
+        const time = slot.dataset.time;
+        bookSession(date, time);
+        alert(`Booked ${date} at ${time}`);
+    });
+});
+
+// Initialize dashboard
+updateDashboardBookings();
 updateProgress();

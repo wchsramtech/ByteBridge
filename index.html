@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ByteBridge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Material Icons (open, free) -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="brand">
+                <img src="Images/logo.png" alt="ByteBridge Logo" class="logo-img">
+                <div>
+                    <div class="site-title">ByteBridge</div>
+                    <div class="slogan">Bridging Learning, One Click at a Time</div>
+                </div>
+            </div>
+
+            <nav class="top-nav">
+                <a href="index.html"><button class="primary">Home</button></a>
+                <a href="Resources_Page.html"><button>Resources</button></a>
+                <a href="Schedule_Page.html"><button>Schedule</button></a>
+                <a href="Student_Dashboard.html"><button>Dashboard</button></a>
+                <button id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
+                <script>
+                (function(){
+                    const KEY = 'bb_theme';
+                    const btn = document.getElementById('theme-toggle');
+                    const root = document.documentElement;
+
+                    function setTheme(theme){
+                        if(theme === 'dark'){
+                            root.classList.add('dark');
+                            btn.textContent = '☀️';
+                            btn.title = 'Switch to light mode';
+                            btn.setAttribute('aria-pressed','true');
+                        } else {
+                            root.classList.remove('dark');
+                            btn.textContent = '🌙';
+                            btn.title = 'Switch to dark mode';
+                            btn.setAttribute('aria-pressed','false');
+                        }
+                    }
+
+                    // initialize from storage or system preference
+                    const stored = localStorage.getItem(KEY);
+                    if(stored){
+                        setTheme(stored);
+                    } else {
+                        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                        setTheme(prefersDark ? 'dark' : 'light');
+                        localStorage.setItem(KEY, prefersDark ? 'dark' : 'light');
+                    }
+
+                    btn.addEventListener('click', () => {
+                        const next = root.classList.contains('dark') ? 'light' : 'dark';
+                        setTheme(next);
+                        localStorage.setItem(KEY, next);
+                    });
+                })();
+                </script>
+            </nav>
+        </header>
+
+        <!-- Main Grid -->
+        <main class="main-grid">
+            <!-- Hero + Featured Tutorials -->
+            <section class="card hero-card">
+                <div class="hero">
+                    <div class="welcome">
+                        <h1>Welcome back, Student!</h1>
+                        <p class="hero-text">Jump into coding tutorials, check your tutoring schedule, or track your learning progress from the dashboard.</p>
+                        <div class="hero-buttons">
+                            <a href="Resources_Page.html"><button class="primary">Explore Resources</button></a>
+                            <a href="Student_Dashboard.html"><button>Go to Dashboard</button></a>
+                        </div>
+                    </div>
+                    <div class="hero-illustration">
+                        <div class="greeting">Hello 👋</div>
+                        <div class="quick-links-title">Quick Links</div>
+                        <div class="quick-links">
+                            <a href="Resources_Page.html"><button>Resources</button></a>
+                            <a href="Student_Dashboard.html"><button class="primary">Dashboard</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Featured Tutorials</h2>
+                <div class="cards-grid">
+                    <!-- Tutorial Card Example -->
+                    <div class="tutorial-card card tutorial">
+                        <div class="thumb html-thumb">HTML</div>
+                        <div>
+                            <h3>Intro to HTML</h3>
+                            <p class="tutorial-desc">Learn the structure of webpages — tags, elements, and building blocks.</p>
+                            <div class="tutorial-links">
+                                <button onclick="window.open('https://www.w3schools.com/html/','_blank')">W3Schools</button>
+                                <button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/HTML','_blank')">MDN</button>
+                                <br><br>
+                                <button onclick="window.open('https://www.youtube.com/watch?v=kUMe1FH4CHE','_blank')" class="play-btn"><span class="material-icons">play_circle</span></button>
+                            </div>
+                            <div class="tutorial-body" style="display:none;">
+                                <iframe width="100%" height="160" src="https://www.youtube.com/embed/kUMe1FH4CHE?si=bIk3kz6I19Vo7vaf" title="HTML Tutorial (YouTube)" style="border-radius:8px;border:1px solid rgba(0,0,0,0.06)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CSS Card -->
+                    <div class="tutorial-card card tutorial">
+                        <div class="thumb css-thumb">CSS</div>
+                        <div>
+                            <h3>Styling with CSS</h3>
+                            <p class="tutorial-desc">Selectors, layout, flexbox, grid, and responsive design.</p>
+                            <div class="tutorial-links">
+                                <button onclick="window.open('https://www.w3schools.com/css/','_blank')">W3Schools</button>
+                                <button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/CSS','_blank')">MDN</button>
+                            <br>  <br><br>  <button onclick="window.open('https://www.youtube.com/watch?v=OXGznpKZ_sA','_blank')" class="play-btn"><span class="material-icons">play_circle</span></button>
+                            </div>
+                            <div class="tutorial-body" style="display:none;">
+                                <iframe width="100%" height="160" src="https://www.youtube.com/embed/OXGznpKZ_sA?si=3UYKql35u3YnaLLo" title="CSS Tutorial (YouTube)" style="border-radius:8px;border:1px solid rgba(0,0,0,0.06)"></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- JS Card -->
+                    <div class="tutorial-card card tutorial">
+                        <div class="thumb js-thumb">JS</div>
+                        <div>
+                            <h3>JavaScript Basics</h3>
+                            <p class="tutorial-desc">Variables, functions, DOM, and events — start making pages interactive.</p>
+                            <div class="tutorial-links">
+                                <button onclick="window.open('https://www.w3schools.com/js/','_blank')">W3Schools</button>
+                                <button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/JavaScript','_blank')">MDN</button>
+                              <br><br>  <button onclick="window.open('https://www.youtube.com/watch?v=PkZNo7MFNFg','_blank')" class="play-btn"><span class="material-icons">play_circle</span></button>
+                            </div>
+                            <div class="tutorial-body" style="display:none;">
+                                <iframe width="100%" height="160" src="https://www.youtube.com/embed/PkZNo7MFNFg?si=Mex89GpM1jWOtAII" title="JS Tutorial (YouTube)" style="border-radius:8px;border:1px solid rgba(0,0,0,0.06)"></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Web Design Project Card -->
+                    <div class="tutorial-card card tutorial">
+                        <div class="thumb wd-thumb">WD</div>
+                        <div>
+                            <h3>Web Design Project</h3>
+                            <p class="tutorial-desc">A mini-project: build a landing page using HTML, CSS, and JS.</p>
+                            <div class="tutorial-links">
+                                <button onclick="window.open('https://www.w3schools.com/','_blank')">W3Schools</button>
+                                <button onclick="window.open('https://developer.mozilla.org/','_blank')">MDN</button>
+                               <br><br><br> <button onclick="window.open('https://www.youtube.com/watch?v=j6Ule7GXaRs','_blank')" class="play-btn"><span class="material-icons">play_circle</span></button>
+                            </div>
+                            <div class="tutorial-body" style="display:none;">
+                                <iframe width="100%" height="160" src="https://www.youtube.com/embed/j6Ule7GXaRs?si=aL2c0_51mXCHYTB9" title="Web Design Project (YouTube)" style="border-radius:8px;border:1px solid rgba(0,0,0,0.06)"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<br><br>
+                <div class="page-links">
+                    <a href="Resources_Page.html"><button>All Resources</button></a>
+                    <a href="Schedule_Page.html"><button>View Tutoring Schedule</button></a>
+                </div>
+            </section>
+
+            <!-- Sidebar -->
+            <aside>
+                <div class="card">
+                    <h3>Upcoming Tutoring</h3>
+                    <p class="muted-text">Live Tutoring: Mon, Wed, Thu — 3:30 PM to 5:00 PM</p>
+                    <p class="muted-text">Group Tutoring: Tue, Thu — 3:00 PM to 6:00 PM</p><br><br>
+                    <div class="calendar-btn">
+                        <a href="Schedule_Page.html"><button>Open Calendar</button></a>
+                    </div>
+                </div>
+
+                <div class="card sidebar-links">
+                    <h3>Quick Links</h3>
+                    <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+                        <a href="https://www.w3schools.com/html/" target="_blank" rel="noopener" aria-label="W3Schools HTML" style="display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;text-decoration:none;color:inherit;background:linear-gradient(135deg,#e0f7ff33,#d7eaff22);box-shadow:0 8px 20px rgba(15,23,42,0.06);border:1px solid rgba(0,0,0,0.04);">
+                            <span class="material-icons" aria-hidden="true" style="font-size:20px;color:#0ea5e9">school</span>
+                            <div style="flex:1">
+                                <div style="font-weight:600">W3Schools — HTML</div>
+                                <div style="font-size:12px;color:#6b7280">Structure, tags & building blocks</div>
+                            </div>
+                            <span class="material-icons" aria-hidden="true" style="font-size:18px;opacity:0.7">open_in_new</span>
+                        </a>
+
+                        <a href="https://www.w3schools.com/css/" target="_blank" rel="noopener" aria-label="W3Schools CSS" style="display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;text-decoration:none;color:inherit;background:linear-gradient(135deg,#fff0f633,#ffe7d422);box-shadow:0 8px 20px rgba(15,23,42,0.06);border:1px solid rgba(0,0,0,0.04);">
+                            <span class="material-icons" aria-hidden="true" style="font-size:20px;color:#f97316">palette</span>
+                            <div style="flex:1">
+                                <div style="font-weight:600">W3Schools — CSS</div>
+                                <div style="font-size:12px;color:#6b7280">Styling, layout & responsive design</div>
+                            </div>
+                            <span class="material-icons" aria-hidden="true" style="font-size:18px;opacity:0.7">open_in_new</span>
+                        </a>
+
+                        <a href="https://www.w3schools.com/js/" target="_blank" rel="noopener" aria-label="W3Schools JavaScript" style="display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;text-decoration:none;color:inherit;background:linear-gradient(135deg,#f0fff433,#e6ffe822);box-shadow:0 8px 20px rgba(15,23,42,0.06);border:1px solid rgba(0,0,0,0.04);">
+                            <span class="material-icons" aria-hidden="true" style="font-size:20px;color:#84cc16">code</span>
+                            <div style="flex:1">
+                                <div style="font-weight:600">W3Schools — JavaScript</div>
+                                <div style="font-size:12px;color:#6b7280">Interactivity, DOM & events</div>
+                            </div>
+                            <span class="material-icons" aria-hidden="true" style="font-size:18px;opacity:0.7">open_in_new</span>
+                        </a>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            Made with open-source patterns. Tutorials sourced from W3Schools & MDN.
+        </footer>
+    </div>
+</body>
+</html>

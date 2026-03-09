@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ByteBridge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Material Icons (open, free) -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script>
+
+    </script>
+<!-- Educational resources sourced from MDN Web Docs, W3Schools, and YouTube EDU -->
+</head>
+
+<body>
+<div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="brand">
+                <img src="Images/logo.png" alt="ByteBridge Logo" class="logo-img">
+                <div>
+                    <div class="site-title">ByteBridge</div>
+                    <div class="slogan">Bridging Learning, One Click at a Time</div>
+                </div>
+            </div>
+
+        <nav class="top-nav">
+            <a href="index.html"><button>Home</button></a>
+            <a href="Resources_Page.html"><button>Resources</button></a>
+            <a href="Schedule_Page.html"><button class="primary">Schedule</button></a>
+            <a href="Student_Dashboard.html"><button>Dashboard</button></a>
+            <button id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
+                <script>
+                (function(){
+                    const KEY = 'bb_theme';
+                    const btn = document.getElementById('theme-toggle');
+                    const root = document.documentElement;
+
+                    function setTheme(theme){
+                        if(theme === 'dark'){
+                            root.classList.add('dark');
+                            btn.textContent = '☀️';
+                            btn.title = 'Switch to light mode';
+                            btn.setAttribute('aria-pressed','true');
+                        } else {
+                            root.classList.remove('dark');
+                            btn.textContent = '🌙';
+                            btn.title = 'Switch to dark mode';
+                            btn.setAttribute('aria-pressed','false');
+                        }
+                    }
+
+                    // initialize from storage or system preference
+                    const stored = localStorage.getItem(KEY);
+                    if(stored){
+                        setTheme(stored);
+                    } else {
+                        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                        setTheme(prefersDark ? 'dark' : 'light');
+                        localStorage.setItem(KEY, prefersDark ? 'dark' : 'light');
+                    }
+
+                    btn.addEventListener('click', () => {
+                        const next = root.classList.contains('dark') ? 'light' : 'dark';
+                        setTheme(next);
+                        localStorage.setItem(KEY, next);
+                    });
+                })();
+                </script>
+        </nav>
+    </header>
+
+    <main class="main-grid">
+        <section class="card">
+            <h1>Book Your Tutoring Session</h1>
+            <p class="hero-text">Select a date and time that works for you. Click a slot to reserve it — your booking will appear below!</p>
+
+            <!-- Calendar / Schedule -->
+            <div class="schedule-grid">
+                <div class="day-column">
+                    <h3>Monday</h3>
+                    <button class="slot" data-day="Monday" data-time="3:30 PM - 5:00 PM">3:30 PM - 5:00 PM</button>
+                </div>
+                <div class="day-column">
+                    <h3>Tuesday</h3>
+                    <button class="slot" data-day="Tuesday" data-time="3:00 PM - 6:00 PM">3:00 PM - 6:00 PM</button>
+                </div>
+                <div class="day-column">
+                    <h3>Wednesday</h3>
+                    <button class="slot" data-day="Wednesday" data-time="3:30 PM - 5:00 PM">3:30 PM - 5:00 PM</button>
+                </div>
+                <div class="day-column">
+                    <h3>Thursday</h3>
+                    <button class="slot" data-day="Thursday" data-time="3:00 PM - 6:00 PM">3:00 PM - 6:00 PM</button>
+                    <button class="slot" data-day="Thursday" data-time="3:30 PM - 5:00 PM">3:30 PM - 5:00 PM</button>
+                </div>
+            </div>
+
+            <!-- Booking Confirmation -->
+            <div class="booking-confirmation">
+                <h3>Your Bookings</h3>
+                <ul id="booking-list">
+                    <li>No sessions booked yet.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        Made with open-source patterns. Tutorials sourced from W3Schools & MDN.
+    </footer>
+</div>
+</body>
+</html>

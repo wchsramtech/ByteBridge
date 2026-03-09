@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ByteBridge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Material Icons (open, free) -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+<!-- Educational resources sourced from MDN Web Docs, W3Schools, and YouTube EDU -->
+</head>
+
+<body>
+<div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="brand">
+                <img src="Images/logo.png" alt="ByteBridge Logo" class="logo-img">
+                <div>
+                    <div class="site-title">ByteBridge</div>
+                    <div class="slogan">Bridging Learning, One Click at a Time</div>
+                </div>
+            </div>
+
+    <nav class="top-nav">
+        <a href="index.html"><button>Home</button></a>
+        <a href="Resources_Page.html"><button class="primary">Resources</button></a>
+        <a href="Schedule_Page.html"><button>Schedule</button></a>
+        <a href="Student_Dashboard.html"><button>Dashboard</button></a>
+        <button id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
+                <script>
+                (function(){
+                    const KEY = 'bb_theme';
+                    const btn = document.getElementById('theme-toggle');
+                    const root = document.documentElement;
+
+                    function setTheme(theme){
+                        if(theme === 'dark'){
+                            root.classList.add('dark');
+                            btn.textContent = '☀️';
+                            btn.title = 'Switch to light mode';
+                            btn.setAttribute('aria-pressed','true');
+                        } else {
+                            root.classList.remove('dark');
+                            btn.textContent = '🌙';
+                            btn.title = 'Switch to dark mode';
+                            btn.setAttribute('aria-pressed','false');
+                        }
+                    }
+
+                    // initialize from storage or system preference
+                    const stored = localStorage.getItem(KEY);
+                    if(stored){
+                        setTheme(stored);
+                    } else {
+                        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                        setTheme(prefersDark ? 'dark' : 'light');
+                        localStorage.setItem(KEY, prefersDark ? 'dark' : 'light');
+                    }
+
+                    btn.addEventListener('click', () => {
+                        const next = root.classList.contains('dark') ? 'light' : 'dark';
+                        setTheme(next);
+                        localStorage.setItem(KEY, next);
+                    });
+                })();
+                </script>
+    </nav>
+</header>
+
+<main>
+
+<section class="card">
+<h1>Learning Resources</h1>
+<p style="color:var(--muted)">
+Explore interactive lessons designed to strengthen foundational web development skills.
+</p>
+
+<div class="cards-grid">
+
+<!-- HTML -->
+<div class="tutorial-card card">
+    <div class="thumb" style="color:#333;">HTML</div>
+    <h3>HTML Foundations</h3>
+    <p>Defines the structure and content of webpages.</p>
+    <br><br><button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/HTML','_blank')">MDN Docs</button>
+    <button onclick="window.open('https://www.w3schools.com/html/','_blank')">Practice</button>
+</div>
+
+<!-- CSS -->
+<div class="tutorial-card card">
+    <div class="thumb" style="color:#333;">CSS</div>
+    <h3>CSS Styling</h3>
+    <p>Controls layout, colors, and responsive design.</p>
+    <br><br><button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/CSS','_blank')">MDN Docs</button>
+    <button onclick="window.open('https://www.w3schools.com/css/','_blank')">Practice</button>
+</div>
+
+<!-- JavaScript -->
+<div class="tutorial-card card">
+    <div class="thumb" style="color:#333;">JS</div>
+    <h3>JavaScript Interactivity</h3>
+    <p>Adds dynamic behavior and user interaction.</p>
+    <br><br><button onclick="window.open('https://developer.mozilla.org/en-US/docs/Web/JavaScript','_blank')">MDN Docs</button>
+    <button onclick="window.open('https://www.w3schools.com/js/','_blank')">Practice</button>
+</div>
+
+<!-- Project -->
+<div class="tutorial-card card">
+    <div class="thumb" style="color:#333;">PROJ</div>
+    <h3>Web Project</h3>
+    <p>Apply HTML, CSS, and JavaScript together.</p>
+    <br><br><br><button onclick="window.open('https://developer.mozilla.org/','_blank')">Reference</button>
+    <button onclick="window.open('https://www.w3schools.com/','_blank')">Practice</button>
+</div>
+
+</div>
+
+<hr style="margin:40px 0">
+
+<!-- ================= QUIZ ================= -->
+
+<h2>Knowledge Check</h2>
+<p style="color:var(--muted)">
+Test your understanding of the resources above.
+</p>
+
+<form id="quiz-form">
+
+<div class="quiz-q">
+<p>1️⃣ What does HTML primarily control?</p>
+<label style="color:#333;"><input type="radio" name="q1" value="a"> Styling</label><br>
+<label style="color:#333;"><input type="radio" name="q1" value="b"> Structure</label><br>
+<label style="color:#333;"><input type="radio" name="q1" value="c"> Interactivity</label>
+</div>
+
+<div class="quiz-q">
+<p>2️⃣ Which CSS feature helps create flexible layouts?</p>
+<label style="color:#333;"><input type="radio" name="q2" value="a"> Variables</label><br>
+<label style="color:#333;"><input type="radio" name="q2" value="b"> Flexbox</label><br>
+<label style="color:#333;"><input type="radio" name="q2" value="c"> Console</label>
+</div>
+
+<div class="quiz-q">
+<p>3️⃣ JavaScript is mainly used for:</p>
+<label style="color:#333;"><input type="radio" name="q3" value="a"> Page structure</label><br>
+<label style="color:#333;"><input type="radio" name="q3" value="b"> Page styling</label><br>
+<label style="color:#333;"><input type="radio" name="q3" value="c"> Interactivity</label>
+</div>
+
+<div class="quiz-q">
+<p>4️⃣ Which site provides official web documentation?</p>
+<label style="color:#333;"><input type="radio" name="q4" value="a"> MDN</label><br>
+<label style="color:#333;"><input type="radio" name="q4" value="b"> Random blogs</label><br>
+<label style="color:#333;"><input type="radio" name="q4" value="c"> Social media</label>
+</div>
+
+<button type="button" class="primary quiz-btn" onclick="gradeQuiz()">
+Submit Quiz
+</button>
+
+</form>
+
+<div id="quiz-result" style="margin-top:15px;font-weight:bold;"></div>
+
+</section>
+</main>
+
+<footer class="footer">
+Educational resources provided by MDN Web Docs, W3Schools, and YouTube EDU.
+</footer>
+
+</div>
+</body>
+</html>
